@@ -2,6 +2,14 @@
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
 
 include_once("mod/superapix/common.php");
+
+if(ini_get('allow_url_fopen')== 0)
+{
+      echo " allow_url_fopen non activé, verifier votre configuration php ";
+      die();
+}
+
+
 if (isset($pub_sub_action) && $pub_sub_action == "cross" )
 {
     include(MOD_ROOT."cross_domain.php");

@@ -27,8 +27,19 @@ $tab =  constante_stepper();
 	<th width="60%">lancer la mise a jour</th>
 	<th><?php if (((int)find_config("uni")) != 0) :?><a href="index.php?action=superapix&step=0">ENJOY</a><?php else : ?> <?php endif ; ?></th>
 </tr>
-<td class="c_tech" colspan="2">Dernieres maj via superapix</td>
+<tr>
+<td class="c_tech" colspan="2">Information serveur</td>
+</tr>
+<tr>
+	<th width="60%">allow_url_fopen</th>
+	<th><?php echo ini_get('allow_url_fopen');?></th>
+</tr>
 
+
+
+<tr>
+<td class="c_tech" colspan="2">Dernieres maj via superapix</td>
+</tr>
 
 <?php foreach ($tab as $key => $value) : ?>
 <tr>
@@ -37,3 +48,8 @@ $tab =  constante_stepper();
 </tr>
 <?php endforeach ; ?>
 </table>
+
+<?php
+
+
+//var_dump($user_data);
