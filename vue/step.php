@@ -44,6 +44,12 @@ next_step(<?php echo (int)($pub_step) ; ?>)
 </script>
 
 
+<p>
+Travail en cours<br />
+Etape <?php echo (int)($pub_step);?><br /><br />
+<img src="mod/superapix/img/loading.gif"/>
+
+</p>
 
 <?php
 
