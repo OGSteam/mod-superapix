@@ -9,6 +9,11 @@ if(ini_get('allow_url_fopen')== 0)
       die();
 }
 
+if (isset($pub_create_uni))
+{
+   
+    create_uni_vide();
+}
 
 if (isset($pub_sub_action) && $pub_sub_action == "cross" )
 {

@@ -20,3 +20,29 @@ function find_config($name){
           if($row) {return  $row['config_value'] ;}
       
 }
+
+function create_uni_vide()
+{
+    global $db,$server_config;
+    
+        $query = array();
+        for ($g = 1; $g <= $server_config['num_of_galaxies'] ; $g++ )
+        {
+           for ($s = 1; $s <= $server_config['num_of_systems'] ; $s++) 
+            {
+                  for ($r = 1; $r <= 15 ; $r++)
+                   {
+                        $query[]='("' .(int)($g). '", "' .(int)($s).  '", "' .(int)($r). '")';
+                    }
+            }
+            
+            // on lance les requetes
+            $db->sql_query('INSERT  IGNORE  INTO ' . TABLE_UNIVERSE .  ' ( galaxy,system,row) VALUES ' . implode(',', $query));
+            $query = array();
+              
+        }
+             
+                  
+   
+    
+}

@@ -63,7 +63,20 @@ echo "mise a jour de ".$total." ligne(s) univers ";
     
     
     
-// requete de mise a jour    
+update_table_universe($uni);
+
+
+    
+insert_config("last_".$pub_type,$timestamp );
+
+
+
+
+
+
+function update_table_universe($uni = 0)
+{
+   // requete de mise a jour    
 $sql = "UPDATE ".TABLE_UNIVERSE." as U INNER JOIN ".TABLE_UNIVERS." as T ";
 $sql .= " ON ";
 $sql .= "( U.galaxy = T.g AND U.row = T.r  AND U.system = T.s )   ";
@@ -77,43 +90,14 @@ $sql .= " SET ";
 $sql .= " U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
 $sql .= " WHERE  ";
 $sql .= "  U.last_update <= T.datadate ";
+if ($uni != 0)
+{
 $sql .= " AND ";
 $sql .= " U.galaxy = ".$uni." ";
+}
 
+$db->sql_query($sql); 
 
-$db->sql_query($sql);
-
-//$sql = "REPLACE INTO ".$table."  ";
-//$sql .= ($table != "CST_PLAYERS_RANK_MILITARY" ) ? " ( `datadate`, `rank`, `player`, `ally`, `points` , `sender_id`) " : " ( `datadate`, `rank`, `player`, `ally`, `points` , `ships` ,`sender_id`) " ;
-//$sql .= ($table != "CST_PLAYERS_RANK_MILITARY" ) ? " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag,  srp.points , srp.sender_id " : " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag, srp.points , srp.ships,srp.sender_id ";
-//$sql .= " FROM  ".TABLE_PLAYERS." as sp ";
-//$sql .= "INNER JOIN ".TABLE_RANK_PLAYERS." as srp "; 
-//$sql .= " on sp.id_player	= srp.id " ;
-//$sql .= "INNER JOIN ".TABLE_ALLIANCES." as sa "; 
-//$sql .= " on sa.id_alliance	= sp.id_ally ; " ;
-
-// requete de mise a jour a partir du tampon
-//$req_update = "";
-//$req_update .= " UPDATE ".TABLE_UNIVERSE." as U INNER JOIN ".APIX_TABLE_UNIVERS." as T ";
-//$req_update .= " ON ";
-//$req_update .= "  ( U.galaxy = T.galaxy AND U.row = T.row  AND U.system = T.system )   ";
-//$req_update .= " SET ";
-//$req_update .= " U.moon = T.moon , U.name = T.name  , U.ally = T.ally , U.player = T.player , U.status = T.status   , U.last_update = T.last_update   , U.last_update_user_id = T.last_update_user_id  ";
-//$req_update .= " WHERE  ";
-//$req_update .= "  U.last_update < T.last_update ";
-//
-//$db->sql_query($req_update);
-
-//	galaxy	system	row	moon	phalanx	gate	name	ally	player	status	last_update	last_update_moon	last_update_user_id 
-    
-    //	g	s	r	id_player	datadate	name_planete	name_moon	moon	sender_id
-    
-    //	id_player	name_player	status	id_ally
-    
-    //	id_alliance	tag	nb
-    
-insert_config("last_".$pub_type,$timestamp );
-
-
+}
 
 

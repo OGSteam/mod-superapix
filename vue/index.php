@@ -28,6 +28,10 @@ $tab =  constante_stepper();
 	<th><?php if (((int)find_config("uni")) != 0) :?><a href="index.php?action=superapix&step=0">ENJOY</a><?php else : ?> <?php endif ; ?></th>
 </tr>
 <tr>
+	<th width="60%">Creer univers vide</th>
+	<th><a href="index.php?action=superapix&create_uni">ENJOY</a></th>
+</tr>
+<tr>
 <td class="c_tech" colspan="2">Information serveur</td>
 </tr>
 <tr>
