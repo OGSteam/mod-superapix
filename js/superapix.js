@@ -35,10 +35,10 @@ function ajax_query(my_action,my_sub_action , my_type , my_timestamp , my_value)
      my_nummer = my_nummer + 1 ;
      if(my_nummer > nb_send_max)
      { 
-         task = task +1 ;
+        task = task +1 ;
         sub_ajax_query(my_action,my_sub_action , my_type , my_timestamp , nouvel_valeur) // on inject
         nouvel_valeur =  new Object;// on vide l object
-         my_nummer = 0 ; // remise a 0     
+        my_nummer = 0 ; // remise a 0     
      }
    }
    
@@ -59,7 +59,7 @@ function sub_ajax_query(my_action,my_sub_action , my_type , my_timestamp , my_va
     
     type: 'post', // Le type de ma requete
     url: 'index.php', // L'url vers laquelle la requete sera envoyee
-    async: true, 
+    async: false, 
     data: {
             'action': my_action, // Les donnees que l'on souhaite envoyer au serveur au format JSON
             'sub_action' : my_sub_action,
