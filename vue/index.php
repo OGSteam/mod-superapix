@@ -37,6 +37,11 @@ $tab =  constante_stepper();
 	<th><a href="index.php?action=superapix&create_uni">CREATE</a></th>
 </tr>
 <tr>
+	<th width="60%"></th>
+	<th><input type="submit" /></th>
+</tr>
+</form>
+<tr>
 <td class="c_tech" colspan="2">Information serveur</td>
 </tr>
 <tr>
