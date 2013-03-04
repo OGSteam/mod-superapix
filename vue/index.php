@@ -29,7 +29,7 @@ $tab =  constante_stepper();
 </tr>
 <tr>
 	<th width="60%">Creer univers vide</th>
-	<th><a href="index.php?action=superapix&create_uni">ENJOY</a></th>
+	<th><a href="index.php?action=superapix&create_uni">CREATE</a></th>
 </tr>
 <tr>
 <td class="c_tech" colspan="2">Information serveur</td>
@@ -38,8 +38,14 @@ $tab =  constante_stepper();
 	<th width="60%">allow_url_fopen</th>
 	<th><?php echo ini_get('allow_url_fopen');?></th>
 </tr>
-
-
+<tr>
+	<th width="60%">max_execution_time</th>
+	<th><?php echo ini_get('max_execution_time');?></th>
+</tr>
+<tr>
+	<th width="60%">post_max_size</th>
+	<th><?php echo ini_get('post_max_size');?></th>
+</tr>
 
 <tr>
 <td class="c_tech" colspan="2">Dernieres maj via superapix</td>
@@ -47,13 +53,14 @@ $tab =  constante_stepper();
 
 <?php foreach ($tab as $key => $value) : ?>
 <tr>
-	<th width="60%"><?php echo $value ; ?></th>
+	<th width="60%"><?php echo lang($value); ?></th>
 	<th><?php echo strftime("%d %b %Y %H:%M", ((int)find_config("last_".$value)));?></th>
 </tr>
 <?php endforeach ; ?>
 </table>
 
 <?php
+
 
 
 //var_dump($user_data);

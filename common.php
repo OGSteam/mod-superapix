@@ -28,6 +28,7 @@ define("MOD_ROOT_INCLUDE" , MOD_ROOT."include/");
 include(MOD_ROOT_MODEL."config.php"); 
 include(MOD_ROOT_INCLUDE."cst.php"); 
 include(MOD_ROOT_INCLUDE."function.php"); 
+include(MOD_ROOT_INCLUDE."lang.php"); 
 
 
 
