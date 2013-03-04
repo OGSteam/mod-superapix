@@ -76,6 +76,7 @@ insert_config("last_".$pub_type,$timestamp );
 
 function update_table_universe($uni = 0)
 {
+    
    // requete de mise a jour    
 $sql = "UPDATE ".TABLE_UNIVERSE." as U INNER JOIN ".TABLE_UNIVERS." as T ";
 $sql .= " ON ";

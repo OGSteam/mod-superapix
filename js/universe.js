@@ -35,8 +35,7 @@ function find_universe_timestamp()
    var timestamp = find_universe_timestamp()
       
     
-  
-      sending_conteneur_CST_UNIVERSE_bis(CST, i , timestamp );
+  sending_conteneur_CST_UNIVERSE_bis(CST, i , timestamp );
        // on prépare autant de tache que de galaxie a remplir
        
  

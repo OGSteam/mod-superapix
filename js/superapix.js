@@ -26,9 +26,27 @@ function save_crossdomain(xml)
 
 function ajax_query(my_action,my_sub_action , my_type , my_timestamp , my_value)
 {
-      task = task +1 ;
+    var nouvel_valeur = new Object;    
+    var my_nummer = 0
+    for(var valeur in my_value)
+    {
+    // console.log(valeur + ' : ' + my_value[valeur] + '  ');
+     nouvel_valeur[my_nummer] = my_value[valeur];
+     my_nummer = my_nummer + 1 ;
+     if(my_nummer > nb_send_max)
+     { 
+         task = task +1 ;
+        sub_ajax_query(my_action,my_sub_action , my_type , my_timestamp , nouvel_valeur) // on inject
+        nouvel_valeur =  new Object;// on vide l object
+         my_nummer = 0 ; // remise a 0     
+     }
+   }
+   
+   
+   
+    task = task +1 ;
     // si je met en place un systeme de limitation par envoi
-    sub_ajax_query(my_action,my_sub_action , my_type , my_timestamp , my_value)
+    sub_ajax_query(my_action,my_sub_action , my_type , my_timestamp , nouvel_valeur)
       
 }
 

@@ -7,7 +7,7 @@ if (!defined('IN_SPYOGAME')) die("Hacking attempt");
 var nb_gal = <?php echo $server_config['num_of_galaxies'] ; ?>;
 var nb_sys =  <?php echo $server_config['num_of_systems'] ; ?>;
 var nb_row = 15 ;
-var nb_send_max = 500;
+var nb_send_max = 100;
 var conteneur = null;
 var timestamp = null;
 var value = null;
