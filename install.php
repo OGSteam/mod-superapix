@@ -22,6 +22,7 @@ if ($security == true)
     create_table_univers();
     
     insert_config("uni",0);
+    insert_config("requete_max",500);
     
     
   }

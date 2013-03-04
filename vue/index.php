@@ -3,6 +3,7 @@
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
 
 if (isset($pub_uni)){insert_config("uni", (int)($pub_uni)); }
+if (isset($pub_requete_max)){insert_config("requete_max", (int)($pub_requete_max)); }
 
 $tab =  constante_stepper();
 
@@ -22,6 +23,10 @@ $tab =  constante_stepper();
 <tr>
 	<th width="60%">numero d'univers</th>
 	<th><input type="text" name="uni" size="5" value="<?php echo (int)find_config("uni");?>" /></th>
+</tr>
+<tr>
+	<th width="60%">Nombre Max de requete</th>
+	<th><input type="text" name="requete_max" size="5" value="<?php echo (int)find_config("requete_max");?>" /></th>
 </tr>
 <tr>
 	<th width="60%">lancer la mise a jour</th>
