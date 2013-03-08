@@ -6,20 +6,25 @@ global $db , $user_data ,  $server_config;
 function prepare_table_universe( $datadate)
 {
 global $db , $user_data ,  $server_config;
-$table = TABLE_UNIVERS;
+$table = ".TABLE_UNIVERSE.";
 
+	
 
 $sql = "";
 $sql .= " UPDATE  ".$table."  ";
 $sql .= " set ";
-$sql .= " id_player = '0' , ";
-$sql .= " datadate = '".$datadate."' ";
-$sql .= " name_planete =  '' ";
+$sql .= " ally = '' , ";
+$sql .= " player = '' , ";
+$sql .= " status = '' , ";
+$sql .= " gate = '' , ";
+$sql .= " phalanx = '' , ";
+$sql .= " last_update = '".$datadate."' ";
+$sql .= " name =  '' ";
 $sql .= " name_moon = '' ";
 $sql .= " moon = '0' ";
 $sql .= " sender_id = '".$user_data['user_id']."' ";
 
- $sql .= " where datadate < '".(int)$datadate."' ";  
+ $sql .= " where last_update < '".(int)$datadate."' ";  
 
 
  $db->sql_query($sql);
@@ -132,7 +137,7 @@ $sql .= " U.galaxy = ".$uni." ";
 
 $db->sql_query($sql); 
 
-prepare_table_universe( $datadate);
+prepare_table_universe($datadate);
 /// ensuite il faut une requete d update pour mettre a 0 tout ce qui a pas le bon timestamps min : c que pas dans universe.xml
 }
 
