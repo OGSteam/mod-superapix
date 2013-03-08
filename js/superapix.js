@@ -59,7 +59,7 @@ function sub_ajax_query(my_action,my_sub_action , my_type , my_timestamp , my_va
     
     type: 'post', // Le type de ma requete
     url: 'index.php', // L'url vers laquelle la requete sera envoyee
-    async: false, 
+    async: true, 
     data: {
             'action': my_action, // Les donnees que l'on souhaite envoyer au serveur au format JSON
             'sub_action' : my_sub_action,
