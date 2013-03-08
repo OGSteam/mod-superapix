@@ -18,10 +18,10 @@ $sql .= " player = '' , ";
 $sql .= " status = '' , ";
 $sql .= " gate = '' , ";
 $sql .= " phalanx = '' , ";
-$sql .= " last_update = '".$datadate."' ";
-$sql .= " name =  '' ";
-$sql .= " name_moon = '' ";
-$sql .= " moon = '0' ";
+$sql .= " last_update = '".$datadate."' ,";
+$sql .= " name =  '', ";
+$sql .= " name_moon = '' ,";
+$sql .= " moon = '0' ,";
 $sql .= " sender_id = '".$user_data['user_id']."' ";
 
  $sql .= " where last_update < '".(int)$datadate."' ";  
