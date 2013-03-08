@@ -2,7 +2,35 @@
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
 global $db , $user_data ,  $server_config;
 
+/// voir si utile
+function prepare_table_universe( $datadate)
+{
+global $db , $user_data ,  $server_config;
+$table = TABLE_UNIVERS;
+
+
+$sql = "";
+$sql .= " UPDATE  ".$table."  ";
+$sql .= " set ";
+$sql .= " id_player = '0' , ";
+$sql .= " datadate = '".$datadate."' ";
+$sql .= " name_planete =  '' ";
+$sql .= " name_moon = '' ";
+$sql .= " moon = '0' ";
+$sql .= " sender_id = '".$user_data['user_id']."' ";
+
+ $sql .= " where datadate < '".(int)$datadate."' ";  
+
+
+ $db->sql_query($sql);
+ 
+ 
+}
+
+
+ global $db , $user_data ,  $server_config , $pub_timestamp ; 
 $timestamp = (int)$pub_timestamp;
+
 $table = TABLE_UNIVERS;
 $sender_id = $user_data['user_id'] ;
 
@@ -37,20 +65,22 @@ foreach($pub_value as $value)
      
 } 
 
- // avant de traiter le $_post, on va preparer uni vide avec le timestamp 
-$uni = (int)$galaxie;
+ // avant de traiter le $_post, on va preparer uni vide avec le timestamp si besoin
+ 
+ // todo faire une requete update apour remise a 0 avec comme where la galaxie et le timstamp ( si inf => 0 )
+//$uni = (int)$galaxie;
 
-    for ($i = 1; $i < ((int)$server_config['num_of_systems'] + 1 ); $i++) {
-         for ($j = 1; $j < 16 ; $j++)
-         {
-            $temp_query = "( ".$uni.", ".$i." , ".$j."  , 0 , ".$timestamp." , '' , '' , '0'  , ".$sender_id." ) ";
-            $pre_query[] = $temp_query; 
+  //  for ($i = 1; $i < ((int)$server_config['num_of_systems'] + 1 ); $i++) {
+    //     for ($j = 1; $j < 16 ; $j++)
+    //     {
+     //       $temp_query = "( ".$uni.", ".$i." , ".$j."  , 0 , ".$timestamp." , '' , '' , '0'  , ".$sender_id." ) ";
+      //      $pre_query[] = $temp_query; 
             
-         }
-    }
- $db->sql_query('REPLACE INTO '.$table.' ('.$fields.') VALUES '.implode(',', $pre_query));
+      //   }
+   // }
+// $db->sql_query('REPLACE INTO '.$table.' ('.$fields.') VALUES '.implode(',', $pre_query));
  // on vide prequery 
- $pre_query = array();
+// $pre_query = array();
  
  
  
@@ -73,6 +103,9 @@ insert_config("last_".$pub_type,$timestamp );
 
 
 
+   
+
+
 
 function update_table_universe($uni = 0)
 {
@@ -90,7 +123,7 @@ $sql .= "( A.id_alliance = P.id_ally  )   ";
 $sql .= " SET ";
 $sql .= " U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
 $sql .= " WHERE  ";
-$sql .= "  U.last_update <= T.datadate ";
+$sql .= "  U.last_update < T.datadate ";
 if ($uni != 0)
 {
 $sql .= " AND ";
@@ -99,6 +132,8 @@ $sql .= " U.galaxy = ".$uni." ";
 
 $db->sql_query($sql); 
 
+prepare_table_universe( $datadate);
+/// ensuite il faut une requete d update pour mettre a 0 tout ce qui a pas le bon timestamps min : c que pas dans universe.xml
 }
 
 
