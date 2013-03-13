@@ -8,7 +8,7 @@ function next_step(nb)
 {
     nb = nb + 1 ;
     if ( nb == 19 ) {
-        //window.location = "index.php?action=superapix"  ;
+        window.location = "index.php?action=superapix"  ;
          }
     else
     {

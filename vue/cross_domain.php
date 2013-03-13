@@ -92,9 +92,9 @@ if ($must_down)
     $url = uni_replace(find_config('uni'),$url);
     // on telecharge le fichier distant
     
-    file_put_contents(MOD_ROOT_XML.$pub_url.'.xml', file_get_contents($url));
-     
-    
+    //file_put_contents(MOD_ROOT_XML.$pub_url.'.xml', file_get_contents($url));
+        
+    copy($url, MOD_ROOT_XML.$pub_url.'.xml');
 }
  //  $url = uni_replace(find_config('uni'),$url);
   
