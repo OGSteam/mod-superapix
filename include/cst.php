@@ -110,10 +110,11 @@ function constante_stepper()
      }
     
      //on ajout les constantes uni :)
-        for ($i = 1; $i <= $server_config['num_of_galaxies']; $i++) {
+    //    for ($i = 1; $i <= $server_config['num_of_galaxies']; $i++) {
            
-           $my_retour[] = "CST_UNIVERSE_".$i ; 
-        }
+      //     $my_retour[] = "CST_UNIVERSE_".$i ; 
+      //  }
+       $my_retour[] = "CST_UNIVERSE";
              
     return $my_retour;
 }
