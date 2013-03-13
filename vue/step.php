@@ -124,7 +124,7 @@ $sql .= "  U.last_update < T.datadate ";
 $db->sql_query($sql); 
 
 
-
+prepare_table_universe($timestamp);
 
 
 insert_config("last_CST_UNIVERSE",$timestamp );
@@ -335,4 +335,35 @@ function find_timestamp($value)
         
         $timestamp = ((int)$attribut["timestamp"]);
         return $timestamp;
+}
+
+
+/// voir si utile
+function prepare_table_universe( $datadate)
+{
+global $db , $user_data ,  $server_config;
+$table = ".TABLE_UNIVERSE.";
+
+	
+
+$sql = "";
+$sql .= " UPDATE  ".$table."  ";
+$sql .= " set ";
+$sql .= " ally = '' , ";
+$sql .= " player = '' , ";
+$sql .= " status = '' , ";
+$sql .= " gate = '' , ";
+$sql .= " phalanx = '' , ";
+$sql .= " last_update = '".$datadate."' ,";
+$sql .= " name =  '', ";
+$sql .= " name_moon = '' ,";
+$sql .= " moon = '0' ,";
+$sql .= " sender_id = '".$user_data['user_id']."' ";
+
+ $sql .= " where last_update < '".(int)$datadate."' ";  
+
+
+ $db->sql_query($sql);
+ 
+ 
 }
