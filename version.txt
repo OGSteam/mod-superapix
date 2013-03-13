@@ -1,4 +1,4 @@
 Superapix
-0.0.5
+0.0.6
 superapix,superapix,superapix,superapix,index.php,1,1
 
