@@ -82,3 +82,24 @@ function my_encodage($str)
 {
     return utf8_decode($str);
 }
+
+
+
+function f_chargement_fichier_xml($s_fichier_xml)
+{	
+	// On test voir si les fichiers que l'on va traiter existe
+	if(file_exists($s_fichier_xml)) 
+	{
+		$o_xml = simplexml_load_file($s_fichier_xml);
+		if($o_xml === FALSE)
+		{
+			// Le fichier ne c'est pas chargé correctement, et bien je suis une tête à claque, j'insiste !
+			$o_xml = f_chargement_fichier_xml($s_fichier_xml); 
+		}
+		return $o_xml;
+	} 
+	else 
+	{
+		exit('Echec lors de l\'ouverture du fichier '.$s_fichier_xml.'.');
+	}
+}

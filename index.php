@@ -17,7 +17,11 @@ if (isset($pub_create_uni))
 
 if (isset($pub_sub_action) && $pub_sub_action == "cross" )
 {
-    include(MOD_ROOT."cross_domain.php");
+      require_once("views/page_header.php");
+    include(MOD_ROOT_JS."cst_javascript.php");
+    echo '<script src="'.MOD_ROOT_JS.'cross_domain.js" type="text/javascript"> </script>';
+    include(MOD_ROOT_VUE."cross_domain.php");
+     require_once("views/page_tail.php"); 
     die;
 }
 
@@ -43,12 +47,12 @@ if (isset($pub_step)  &&  is_numeric($pub_step))
 {
   require_once("views/page_header.php");
   include(MOD_ROOT_JS."cst_javascript.php");
-  echo '<script src="'.MOD_ROOT_JS.'superapix.js" type="text/javascript"> </script>';
-  echo '<script src="'.MOD_ROOT_JS.'player.js" type="text/javascript"> </script>';
-  echo '<script src="'.MOD_ROOT_JS.'alliance.js" type="text/javascript"> </script>';
-  echo '<script src="'.MOD_ROOT_JS.'rank_alliance.js" type="text/javascript"> </script>';
-  echo '<script src="'.MOD_ROOT_JS.'rank_player.js" type="text/javascript"> </script>';
-  echo '<script src="'.MOD_ROOT_JS.'universe.js" type="text/javascript"> </script>';
+//  echo '<script src="'.MOD_ROOT_JS.'superapix.js" type="text/javascript"> </script>';
+ // echo '<script src="'.MOD_ROOT_JS.'player.js" type="text/javascript"> </script>';
+  //echo '<script src="'.MOD_ROOT_JS.'alliance.js" type="text/javascript"> </script>';
+  //echo '<script src="'.MOD_ROOT_JS.'rank_alliance.js" type="text/javascript"> </script>';
+  //echo '<script src="'.MOD_ROOT_JS.'rank_player.js" type="text/javascript"> </script>';
+  echo '<script src="'.MOD_ROOT_JS.'step.js" type="text/javascript"> </script>';
   // on va d ailleurs pas se casser la tete, le decode on le met ici :
   include(MOD_ROOT_VUE."step.php"); // traitement des envois
   require_once("views/page_tail.php"); 

@@ -21,8 +21,10 @@ if ($security == true)
     create_table_rank_player();
     create_table_univers();
     
+    rempli_table_univers();
+    
     insert_config("uni",0);
-    insert_config("requete_max",500);
+   // insert_config("requete_max",500);
     
     
   }

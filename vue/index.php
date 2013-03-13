@@ -30,7 +30,7 @@ $tab =  constante_stepper();
 </tr>
 <tr>
 	<th width="60%">lancer la mise a jour</th>
-	<th><?php if (((int)find_config("uni")) != 0) :?><a href="index.php?action=superapix&step=0">ENJOY</a><?php else : ?> <?php endif ; ?></th>
+	<th><?php if (((int)find_config("uni")) != 0) :?><a href="index.php?action=superapix&sub_action=cross&step=0">ENJOY</a><?php else : ?> <?php endif ; ?></th>
 </tr>
 <tr>
 	<th width="60%">Creer univers vide</th>
