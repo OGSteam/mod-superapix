@@ -2,35 +2,7 @@
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
 global $db , $user_data ,  $server_config;
 
-/// voir si utile
-function prepare_table_universe( $datadate)
-{
-global $db , $user_data ,  $server_config;
-$table = ".TABLE_UNIVERSE.";
 
-	
-
-$sql = "";
-$sql .= " UPDATE  ".$table."  ";
-$sql .= " set ";
-$sql .= " ally = '' , ";
-$sql .= " player = '' , ";
-$sql .= " status = '' , ";
-$sql .= " gate = '' , ";
-$sql .= " phalanx = '' , ";
-$sql .= " last_update = '".$datadate."' ,";
-$sql .= " name =  '', ";
-$sql .= " name_moon = '' ,";
-$sql .= " moon = '0' ,";
-$sql .= " sender_id = '".$user_data['user_id']."' ";
-
- $sql .= " where last_update < '".(int)$datadate."' ";  
-
-
- $db->sql_query($sql);
- 
- 
-}
 
 
  global $db , $user_data ,  $server_config , $pub_timestamp ; 
