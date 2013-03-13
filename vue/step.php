@@ -342,7 +342,7 @@ function find_timestamp($value)
 function prepare_table_universe( $datadate)
 {
 global $db , $user_data ,  $server_config;
-$table = ".TABLE_UNIVERSE.";
+$table = TABLE_UNIVERSE;
 
 	
 
@@ -352,13 +352,12 @@ $sql .= " set ";
 $sql .= " ally = '' , ";
 $sql .= " player = '' , ";
 $sql .= " status = '' , ";
-$sql .= " gate = '' , ";
-$sql .= " phalanx = '' , ";
+$sql .= " gate = '0' , ";
+$sql .= " phalanx = '0' , ";
 $sql .= " last_update = '".$datadate."' ,";
 $sql .= " name =  '', ";
-$sql .= " name_moon = '' ,";
-$sql .= " moon = '0' ,";
-$sql .= " sender_id = '".$user_data['user_id']."' ";
+$sql .= " moon = '0' ";
+
 
  $sql .= " where last_update < '".(int)$datadate."' ";  
 
