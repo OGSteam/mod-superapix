@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-next_step(step)
+next_step(step);
 
 });
 
