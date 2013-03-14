@@ -22,7 +22,7 @@ function mass_replace_into($table , $field , $query)
     
     foreach ($new_query as $q)
     {
-     $db->sql_query('REPLACE INTO '.$table.' ('.$fields.') VALUES '.implode(',', $q));
+     $db->sql_query('REPLACE INTO '.$table.' ('.$field.') VALUES '.implode(',', $q));
      // avant de finir boucle on va faire patienter une demi seconde
   //   usleep(500000) ;  
         
