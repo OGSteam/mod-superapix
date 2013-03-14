@@ -164,9 +164,9 @@ function traitement_alliance($value)
       
     foreach ($value->alliance as $ta_xml_alliance) {
         
-  
+    $count = count($ta_xml_alliance->children()); // PHP < 5.3
     
-     $temp_query = "( ".intval($ta_xml_alliance[0]['id']).", '".my_encodage(strval($ta_xml_alliance[0]['tag']))."' , '".$ta_xml_alliance->count()."' ) ";
+     $temp_query = "( ".intval($ta_xml_alliance[0]['id']).", '".my_encodage(strval($ta_xml_alliance[0]['tag']))."' , '".$count."' ) ";
      $querys[] = $temp_query;
 
     }
