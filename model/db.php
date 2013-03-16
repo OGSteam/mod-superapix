@@ -15,7 +15,7 @@ function mass_replace_into($table , $field , $query)
     else
     {
         //sinon on balance le tout
-        $new_query = $query ;
+        $new_query[] = $query ;
     }
     
     // maintenant on lance les requetes de replace
@@ -26,7 +26,7 @@ function mass_replace_into($table , $field , $query)
      // avant de finir boucle on va faire patienter une demi seconde
   //   usleep(500000) ;  
         
-        
+       
         
     }
     
