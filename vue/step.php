@@ -118,7 +118,7 @@ $sql .= "( A.id_alliance = P.id_ally  )   ";
 $sql .= " SET ";
 $sql .= " U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
 $sql .= " WHERE  ";
-$sql .= "  U.last_update < T.datadate ";
+$sql .= "  U.last_update <= T.datadate "; // <= pour permettre d ecraser la derniere importation si plantage de la derniere
 
 
 $db->sql_query($sql); 

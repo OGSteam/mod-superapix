@@ -8,8 +8,8 @@ function lang($str)
     
     if (!isset($lang[$str])) 
     { 
-       $retour =  str_replace ( 'CST_UNIVERSE_', $lang['CST_UNIVERSE_'], $str);
-       return $retour ; 
+      // $retour =  str_replace ( 'CST_UNIVERSE_', $lang['CST_UNIVERSE_'], $str);
+          return $str ; 
     }
     else
     {
@@ -41,7 +41,7 @@ function variable_lang()
     $lang['CST_PLAYERS_RANK_MILITARY_DESTROYED']= "Classement Joueur Mil. perdu";
     $lang['CST_PLAYERS_RANK_MILITARY_HONNOR']= "Classement Joueur Mil. d&eacute;truit";
     $lang['CST_PLAYERS_RANK_MILITARY_LOST']= "Classement Joueur Mil. honneur";
-    $lang['CST_UNIVERSE_']= "Galaxie ";
+    $lang['CST_UNIVERSE']= "Galaxie ";
 
 
 return $lang;
