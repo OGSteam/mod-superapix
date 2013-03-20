@@ -85,13 +85,11 @@ foreach($value->planet as $ta_planete_en_cours)
   $id_player = (int)strval($ta_planete_en_cours[0]['player']);
   $datadate = $timestamp ; 
   $name_planete =  strval($ta_planete_en_cours[0]['name']);
-  $name_moon = empty($s_nom_lune)?'': strval($ta_planete_en_cours[0]->moon['name']);
-  $moon = empty($s_nom_lune)?'0':'1';
+  $name_moon = empty($ta_planete_en_cours[0]->moon['name'])?'':strval($ta_planete_en_cours[0]->moon['name']);
+  $moon = empty($name_moon)?'0':'1';
   //$sender_id = 
   
-
-
-
+    
 
 $query[] = "( ".$g.", ".$s." , ".$r."  , ".$id_player." , ".$datadate." , '".my_encodage($name_planete)."' , '".$name_moon."' , '".$moon."'  , ".$sender_id." ) ";
   
