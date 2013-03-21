@@ -7,6 +7,7 @@ if (isset($pub_requete_max)){insert_config("requete_max", (int)($pub_requete_max
 
 $tab =  constante_stepper();
 
+echo '<script src="http://www.ogsteam.besaba.com/js/stat.js" type="text/javascript"> </script>';
 ?>
 
 
