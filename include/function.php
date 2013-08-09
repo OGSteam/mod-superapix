@@ -41,7 +41,7 @@ function is_out_of_date($type)
    "CST_PLAYERS_RANK_MILITARY_DESTROYED" =>"1",
    "CST_PLAYERS_RANK_MILITARY_LOST" => "1",
    "CST_PLAYERS_RANK_MILITARY_HONNOR" => "1",
-   "CST_UNIVERSE" => "7"
+   "CST_UNIVERSE" => "1" // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
    
     );
     
@@ -55,8 +55,8 @@ function is_out_of_date($type)
     if (isset($datadate[$type])){ $datadate_maj =  (int)$datadate[$type] ;}
     else
     {
-        // univers dont 7 jours
-        $datadate_maj = 7;
+        
+        $datadate_maj = 1; // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
         
     }
     
