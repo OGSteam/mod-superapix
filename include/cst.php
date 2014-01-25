@@ -6,33 +6,33 @@ if (!defined('IN_SPYOGAME'))
 //define("MY_DEBUG",1);
 global $server_config ;
 // player
-define("CST_PLAYERS", "http://uni{uni}.ogame.fr/api/players.xml");
-define("CST_PLAYER_DATA", "http://uni{uni}.ogame.fr/api/playerData.xml?id={id}");
+define("CST_PLAYERS", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/players.xml");
+define("CST_PLAYER_DATA", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/playerData.xml?id={id}");
 // alliance
-define("CST_ALLIANCES", "http://uni{uni}.ogame.fr/api/alliances.xml");
+define("CST_ALLIANCES", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/alliances.xml");
 // uni
-define("CST_UNIVERSE", "http://uni{uni}.ogame.fr/api/universe.xml");
+define("CST_UNIVERSE", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/universe.xml");
 // serverdata
-define("CST_SERVERDATA", "http://uni{uni}.ogame.fr/api/serverData.xml");
+define("CST_SERVERDATA", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/serverData.xml");
 //classement player
-define("CST_PLAYERS_RANK_POINTS", "http://uni{uni}.ogame.fr/api/highscore.xml?category=1&type=0");
-define("CST_PLAYERS_RANK_ECO", "http://uni{uni}.ogame.fr/api/highscore.xml?category=1&type=1");
-define("CST_PLAYERS_RANK_TECHNOLOGY", "http://uni{uni}.ogame.fr/api/highscore.xml?category=1&type=2");
-define("CST_PLAYERS_RANK_MILITARY", "http://uni{uni}.ogame.fr/api/highscore.xml?category=1&type=3");
-define("CST_PLAYERS_RANK_MILITARY_BUILT", "http://uni{uni}.ogame.fr/api/highscore.xml?category=1&type=5");
-define("CST_PLAYERS_RANK_MILITARY_DESTROYED", "http://uni{uni}.ogame.fr/api/highscore.xml?category=1&type=6");
-define("CST_PLAYERS_RANK_MILITARY_LOST", "http://uni{uni}.ogame.fr/api/highscore.xml?category=1&type=4");
-define("CST_PLAYERS_RANK_MILITARY_HONNOR", "http://uni{uni}.ogame.fr/api/highscore.xml?category=1&type=7");
+define("CST_PLAYERS_RANK_POINTS", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=1&type=0");
+define("CST_PLAYERS_RANK_ECO", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=1&type=1");
+define("CST_PLAYERS_RANK_TECHNOLOGY", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=1&type=2");
+define("CST_PLAYERS_RANK_MILITARY", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=1&type=3");
+define("CST_PLAYERS_RANK_MILITARY_BUILT", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=1&type=5");
+define("CST_PLAYERS_RANK_MILITARY_DESTROYED", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=1&type=6");
+define("CST_PLAYERS_RANK_MILITARY_LOST", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=1&type=4");
+define("CST_PLAYERS_RANK_MILITARY_HONNOR", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=1&type=7");
 
 //classement alliance
-define("CST_ALLIANCES_RANK_POINTS", "http://uni{uni}.ogame.fr/api/highscore.xml?category=2&type=0");
-define("CST_ALLIANCES_RANK_ECO", "http://uni{uni}.ogame.fr/api/highscore.xml?category=2&type=1");
-define("CST_ALLIANCES_RANK_TECHNOLOGY", "http://uni{uni}.ogame.fr/api/highscore.xml?category=2&type=2");
-define("CST_ALLIANCES_RANK_MILITARY", "http://uni{uni}.ogame.fr/api/highscore.xml?category=2&type=3");
-define("CST_ALLIANCES_RANK_MILITARY_BUILT", "http://uni{uni}.ogame.fr/api/highscore.xml?category=2&type=5");
-define("CST_ALLIANCES_RANK_MILITARY_DESTROYED", "http://uni{uni}.ogame.fr/api/highscore.xml?category=2&type=6");
-define("CST_ALLIANCES_RANK_MILITARY_LOST", "http://uni{uni}.ogame.fr/api/highscore.xml?category=2&type=4");
-define("CST_ALLIANCES_RANK_MILITARY_HONNOR", "http://uni{uni}.ogame.fr/api/highscore.xml?category=2&type=7");
+define("CST_ALLIANCES_RANK_POINTS", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=2&type=0");
+define("CST_ALLIANCES_RANK_ECO", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=2&type=1");
+define("CST_ALLIANCES_RANK_TECHNOLOGY", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=2&type=2");
+define("CST_ALLIANCES_RANK_MILITARY", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=2&type=3");
+define("CST_ALLIANCES_RANK_MILITARY_BUILT", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=2&type=5");
+define("CST_ALLIANCES_RANK_MILITARY_DESTROYED", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=2&type=6");
+define("CST_ALLIANCES_RANK_MILITARY_LOST", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=2&type=4");
+define("CST_ALLIANCES_RANK_MILITARY_HONNOR", "http://s{uni}-fr.ogame.gameforge.com/api/universes.xml/api/highscore.xml?category=2&type=7");
 
 
 
