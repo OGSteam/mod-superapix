@@ -84,6 +84,17 @@ function my_encodage($str)
 }
 
 
+ function stream_copy($src, $dest)
+    {
+        $fsrc = fopen($src,'r');
+        $fdest = fopen($dest,'w+');
+        $len = stream_copy_to_stream($fsrc,$fdest);
+        fclose($fsrc);
+        fclose($fdest);
+        return $len;
+    } 
+
+	
 
 function f_chargement_fichier_xml($s_fichier_xml)
 {	
