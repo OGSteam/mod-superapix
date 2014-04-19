@@ -94,7 +94,19 @@ if ($must_down)
     
     //file_put_contents(MOD_ROOT_XML.$pub_url.'.xml', file_get_contents($url));
         
-    copy($url, MOD_ROOT_XML.$pub_url.'.xml');
+ function stream_copy($src, $dest)
+    {
+        $fsrc = fopen($src,'r');
+        $fdest = fopen($dest,'w+');
+        $len = stream_copy_to_stream($fsrc,$fdest);
+        fclose($fsrc);
+        fclose($fdest);
+        return $len;
+    } 
+
+	
+    stream_copy($url, MOD_ROOT_XML.$pub_url.'.xml'); // xcopy buggant ...
+    //copy($url, MOD_ROOT_XML.$pub_url.'.xml');
 }
  //  $url = uni_replace(find_config('uni'),$url);
   
