@@ -86,19 +86,24 @@ switch ($pub_url) {
 }
 
 
-//$url = "http://uni67.ogame.fr/api/players.xml";
-if ($must_down)
-{
-    $url = uni_replace(find_config('uni'),$url);
-    // on telecharge le fichier distant
-    
-    //file_put_contents(MOD_ROOT_XML.$pub_url.'.xml', file_get_contents($url));
+
+ $url = uni_replace(find_config('uni'),$url);
+
+copy($url, MOD_ROOT_XML.$pub_url.'.xml');
+
+if (!file_exists(MOD_ROOT_XML.$pub_url.'.xml')) {
+   stream_copy($url, MOD_ROOT_XML.$pub_url.'.xml'); // xcopy buggant ...
 
 
-	
-    stream_copy($url, MOD_ROOT_XML.$pub_url.'.xml'); // xcopy buggant ...
-    //copy($url, MOD_ROOT_XML.$pub_url.'.xml');
+
+
+
 }
+
+  //var_dump($url);
+//http://beubeulblog.fr/anges/ogspy/index.php?action=superapix($pub_url);
+
+				
  //  $url = uni_replace(find_config('uni'),$url);
   
   // header("Content-type: text/xml");
