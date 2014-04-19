@@ -21,7 +21,7 @@ define("CST_PLAYERS_RANK_TECHNOLOGY", "http://s{uni}-fr.ogame.gameforge.com/api/
 define("CST_PLAYERS_RANK_MILITARY", "http://s{uni}-fr.ogame.gameforge.com/api/highscore.xml?category=1&type=3");
 define("CST_PLAYERS_RANK_MILITARY_BUILT", "http://s{uni}-fr.ogame.gameforge.com/api/highscore.xml?category=1&type=5");
 define("CST_PLAYERS_RANK_MILITARY_DESTROYED", "http://s{uni}-fr.ogame.gameforge.com/api/highscore.xml?category=1&type=6");
-define("CST_PLAYERS_RANK_MILITARY_LOST", "http://s{uni}-fr.ogame.gameforge.com/highscore.xml?category=1&type=4");
+define("CST_PLAYERS_RANK_MILITARY_LOST", "http://s{uni}-fr.ogame.gameforge.com/api/highscore.xml?category=1&type=4");
 define("CST_PLAYERS_RANK_MILITARY_HONNOR", "http://s{uni}-fr.ogame.gameforge.com/api/highscore.xml?category=1&type=7");
 
 //classement alliance
