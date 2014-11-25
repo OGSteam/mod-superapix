@@ -80,7 +80,8 @@ function is_out_of_date($type)
 
 function my_encodage($str)
 {
-    return utf8_decode($str);
+   // return utf8_decode($str);
+   return $str;
 }
 
 
