@@ -19,6 +19,7 @@ $value = f_chargement_fichier_xml(MOD_ROOT_XML . $type . ".xml");
 if ($type == "CST_PLAYERS")
 {
     traitement_player($value);
+	echo progress_barre($step ,"Joueurs");
    
 }
 
@@ -26,14 +27,14 @@ if ($type == "CST_PLAYERS")
 if ($type == "CST_ALLIANCES")
 {
     traitement_alliance($value);
-  
+  echo progress_barre($step ,"Alliances");
 }
 
 
 if ($type == "CST_UNIVERSE")
 {
     traitement_universe($value);
-  
+  echo progress_barre($step ,"Univers");
 }
 
 
@@ -41,7 +42,7 @@ if ($type == "CST_UNIVERSE")
 if ( strstr($type, "CST_ALLIANCES_RANK_"))
 {
     traitement_alliance_rank($value, $type);
-
+	echo progress_barre($step ,"Classements alliances");
   
 }
 
@@ -51,7 +52,7 @@ if ( strstr($type, "CST_PLAYERS_RANK_"))
 {
     traitement_player_rank($value, $type);
 
-  
+  echo progress_barre($step ,"Classements joueurs");
 }
 
 
@@ -335,6 +336,16 @@ function find_timestamp($value)
         return $timestamp;
 }
 
+// par defaut 19, nb de colonne dans l array 
+function progress_barre($value ,$nom,$valueMax = 19)
+{
+$pct=(int)((int)$value*100/$valueMax(;
+
+$retour = '<progress value="'.$pct.'%" width="80%" height="20%"  background-color="red">'.$nom.' ('.$pct.'%)</progress>'
+
+return $retour;
+
+}
 
 /// voir si utile
 function prepare_table_universe( $datadate)
