@@ -1,6 +1,19 @@
 <?php 
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
 
+// par defaut 19, nb de colonne dans l array 
+function progress_barre($value ,$nom,$valueMax = 19)
+{
+	$pct=(int)((int)$value*100/(int)$valueMax);
+
+	$retour = '<progress value="'.$pct.'%" width="80%" height="20%"  background-color="red">'.$nom.' ('.$pct.'%)</progress>'
+
+	return $retour;
+
+}
+
+
+
 //cf xtense et reinette
 function formatage_timestamp_for_rank($time)
 {
