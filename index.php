@@ -15,6 +15,13 @@ if (isset($pub_create_uni))
     create_uni_vide();
 }
 
+// avant traitement on met la progress barre
+if (isset($pub_step) && $is_numeric($pub_step))
+{
+	echo progress_barre($step , "" );
+}
+
+
 if (isset($pub_sub_action) && $pub_sub_action == "cross" )
 {
       require_once("views/page_header.php");
