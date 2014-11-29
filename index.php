@@ -18,7 +18,7 @@ if (isset($pub_create_uni))
 // avant traitement on met la progress barre
 if (isset($pub_step) && $is_numeric($pub_step))
 {
-	echo progress_barre($step , "" );
+	echo progress_barre((int)$pub_step , "" );
 }
 
 
