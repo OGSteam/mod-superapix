@@ -6,7 +6,7 @@ function progress_barre($value ,$nom,$valueMax = 19)
 {
 	$pct=(int)((int)$value*100/(int)$valueMax);
 
-	$retour = '<progress value="'.$pct.'%" width="80%" height="20%"  background-color="red">'.$nom.' ('.$pct.'%)</progress>'
+	$retour = '<progress value="'.$pct.'" max="100" width="80%" height="20%"  background-color="red">'.$nom.' ('.$pct.'%)</progress>';
 
 	return $retour;
 
