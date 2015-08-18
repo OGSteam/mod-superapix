@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
 
