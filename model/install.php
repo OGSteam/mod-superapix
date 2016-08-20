@@ -1,10 +1,9 @@
 <?php
-if (!defined('IN_SPYOGAME'))
+
+if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
-
-function create_table_config()
-{
+function create_table_config() {
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_CFG . " ( ";
@@ -15,9 +14,7 @@ function create_table_config()
     $db->sql_query($sql);
 }
 
-
-function delete_table_config()
-{
+function delete_table_config() {
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_CFG . " ;";
@@ -25,9 +22,7 @@ function delete_table_config()
     $db->sql_query($sql);
 }
 
-
-function create_table_players()
-{
+function create_table_players() {
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_PLAYERS . " ( ";
@@ -40,9 +35,7 @@ function create_table_players()
     $db->sql_query($sql);
 }
 
-
-function delete_table_players()
-{
+function delete_table_players() {
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_PLAYERS . " ;";
@@ -50,8 +43,7 @@ function delete_table_players()
     $db->sql_query($sql);
 }
 
-function create_table_alliances()
-{
+function create_table_alliances() {
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_ALLIANCES . " ( ";
@@ -63,9 +55,7 @@ function create_table_alliances()
     $db->sql_query($sql);
 }
 
-
-function delete_table_alliances()
-{
+function delete_table_alliances() {
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_ALLIANCES . " ;";
@@ -73,9 +63,7 @@ function delete_table_alliances()
     $db->sql_query($sql);
 }
 
-
-function create_table_rank_alliance()
-{
+function create_table_rank_alliance() {
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_RANK_ALLIANCES . " ( ";
@@ -88,21 +76,17 @@ function create_table_rank_alliance()
 
 
     $db->sql_query($sql);
-
-
 }
 
-
-function delete_table_rank_alliance()
-{
+function delete_table_rank_alliance() {
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_RANK_ALLIANCES . " ;";
 
     $db->sql_query($sql);
 }
-function create_table_rank_player()
-{
+
+function create_table_rank_player() {
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_RANK_PLAYERS . " ( ";
@@ -116,13 +100,9 @@ function create_table_rank_player()
 
 
     $db->sql_query($sql);
-
-
 }
 
-
-function delete_table_rank_player()
-{
+function delete_table_rank_player() {
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_RANK_PLAYERS . " ;";
@@ -130,8 +110,7 @@ function delete_table_rank_player()
     $db->sql_query($sql);
 }
 
-function create_table_univers()
-{
+function create_table_univers() {
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_UNIVERS . " ( ";
@@ -148,59 +127,55 @@ function create_table_univers()
 
 
     $db->sql_query($sql);
-
-
 }
 
-function rempli_table_univers()
-{
-    global $db , $user_data , $server_config;
+function rempli_table_univers() {
+    global $db, $user_data, $server_config;
 
     $table = TABLE_UNIVERS;
     $sender_id = $user_data['user_id'];
 
     $total = 0;
     $query = array();
-    
+
 
     $fields = "g, s, r, id_player , datadate , name_planete ,name_moon , moon  , sender_id   ";
 
-    
-     
 
-        $g = (int)$server_config["num_of_galaxies"];
-        $s = (int)$server_config["num_of_systems"];
-        $r = 15;
 
-        for ($galaxie = 1; $galaxie <= $g; $galaxie++) 
-        {
-            for ($system = 1; $system <= $s; $system++) 
-            {
-                for ($row = 1; $row <= $r; $row++) 
-                {
-                   $query[]=   "( " . $galaxie . ", " . $system . " , " . $row . "  , " . 0 . " , " . 0 . " , '' , '' , '0'  , " . $sender_id . " ) ";
-                }
+
+    $g = (int) $server_config["num_of_galaxies"];
+    $s = (int) $server_config["num_of_systems"];
+    $r = 15;
+
+    for ($galaxie = 1; $galaxie <= $g; $galaxie++) {
+        for ($system = 1; $system <= $s; $system++) {
+            for ($row = 1; $row <= $r; $row++) {
+                $query[] = "( " . $galaxie . ", " . $system . " , " . $row . "  , " . 0 . " , " . 0 . " , '' , '' , '0'  , " . $sender_id . " ) ";
             }
-              $db->sql_query('REPLACE INTO ' . $table . ' (' . $fields . ') VALUES ' . implode
-        (',', $query));
-        $query = array();
-        
         }
-
-
-
-
-  
-
-
+        $db->sql_query('REPLACE INTO ' . $table . ' (' . $fields . ') VALUES ' . implode
+                        (',', $query));
+        $query = array();
+    }
 }
 
-
-function delete_table_univers()
-{
+function delete_table_univers() {
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_UNIVERS . " ;";
 
+    $db->sql_query($sql);
+}
+
+function newPlayer() {
+    global $db;
+    $sql = "  replace INTO " . TABLE_USER . "  (`user_id`, `user_name`, `user_password`) VALUES (NULL, '" . constant("SPA_PLAYER") . "' , 'noconnection');";
+    $db->sql_query($sql);
+}
+
+function delPlayer() {
+    global $db;
+    $sql = "delete from " . TABLE_USER . " where user_name = '" . constant("SPA_PLAYER")."';";
     $db->sql_query($sql);
 }

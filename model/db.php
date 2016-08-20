@@ -1,5 +1,5 @@
 <?php
-if (!defined('IN_SPYOGAME')) die("Hacking attempt");
+if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX')) die("Hacking attempt");
 
 function mass_replace_into($table , $field , $query)
 {

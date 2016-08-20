@@ -1,5 +1,5 @@
 <?php
-if (!defined('IN_SPYOGAME')) die("Hacking attempt");
+if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX')) die("Hacking attempt");
 global $db;
 $timestamp = (int)$pub_timestamp;
 

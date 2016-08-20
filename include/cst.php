@@ -1,10 +1,9 @@
 <?php
-if (!defined('IN_SPYOGAME'))
+if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
-    
+
 //debug 
-//define("MY_DEBUG",1);
-global $server_config ;
+global $server_config;
 // player
 define("CST_PLAYERS", "http://s{uni}-fr.ogame.gameforge.com/api/players.xml");
 define("CST_PLAYER_DATA", "http://s{uni}-fr.ogame.gameforge.com/api/playerData.xml?id={id}");
@@ -35,35 +34,32 @@ define("CST_ALLIANCES_RANK_MILITARY_LOST", "http://s{uni}-fr.ogame.gameforge.com
 define("CST_ALLIANCES_RANK_MILITARY_HONNOR", "http://s{uni}-fr.ogame.gameforge.com/api/highscore.xml?category=2&type=7");
 
 
-
 function uni_replace($uni, $string)
 {
-    return str_replace("{uni}", (int)$uni, $string);
+    $str=str_replace("https", "http", $string);
+    return str_replace("{uni}", (int)$uni, $str);
 }
 
-// on simule un tab de constante
+
 function constante_array()
 {
-    
-    
-    $tab = array("CST_PLAYERS" => CST_PLAYERS,"CST_ALLIANCES" => CST_ALLIANCES);
-    $retour = array_merge($tab,constante_array_rank_alliance(),constante_array_rank_player(),constante_array_universe());
+    $tab = array("CST_PLAYERS" => CST_PLAYERS, "CST_ALLIANCES" => CST_ALLIANCES);
+    $retour = array_merge($tab, constante_array_rank_alliance(), constante_array_rank_player(), constante_array_universe());
     return $retour;
 }
-
 
 
 function constante_array_rank_alliance()
 {
 
     $retour = array("CST_ALLIANCES_RANK_POINTS" => CST_ALLIANCES_RANK_POINTS,
-    "CST_ALLIANCES_RANK_ECO" => CST_ALLIANCES_RANK_ECO,
-   "CST_ALLIANCES_RANK_TECHNOLOGY" => CST_ALLIANCES_RANK_TECHNOLOGY,
-   "CST_ALLIANCES_RANK_MILITARY" => CST_ALLIANCES_RANK_MILITARY,
-   "CST_ALLIANCES_RANK_MILITARY_BUILT" => CST_ALLIANCES_RANK_MILITARY_BUILT,
-   "CST_ALLIANCES_RANK_MILITARY_DESTROYED" => CST_ALLIANCES_RANK_MILITARY_DESTROYED,
-   "CST_ALLIANCES_RANK_MILITARY_LOST" => CST_ALLIANCES_RANK_MILITARY_LOST,
-   "CST_ALLIANCES_RANK_MILITARY_HONNOR" => CST_ALLIANCES_RANK_MILITARY_HONNOR,
+        "CST_ALLIANCES_RANK_ECO" => CST_ALLIANCES_RANK_ECO,
+        "CST_ALLIANCES_RANK_TECHNOLOGY" => CST_ALLIANCES_RANK_TECHNOLOGY,
+        "CST_ALLIANCES_RANK_MILITARY" => CST_ALLIANCES_RANK_MILITARY,
+        "CST_ALLIANCES_RANK_MILITARY_BUILT" => CST_ALLIANCES_RANK_MILITARY_BUILT,
+        "CST_ALLIANCES_RANK_MILITARY_DESTROYED" => CST_ALLIANCES_RANK_MILITARY_DESTROYED,
+        "CST_ALLIANCES_RANK_MILITARY_LOST" => CST_ALLIANCES_RANK_MILITARY_LOST,
+        "CST_ALLIANCES_RANK_MILITARY_HONNOR" => CST_ALLIANCES_RANK_MILITARY_HONNOR,
     );
     return $retour;
 
@@ -74,13 +70,13 @@ function constante_array_rank_player()
 {
 
     $retour = array("CST_PLAYERS_RANK_POINTS" => CST_PLAYERS_RANK_POINTS,
-    "CST_PLAYERS_RANK_ECO" => CST_PLAYERS_RANK_ECO,
-   "CST_PLAYERS_RANK_TECHNOLOGY" => CST_PLAYERS_RANK_TECHNOLOGY,
-   "CST_PLAYERS_RANK_MILITARY" => CST_PLAYERS_RANK_MILITARY,
-   "CST_PLAYERS_RANK_MILITARY_BUILT" => CST_PLAYERS_RANK_MILITARY_BUILT,
-   "CST_PLAYERS_RANK_MILITARY_DESTROYED" => CST_PLAYERS_RANK_MILITARY_DESTROYED,
-   "CST_PLAYERS_RANK_MILITARY_LOST" => CST_PLAYERS_RANK_MILITARY_LOST,
-   "CST_PLAYERS_RANK_MILITARY_HONNOR" => CST_PLAYERS_RANK_MILITARY_HONNOR,
+        "CST_PLAYERS_RANK_ECO" => CST_PLAYERS_RANK_ECO,
+        "CST_PLAYERS_RANK_TECHNOLOGY" => CST_PLAYERS_RANK_TECHNOLOGY,
+        "CST_PLAYERS_RANK_MILITARY" => CST_PLAYERS_RANK_MILITARY,
+        "CST_PLAYERS_RANK_MILITARY_BUILT" => CST_PLAYERS_RANK_MILITARY_BUILT,
+        "CST_PLAYERS_RANK_MILITARY_DESTROYED" => CST_PLAYERS_RANK_MILITARY_DESTROYED,
+        "CST_PLAYERS_RANK_MILITARY_LOST" => CST_PLAYERS_RANK_MILITARY_LOST,
+        "CST_PLAYERS_RANK_MILITARY_HONNOR" => CST_PLAYERS_RANK_MILITARY_HONNOR,
     );
     return $retour;
 }
@@ -95,27 +91,26 @@ function constante_array_universe()
 
 function constante_stepper()
 {
-    global $server_config ;
-    
+    global $server_config;
+
     $retour = array();
-    $tab = array("CST_PLAYERS" => CST_PLAYERS,"CST_ALLIANCES" => CST_ALLIANCES);
-    $retour = array_merge($tab,constante_array_rank_alliance(),constante_array_rank_player());
-    
+    $tab = array("CST_PLAYERS" => CST_PLAYERS, "CST_ALLIANCES" => CST_ALLIANCES);
+    $retour = array_merge($tab, constante_array_rank_alliance(), constante_array_rank_player());
+
     $my_retour = array();
-    
-    
-    foreach ( $retour as $key=>$val )
-    {
+
+
+    foreach ($retour as $key => $val) {
         $my_retour[] = $key;
-     }
-    
-     //on ajout les constantes uni :)
+    }
+
+    //on ajout les constantes uni :)
     //    for ($i = 1; $i <= $server_config['num_of_galaxies']; $i++) {
-           
-      //     $my_retour[] = "CST_UNIVERSE_".$i ; 
-      //  }
-       $my_retour[] = "CST_UNIVERSE";
-             
+
+    //     $my_retour[] = "CST_UNIVERSE_".$i ;
+    //  }
+    $my_retour[] = "CST_UNIVERSE";
+
     return $my_retour;
 }
 

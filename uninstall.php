@@ -2,7 +2,7 @@
 
 
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
-
+define('IN_SUPERAPIX', true);
 global $db;
 include_once("mod/superapix/common.php");
 
@@ -19,5 +19,5 @@ delete_table_alliances();
 delete_table_rank_alliance();
 delete_table_rank_player();
 delete_table_univers();
-
+delPlayer();
 ?>

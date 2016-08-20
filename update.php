@@ -2,7 +2,7 @@
 
 
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
-
+define('IN_SUPERAPIX', true);
 global $db, $table_prefix;
 include_once("mod/superapix/common.php");
 include_once(MOD_ROOT_MODEL."install.php");   
