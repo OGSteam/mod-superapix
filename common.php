@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * @package [Mod] Superapix
+ * @author Machine
+ * @copyright Copyright &copy; 2016, http://ogsteam.fr/
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ */
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))die("Hacking attempt");
 global $table_prefix;
 define("DEBUG", "1");

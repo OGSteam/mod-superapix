@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package [Mod] Superapix
+ * @author Machine
+ * @copyright Copyright &copy; 2016, http://ogsteam.fr/
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ */
+
 // plagiat xtense
 define('IN_SPYOGAME', true);
 define('IN_SUPERAPIX', true);
@@ -34,6 +41,16 @@ $tNameXml = constante_stepper(); // tab principal
 $uDate = time();
 $uStartTimer = microtime();
 
+// fix pour utilisation web(js) <=>  cron
+// cf traitement_xxx
+global $type, $user_data;
+$type = $sNameXml;
+$user_data['user_id'] = findSpaId(); // id pour injection
+$user_data['user_name'] = SPA_PLAYER; // username pour log ( ne marche pas, doit etre ecrasé ... :s )
+
+// fin fix
+// 
+// 
 // on va parcourir le tableau de constante name
 // si c'est out of date on regarde le xml pour savoir si necessaire de modifier également
 foreach ($tNameXml as $uId => $sNameXml) {
@@ -53,18 +70,13 @@ foreach ($tNameXml as $uId => $sNameXml) {
             loggeur("xml " . $sNameXml . " est ok, Injection BDD");
 
             // on charge le xml
-            
+
             loggeur("Chargement fichier XML");
-           loggeur("link  fichier XML" .MOD_ROOT_XML . $sNameXml . ".xml");
+            loggeur("link  fichier XML" . MOD_ROOT_XML . $sNameXml . ".xml");
             $value = f_chargement_fichier_xml(MOD_ROOT_XML . $sNameXml . ".xml");
             loggeur("Traitement fichier XML");
 
-            // fix pour utilisation web(js) <=>  cron
-            // cf traitement_xxx
-            global $type, $user_data;
-            $type = $sNameXml;
-            $user_data['user_id'] = 0;
-            // fin fix
+
             // ROUTINE DE CONTROLE
             if ($sNameXml == "CST_PLAYERS") {
                 traitement_player($value);
