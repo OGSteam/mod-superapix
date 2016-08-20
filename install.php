@@ -1,6 +1,8 @@
 <?php
 
-if (!defined('IN_SPYOGAME')) die("Hacking attempt");
+if (!defined('IN_SPYOGAME'))
+    die("Hacking attempt");
+define('IN_SUPERAPIX', true);
 
 global $db;
 include_once("mod/superapix/common.php");
@@ -8,11 +10,10 @@ include_once("mod/superapix/common.php");
 $security = false;
 $mod_folder = MOD_NAME;
 $security = install_mod($mod_folder);
-if ($security == true)
-  {
+if ($security == true) {
     // on ajoute 
-    include_once(MOD_ROOT_MODEL."install.php");
-    
+    include_once(MOD_ROOT_MODEL . "install.php");
+
     // création tables
     create_table_config();
     create_table_players();
@@ -20,12 +21,13 @@ if ($security == true)
     create_table_rank_alliance();
     create_table_rank_player();
     create_table_univers();
-    
+
     rempli_table_univers();
+
+    insert_config("uni", 0);
     
-    insert_config("uni",0);
-   // insert_config("requete_max",500);
-    
-    
-  }
+    // installation d un joueur 
+        newPlayer();
+
+}
 ?>

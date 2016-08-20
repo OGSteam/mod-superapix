@@ -1,9 +1,7 @@
 <?php
-if (!defined('IN_SPYOGAME')) die("Hacking attempt");
-
-
+if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))die("Hacking attempt");
 global $table_prefix;
-
+define("DEBUG", "1");
 
 // constante de table
 define("MOD_NAME", "superapix");
@@ -14,8 +12,6 @@ define("TABLE_RANK_ALLIANCES", $table_prefix.MOD_NAME."_rank_alliance");
 define("TABLE_RANK_PLAYERS", $table_prefix.MOD_NAME."_rank_player");
 define("TABLE_UNIVERS", $table_prefix.MOD_NAME."_universe");
 
-
-
 // paths
 define("MOD_ROOT" , "mod/".MOD_NAME."/");
 define("MOD_ROOT_MODEL" , MOD_ROOT."model/");
@@ -25,18 +21,13 @@ define("MOD_ROOT_INCLUDE" , MOD_ROOT."include/");
 define("MOD_ROOT_XML" , MOD_ROOT."xml/");
 define("MOD_ROOT_PARSER" , MOD_ROOT."parser/");
 
+//joueur superapix
+define("SPA_PLAYER" , "SPA_WebService");
 
 // include générique
-include(MOD_ROOT_MODEL."config.php"); 
-include(MOD_ROOT_MODEL."db.php"); 
-include(MOD_ROOT_INCLUDE."function.php"); 
-include(MOD_ROOT_INCLUDE."cst.php"); 
-include(MOD_ROOT_INCLUDE."lang.php"); 
+include(MOD_ROOT_MODEL."config.php");
+include(MOD_ROOT_MODEL."db.php");
+include(MOD_ROOT_INCLUDE."function.php");
+include(MOD_ROOT_INCLUDE."cst.php");
+include(MOD_ROOT_INCLUDE."lang.php");
 
-
-
-
-
-
-
-?>
