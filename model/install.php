@@ -6,8 +6,6 @@
  * @copyright Copyright &copy; 2016, http://ogsteam.fr/
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
-
-
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
@@ -184,6 +182,20 @@ function newPlayer() {
 
 function delPlayer() {
     global $db;
-    $sql = "delete from " . TABLE_USER . " where user_name = '" . constant("SPA_PLAYER")."';";
+    $sql = "delete from " . TABLE_USER . " where user_name = '" . constant("SPA_PLAYER") . "';";
     $db->sql_query($sql);
+}
+
+function spaActive() {
+    global $db;
+
+    $query = "SELECT active FROM " . TABLE_MOD . " WHERE root = 'superapix' ";
+    $result = $db->sql_query($query);
+    $row = $db->sql_fetch_assoc($result);
+    if ($row) {
+        if ($row['active']== 1) {
+            return $row['active'];
+        }
+    }
+    return NULL;
 }

@@ -19,8 +19,8 @@ $mod_folder = MOD_NAME;
 $security = install_mod($mod_folder);
 if ($security == true) {
     // on ajoute 
-    include_once(MOD_ROOT_MODEL . "install.php");
-
+  
+   
     // création tables
     create_table_config();
     create_table_players();
@@ -34,7 +34,9 @@ if ($security == true) {
     insert_config("uni", 0);
     
     // installation d un joueur 
-        newPlayer();
-
+    newPlayer();
+   
 }
-?>
+
+
+

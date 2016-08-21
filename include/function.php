@@ -134,7 +134,7 @@ function f_chargement_fichier_xml($s_fichier_xml) {
 
     if (file_exists($s_fichier_xml)) {
         $o_xml = simplexml_load_file($s_fichier_xml);
-      
+
         return $o_xml;
     } else {
         exit('Echec lors de l\'ouverture du fichier ' . $s_fichier_xml . '.');
@@ -164,6 +164,72 @@ function jsonResponse($data) {
     header('Content-Type: application/json');
     echo $data;
     die();
+}
+
+function checkSecurity() {
+    $error = FALSE;
+    $tError = array();
+
+    // si pas actif pas acces au page on die de suite on attend pas les autres checks ..
+    if (spaActive() == NULL) {
+        $str = "Tentative d'accés via superapix IP : " . get_client_ip();
+        jsonResponse(array("ERROR" => $str));
+        die(); // deja fait dans jsonresponse
+    }
+
+// xml droit en ecriture
+    if (!is_writable(MOD_ROOT_XML) || !file_exists(MOD_ROOT_XML)) {
+        $error = TRUE;
+        $str = "Dossier " . MOD_ROOT_XML . " nom accessible ";
+        $tError[] = $str;
+        loggeur($str);
+    }
+
+    //verification présence joueur spa
+    if (findSpaId() == NULL) {
+        $error = TRUE;
+        $str = "Aucun compte de service SuperApix";
+        $tError[] = $str;
+        loggeur($str);
+    }
+
+    // verificatiopn des differentes constantes
+    $tConfigName = array("uni", "requete_max", "pays","debug");
+    foreach ($tConfigName as $sConfigName) {
+        if (find_config($sConfigName) == NULL || find_config($sConfigName) == 0) {
+            $error = TRUE;
+            $str = "Erreur Config " . $sConfigName;
+            $tError[] = $str;
+            loggeur($str);
+        }
+    }
+
+    if ($error) {
+        return $tError;
+    }
+    return NULL;
+}
+
+// Function to get the client IP address
+//http://stackoverflow.com/questions/15699101/get-the-client-ip-address-using-php
+function get_client_ip() {
+    global $_SERVER;
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if (isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if (isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if (isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if (isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
 }
 
 /**
@@ -455,14 +521,12 @@ function prepare_table_universe($datadate) {
     $db->sql_query($sql);
 }
 
-function findSpaId()
-{
+function findSpaId() {
     global $db;
-    $sql = "select user_id from " . TABLE_USER . " WHERE user_name = '" . constant("SPA_PLAYER")."';";
+    $sql = "select user_id from " . TABLE_USER . " WHERE user_name = '" . constant("SPA_PLAYER") . "';";
     $result = $db->sql_query($sql);
     while ($row = $db->sql_fetch_assoc($result)) {
         return $row["user_id"];
     }
-    
-    
+    return NULL;
 }
