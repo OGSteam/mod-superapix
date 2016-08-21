@@ -17,7 +17,6 @@ if (preg_match('#mod#', getcwd()))
     chdir('../../');
 $_SERVER['SCRIPT_FILENAME'] = str_replace(basename(__FILE__), 'index.php', preg_replace('#\/mod\/(.*)\/#', '/', $_SERVER['SCRIPT_FILENAME']));
 include("common.php");
-list($root, $active) = $db->sql_fetch_row($db->sql_query("SELECT root, active FROM " . TABLE_MOD . " WHERE action = 'superapix'"));
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {
     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
@@ -27,14 +26,16 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 }
 //fin plagiat xtense
 include_once("mod/superapix/common.php");
-loggeur("Lancement script");
 
-// verification ecriture
-if (!is_writable(MOD_ROOT_XML) || !file_exists(MOD_ROOT_XML)) {
-    loggeur("Dossier " . MOD_ROOT_XML . " nom accessible ");
+
+// verif
+if (checkSecurity()!=NULL) {
+    loggeur(array("ERREUR checkSecurity"));
+    loggeur(checkSecurity());
+    jsonResponse(array("ERROR" => "checkSecurity error"));
     die();
 }
-
+loggeur("Lancement script");
 // differents array necessaires
 $tNameXml = constante_stepper(); // tab principal
 // variable

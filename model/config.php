@@ -26,6 +26,7 @@ function find_config($name) {
     if ($row) {
         return $row['config_value'];
     }
+    return NULL;
 }
 
 function create_uni_vide() {
