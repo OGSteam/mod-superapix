@@ -143,8 +143,12 @@ include_once MOD_ROOT_VUE . "css.php";
                 </select>
 
             </div>
+            
+            <hr />
+            
+             <legend>Options xtense CallBacks</legend>
 
-
+            
 
 
 
@@ -175,7 +179,7 @@ include_once MOD_ROOT_VUE . "css.php";
         <?php endif; ?>
         ?>
 
-
+<!--
         <table width = "100%">
             <form method = "POST" action = "index.php?action=superapix">
                 <input name = "max_battlereport" type = "hidden" size = "5" value = "10" />
@@ -236,3 +240,5 @@ include_once MOD_ROOT_VUE . "css.php";
     <?php
     endif;
     ?>
+
+        -->

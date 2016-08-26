@@ -19,7 +19,7 @@ define("TABLE_ALLIANCES", $table_prefix . MOD_NAME . "_alliances");
 define("TABLE_RANK_ALLIANCES", $table_prefix . MOD_NAME . "_rank_alliance");
 define("TABLE_RANK_PLAYERS", $table_prefix . MOD_NAME . "_rank_player");
 define("TABLE_UNIVERS", $table_prefix . MOD_NAME . "_universe");
-
+define("TABLE_XTENSE_CALLBACKS", $table_prefix . "xtense_callbacks"); // xtense Callbacks
 // paths
 define("MOD_ROOT", "mod/" . MOD_NAME . "/");
 define("MOD_ROOT_MODEL", MOD_ROOT . "model/");
@@ -35,6 +35,7 @@ define("SPA_PLAYER", "SPA_WebService");
 // include générique
 include(MOD_ROOT_MODEL . "config.php");
 include(MOD_ROOT_MODEL . "db.php");
+include(MOD_ROOT_MODEL . "xtense.php");
 include(MOD_ROOT_INCLUDE . "function.php");
 include(MOD_ROOT_INCLUDE . "cst.php");
 include(MOD_ROOT_INCLUDE . "lang.php");

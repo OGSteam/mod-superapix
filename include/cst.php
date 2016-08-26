@@ -89,6 +89,11 @@ function constante_array_universe() {
     return $retour;
 }
 
+function constante_xtense_callbacks() {
+    $retour = array("system", "spy", "ennemy_spy", "rc", "rc_cdr", "msg", "ally_msg", "expedition", "ally_list", "overview", "buildings", "research", "fleet", "defense", "ranking_player_points", "ranking_player_fleet", "ranking_player_research", "ranking_ally_points", "ranking_ally_fleet", "ranking_ally_research");
+    return $retour;
+}
+
 function constante_stepper() {
     global $server_config;
 
