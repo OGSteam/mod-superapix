@@ -9,7 +9,7 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 global $table_prefix;
-define("DEBUG", "1");
+
 
 // constante de table
 define("MOD_NAME", "superapix");
@@ -40,4 +40,7 @@ include(MOD_ROOT_INCLUDE . "cst.php");
 include(MOD_ROOT_INCLUDE . "lang.php");
 include_once(MOD_ROOT_MODEL . "install.php");
 
+
+//degug
+define("DEBUG", find_config("debug"));
 

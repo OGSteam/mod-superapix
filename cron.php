@@ -6,7 +6,6 @@
  * @copyright Copyright &copy; 2016, http://ogsteam.fr/
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
-
 // plagiat xtense
 define('IN_SPYOGAME', true);
 define('IN_SUPERAPIX', true);
@@ -29,7 +28,7 @@ include_once("mod/superapix/common.php");
 
 
 // verif
-if (checkSecurity()!=NULL) {
+if (checkSecurity() != NULL) {
     loggeur(array("ERREUR checkSecurity"));
     loggeur(checkSecurity());
     jsonResponse(array("ERROR" => "checkSecurity error"));
@@ -42,27 +41,33 @@ $tNameXml = constante_stepper(); // tab principal
 $uDate = time();
 $uStartTimer = microtime();
 
-// fix pour utilisation web(js) <=>  cron
-// cf traitement_xxx
-global $type, $user_data;
-$type = $sNameXml;
-$user_data['user_id'] = findSpaId(); // id pour injection
-$user_data['user_name'] = SPA_PLAYER; // username pour log ( ne marche pas, doit etre ecrasé ... :s )
 
-// fin fix
 // 
 // 
 // on va parcourir le tableau de constante name
 // si c'est out of date on regarde le xml pour savoir si necessaire de modifier également
 foreach ($tNameXml as $uId => $sNameXml) {
+
+
+    // fix pour utilisation web(js) <=>  cron
+// cf traitement_xxx
+    global $type, $user_data;
+    $type = $sNameXml;
+    $user_data['user_id'] = findSpaId(); // id pour injection
+    $user_data['user_name'] = SPA_PLAYER; // username pour log ( ne marche pas, doit etre ecrasé ... :s )
+// fin fix
+
     loggeur($sNameXml);
     if (is_out_of_date($sNameXml)) {
         loggeur($sNameXml . " est périmé ");
         // verification xml 
         if (xml_is_out_of_date($sNameXml)) {
             loggeur("XML " . $sNameXml . " est périmé ou absent");
-            $url = uni_replace(find_config('uni'), constant($sNameXml));
+            $url = uni_replace($sNameXml);
             loggeur("Telecharement XML " . $sNameXml . " " . $url);
+            if (!DistantIsFileIXml($url)) {
+                jsonResponse(array("nook" => "Erreur XML distant " . $url, "temps" => GetTimer($uStartTimer)));
+            }
             copy($url, MOD_ROOT_XML . $sNameXml . '.xml');
             loggeur("Telechargement " . $sNameXml);
             jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer)));

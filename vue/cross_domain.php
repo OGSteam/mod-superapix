@@ -97,7 +97,7 @@ switch ($pub_url) {
 
 
 
- $url = uni_replace(find_config('uni'),$url);
+ $url = uni_replace($url);
 
 copy($url, MOD_ROOT_XML.$pub_url.'.xml');
 
