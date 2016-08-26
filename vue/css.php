@@ -1,16 +1,12 @@
 <?php
-
 /**
  * @package [Mod] Superapix
  * @author Machine
  * @copyright Copyright &copy; 2016, http://ogsteam.fr/
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
-
-
-
-if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))die("Hacking attempt");
-
+if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
+    die("Hacking attempt");
 ?>
 
 <style>
@@ -68,6 +64,33 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))die("Hacking attempt");
         background-color:  rgba(98, 146, 64, 0.3);
         border-color: green;
     }
+    div.mod {
+        background-color:  rgba(20, 20, 20, 0.9);
+        margin:  20px;
+        padding: 10px;
+        display: block;
+        border-radius: 8px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    div.error{
+        color: #a94442;
+        background-color:  rgba(215, 44, 44, 0.3);
+        border-color: red;
+    }
+    
+     div.error:hover {
+        background-color:  rgba(215, 44, 44, 0.4);
+    }
+
+
+    div.success{
+        color: #3c763d;
+        background-color:  rgba(98, 146, 64, 0.3);
+        border-color: green;
+    }
 
     p.error:hover {
         background-color:  rgba(215, 44, 44, 0.4);
@@ -118,16 +141,6 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))die("Hacking attempt");
     .mod li a:hover {
         font-size: 30px;
         color: white;
-    }
-    div.mod {
-        background-color:  rgba(20, 20, 20, 0.9);
-        margin:  20px;
-        padding: 10px;
-        display: block;
-        border-radius: 8px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
     }
     .btn {
         -webkit-border-radius: 28;
