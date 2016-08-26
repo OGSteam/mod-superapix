@@ -27,10 +27,10 @@ function progress_barre($value, $nom, $valueMax = 19) {
  * @return int
  */
 function formatage_timestamp_for_rank($time) {
-    /// il faut garder le format ogspy ( toutes les 8 heeures ... ) )
+/// il faut garder le format ogspy ( toutes les 8 heeures ... ) )
     $temp = getdate($time);
 
-    // on format la date
+// on format la date
     $temp['seconds'] = 0;
     $temp['minutes'] = 0;
     if ($temp['hours'] >= 0 && $temp['hours'] < 8) {
@@ -84,11 +84,11 @@ function _is_out_of_date($type, $origin) {
     $now = time();
     $last_update = 0;
 
-    //!\\ swith bdd <=> xml pour utiliserr meme fonction 
+//!\\ swith bdd <=> xml pour utiliserr meme fonction 
     if ($origin == "bdd") {
         $last_update = (int) find_config("last_" . $type);
     } else {
-        // ici on veut xml
+// ici on veut xml
         $sPathXml = MOD_ROOT_XML . $type . ".xml";
         loggeur($sPathXml);
         if (file_exists($sPathXml)) {
@@ -96,7 +96,7 @@ function _is_out_of_date($type, $origin) {
             loggeur(filemtime($sPathXml));
         }
     }
-    //!\\ fin swith bdd <=> xml pour utiliserr meme fonction 
+//!\\ fin swith bdd <=> xml pour utiliserr meme fonction 
 
     $datadate_maj = 0;
     if (isset($datadate[$type])) {
@@ -116,7 +116,7 @@ function _is_out_of_date($type, $origin) {
 }
 
 function my_encodage($str) {
-    // return utf8_decode($str);
+// return utf8_decode($str);
     return $str;
 }
 
@@ -130,7 +130,7 @@ function stream_copy($src, $dest) {
 }
 
 function f_chargement_fichier_xml($s_fichier_xml) {
-    // On test voir si les fichiers que l'on va traiter existe
+// On test voir si les fichiers que l'on va traiter existe
 
     if (file_exists($s_fichier_xml)) {
         $o_xml = simplexml_load_file($s_fichier_xml);
@@ -143,7 +143,7 @@ function f_chargement_fichier_xml($s_fichier_xml) {
 
 function loggeur($option) {
     global $pub_action;
-    if (DEBUG == "1") {
+    if (constant("DEBUG") == "1") {
         if (!isset($pub_action)) {
             $pub_action = "superapix"; // fix si appel exterieur 'IN_SPYOGAME'
         }
@@ -170,7 +170,7 @@ function checkSecurity() {
     $error = FALSE;
     $tError = array();
 
-    // si pas actif pas acces au page on die de suite on attend pas les autres checks ..
+// si pas actif pas acces au page on die de suite on attend pas les autres checks ..
     if (spaActive() == NULL) {
         $str = "Tentative d'accés via superapix IP : " . get_client_ip();
         jsonResponse(array("ERROR" => $str));
@@ -185,7 +185,7 @@ function checkSecurity() {
         loggeur($str);
     }
 
-    //verification présence joueur spa
+//verification présence joueur spa
     if (findSpaId() == NULL) {
         $error = TRUE;
         $str = "Aucun compte de service SuperApix";
@@ -193,16 +193,26 @@ function checkSecurity() {
         loggeur($str);
     }
 
-    // verificatiopn des differentes constantes
-    $tConfigName = array("uni", "requete_max", "pays","debug");
+// verificatiopn des differentes constantes
+    $tConfigName = array("uni", "requete_max", "pays");
     foreach ($tConfigName as $sConfigName) {
-        if (find_config($sConfigName) == NULL || find_config($sConfigName) == 0) {
+        $value = strval(find_config($sConfigName));
+        if (($value == "" || $value == "0")) {
             $error = TRUE;
-            $str = "Erreur Config " . $sConfigName;
+            $str = "Erreur Config " . $sConfigName . " => " . strval($value);
             $tError[] = $str;
             loggeur($str);
         }
     }
+
+// config php
+    if (ini_get('allow_url_fopen') == 0) {
+        $error = TRUE;
+        $str = "Erreur Config PHP : allow_url_fopen " . ini_get('allow_url_fopen');
+        $tError[] = $str;
+        loggeur($str);
+    }
+
 
     if ($error) {
         return $tError;
@@ -270,7 +280,7 @@ function traitement_universe($value) {
         $name_planete = strval($ta_planete_en_cours[0]['name']);
         $name_moon = empty($ta_planete_en_cours[0]->moon['name']) ? '' : strval($ta_planete_en_cours[0]->moon['name']);
         $moon = empty($name_moon) ? '0' : '1';
-        //$sender_id = 
+//$sender_id = 
 
 
 
@@ -382,7 +392,7 @@ function traitement_alliance_rank($value, $type) {
 
 
 
-    // on fait la jointure qui va bien pour injecter le bon classement
+// on fait la jointure qui va bien pour injecter le bon classement
 
     $sql = "REPLACE INTO " . find_table_rank_alliance($type) . "  ";
     $sql .= " ( `datadate`, `rank`, `ally`, `number_member`, `points` , `sender_id`) ";
@@ -448,7 +458,7 @@ function traitement_player_rank($value, $type) {
 
 
     $table = find_table_rank_player($type);
-    // on fait la jointure qui va bien pour injecter le bon classement
+// on fait la jointure qui va bien pour injecter le bon classement
     $sql = "REPLACE INTO " . $table . "  ";
     $sql .= ($table != "CST_PLAYERS_RANK_MILITARY" ) ? " ( `datadate`, `rank`, `player`, `ally`, `points` , `sender_id`) " : " ( `datadate`, `rank`, `player`, `ally`, `points` , `ships` ,`sender_id`) ";
     $sql .= ($table != "CST_PLAYERS_RANK_MILITARY" ) ? " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag,  srp.points , srp.sender_id " : " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag, srp.points , srp.ships,srp.sender_id ";
@@ -529,4 +539,20 @@ function findSpaId() {
         return $row["user_id"];
     }
     return NULL;
+}
+
+// le chemin distant renvoit il a un xml ?????
+function DistantIsFileIXml($url) {
+    if ($stream = fopen($url, 'r')) {
+        // 5 premier octet => verif bidons todo voir charge avec get_headers ...
+        $sStream = stream_get_contents($stream, 5);
+        if ($sStream == "<?xml") {
+            loggeur("check fichier XML ok " . $url);
+            return TRUE;
+        }
+        loggeur("retour  " . $sStream);
+        loggeur("check fichier XML No Ok " . $url);
+        fclose($stream);
+    }
+    return FALSE;
 }
