@@ -32,6 +32,8 @@ if ($security == true) {
     rempli_table_univers();
 
     insert_config("uni", 0);
+    insert_config("dev", 0);
+    insert_config("pays", "fr");
     
     // installation d un joueur 
     newPlayer();

@@ -45,3 +45,14 @@ function create_uni_vide() {
         $query = array();
     }
 }
+
+function defineDebug() {
+    global $db;
+    // Check if xtense_callbacks table exists :
+    $query = 'SHOW TABLES LIKE "' . TABLE_CFG . '"';
+    $result = $db->sql_query($query);
+    if ($db->sql_numrows($result) != 0) {
+        define("DEBUG", find_config("debug"));
+    }
+    define("DEBUG", 0);
+}
