@@ -175,9 +175,25 @@ function delete_table_univers() {
 }
 
 function newPlayer() {
+    if (!playerExist()) {
+        global $db;
+        $sql = "  replace INTO " . TABLE_USER . "  (`user_id`, `user_name`, `user_password`) VALUES (NULL, '" . constant("SPA_PLAYER") . "' , 'noconnection');";
+        $db->sql_query($sql);
+    }
+}
+
+function playerExist($name = NULL) {
     global $db;
-    $sql = "  replace INTO " . TABLE_USER . "  (`user_id`, `user_name`, `user_password`) VALUES (NULL, '" . constant("SPA_PLAYER") . "' , 'noconnection');";
-    $db->sql_query($sql);
+    if ($name == NULL) {
+        $name = constant("SPA_PLAYER");
+    }
+    $query = "SELECT user_id FROM " . TABLE_USER . " WHERE user_name = '" . constant("SPA_PLAYER") . "' ";
+    $result = $db->sql_query($query);
+    $row = $db->sql_fetch_assoc($result);
+    if ($row) {
+        return TRUE;
+    }
+    return FALSE;
 }
 
 function delPlayer() {
@@ -193,7 +209,7 @@ function spaActive() {
     $result = $db->sql_query($query);
     $row = $db->sql_fetch_assoc($result);
     if ($row) {
-        if ($row['active']== 1) {
+        if ($row['active'] == 1) {
             return $row['active'];
         }
     }

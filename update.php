@@ -27,7 +27,7 @@ if ($security == true){
 insert_config("requete_max",500);
 rempli_table_univers();
 
-
+newPlayer();
   
 }
 
