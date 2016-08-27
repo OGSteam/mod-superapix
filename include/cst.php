@@ -90,7 +90,7 @@ function constante_array_universe() {
 }
 
 function constante_xtense_callbacks() {
-    $retour = array("system", "spy", "ennemy_spy", "rc", "rc_cdr", "msg", "ally_msg", "expedition", "ally_list", "overview", "buildings", "research", "fleet", "defense", "ranking_player_points", "ranking_player_fleet", "ranking_player_research", "ranking_ally_points", "ranking_ally_fleet", "ranking_ally_research");
+    $retour = array("spy", "ennemy_spy", "rc", "msg", "ally_msg", "expedition",  "overview", "buildings", "research", "fleet", "defense");
     return $retour;
 }
 

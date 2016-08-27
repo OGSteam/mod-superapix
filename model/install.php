@@ -215,3 +215,15 @@ function spaActive() {
     }
     return NULL;
 }
+
+function spaModId() {
+    global $db;
+
+    $query = "SELECT id FROM " . TABLE_MOD . " WHERE root = 'superapix' ";
+    $result = $db->sql_query($query);
+    $row = $db->sql_fetch_assoc($result);
+    if ($row) {
+        return $row['id'];
+    }
+    return 0;
+}

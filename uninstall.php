@@ -26,4 +26,5 @@ delete_table_rank_alliance();
 delete_table_rank_player();
 delete_table_univers();
 delPlayer();
+DelAllCallbacks(spaModId());
 ?>
