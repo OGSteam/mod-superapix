@@ -6,6 +6,7 @@
  * @copyright Copyright &copy; 2016, http://ogsteam.fr/
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
+
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
@@ -22,7 +23,7 @@ function IsXtenseInstalled() {
 
 function AddCallback($appels, $uIdMod) {
     global $db;
-    $query = 'REPLACE INTO ' . TABLE_XTENSE_CALLBACKS . ' (mod_id, function, type, active) VALUES (' . $uIdMod . ', "superapix_xtense", "' . $appels . '", 1)';
+    $query = 'REPLACE INTO ' . TABLE_XTENSE_CALLBACKS . ' (mod_id, function, type, active) VALUES (' . $uIdMod . ', "spaXtense", "' . $appels . '", 1)';
     $db->sql_query($query);
 }
 

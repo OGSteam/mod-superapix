@@ -48,7 +48,6 @@ if ($adminview == 1) {
     }
 }
 
-
 include_once MOD_ROOT_VUE . "css.php";
 ?>
 <div class ="mod error">
@@ -69,9 +68,9 @@ include_once MOD_ROOT_VUE . "css.php";
 
     <div class ="mod">
         <h1>Superapix</h1>
-    <?php if ($user_data["user_admin"] = 1 || $user_data["user_coadmin"] = 1) : ?>
+        <?php if ($user_data["user_admin"] = 1 || $user_data["user_coadmin"] = 1) : ?>
             <p><a class="btn" href="index.php?action=superapix&admin=1">Administration </a></p>
-    <?php endif; ?>
+        <?php endif; ?>
 
         <p>Superapix est un mod Ogspy permettant de mettre à jour depuis l'api XML d'ogame</p>
         <p>Celui ci est maintenant profilé pour automatiquement se mettre à jour sans actions utilisateurs  </p>
@@ -90,9 +89,9 @@ include_once MOD_ROOT_VUE . "css.php";
 
 
         <ul>
-    <?php foreach ($tab as $key => $value) : ?>
+            <?php foreach ($tab as $key => $value) : ?>
                 <li>
-        <?php echo lang($value); ?>: <strong><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></strong>
+                    <?php echo lang($value); ?>: <strong><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></strong>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -145,21 +144,21 @@ include_once MOD_ROOT_VUE . "css.php";
             <div class="form-grp">
                 <label for="enquiry">Mode developpeur </label>
                 <select id="debug" name="debug">
-    <?php if (find_config("debug") == 1) : ?>
+                    <?php if (find_config("debug") == 1) : ?>
                         <option value="0">
                             NON
                         </option>
                         <option value="1" selected>
                             OUI
                         </option>
-    <?php else : ?>
+                    <?php else : ?>
                         <option value="0" selected>
                             NON
                         </option>
                         <option value="1" >
                             OUI
                         </option>
-    <?php endif; ?>
+                    <?php endif; ?>
                 </select>
 
             </div>
@@ -167,37 +166,37 @@ include_once MOD_ROOT_VUE . "css.php";
             <hr />
 
             <legend>Options xtense CallBacks</legend>
-            <p class="error">NON Implementé</p>
-    <?php $tReelCallBacks = GetAllCallBacks($uIdSuperapix); ?>
-    <?php loggeur($tReelCallBacks); ?>
+            <?php $tReelCallBacks = GetAllCallBacks($uIdSuperapix); ?>
+            <p class="success">Nombre de CallBacks Xtense activé : <?php echo count($tReelCallBacks) ; ?></p>
+
 
 
             <?php foreach ($tcallbacks as $callback) : ?>
                 <div class="form-grp">
                     <label for="enquiry"><?php echo $callback; ?></label>
                     <select id="<?php echo $callback; ?>" name="<?php echo $callback; ?>">
-                <?php if (in_array($callback, $tReelCallBacks)) : ?>
+                        <?php if (in_array($callback, $tReelCallBacks)) : ?>
                             <option value="0">
                                 NON
                             </option>
                             <option value="1" selected>
                                 OUI
                             </option>
-        <?php else : ?>
+                        <?php else : ?>
                             <option value="0" selected>
                                 NON
                             </option>
                             <option value="1" >
                                 OUI
                             </option>
-        <?php endif; ?>
+                        <?php endif; ?>
                     </select>
 
                 </div>
 
 
 
-    <?php endforeach; ?>  
+            <?php endforeach; ?>  
 
 
 
@@ -209,22 +208,22 @@ include_once MOD_ROOT_VUE . "css.php";
             <input class = "btn" type="submit" value="Envoyer!"  />
 
         </form>
-    <?php
-    if (find_config("debug") == 1) {
-        loggeur("INFO Conf php allow_url_fopen " . ini_get('allow_url_fopen'));
-        loggeur("Conf php max_execution_time" . ini_get('max_execution_time'));
-        loggeur("Conf php post_max_size" . ini_get('post_max_size'));
-    }
-    ?>
+        <?php
+        if (find_config("debug") == 1) {
+            loggeur("INFO Conf php allow_url_fopen " . ini_get('allow_url_fopen'));
+            loggeur("Conf php max_execution_time" . ini_get('max_execution_time'));
+            loggeur("Conf php post_max_size" . ini_get('post_max_size'));
+        }
+        ?>
 
         <?php if ($tcheckSecurity != NULL):
             ?>
             <?php foreach ($tcheckSecurity as $error) : ?>
                 <p class="error">
-                <?php echo $error; ?>
+                    <?php echo $error; ?>
                 </p>
             <?php endforeach; ?>
-            <?php else : ?>
+        <?php else : ?>
             <p class="success">
                 La configuration du mod semble correcte
             </p>
@@ -237,7 +236,7 @@ include_once MOD_ROOT_VUE . "css.php";
                         <input name = "max_battlereport" type = "hidden" size = "5" value = "10" />
                         <tr>
                             <td class = "c_ogspy" colspan = "2">Options <?php echo MOD_NAME;
-    ?></td>
+        ?></td>
                         </tr>
                         <tr>
                             <th width="60%">numero d'univers</th>
@@ -280,12 +279,12 @@ include_once MOD_ROOT_VUE . "css.php";
                         <td class="c_tech" colspan="2">Dernieres maj via superapix</td>
                     </tr>
         
-    <?php foreach ($tab as $key => $value) : ?>
-                                                                <tr>
-                                                                    <th width="60%"><?php echo lang($value); ?></th>
-                                                                    <th><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></th>
-                                                                </tr>
-    <?php endforeach; ?>
+        <?php foreach ($tab as $key => $value) : ?>
+                                                                    <tr>
+                                                                        <th width="60%"><?php echo lang($value); ?></th>
+                                                                        <th><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></th>
+                                                                    </tr>
+        <?php endforeach; ?>
                 </table>
         
         

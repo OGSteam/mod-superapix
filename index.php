@@ -8,6 +8,8 @@
  */
 
 define('IN_SUPERAPIX', true);
+define('IN_XTENSE', false);
+
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
