@@ -26,7 +26,7 @@ if (isset($pub_create_uni)) {
 }
 
 
-
+// point d access à supprimer 
 if (isset($pub_sub_action) && $pub_sub_action == "cross") {
     require_once("views/page_header.php");
     // avant traitement on met la progress barre
