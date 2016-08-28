@@ -80,8 +80,8 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         background-color:  rgba(215, 44, 44, 0.3);
         border-color: red;
     }
-    
-     div.error:hover {
+
+    div.error:hover {
         background-color:  rgba(215, 44, 44, 0.4);
     }
 
@@ -224,9 +224,68 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
     }
 
+    /*cf http://www.menucool.com/tooltip/css-tooltip*/
 
 
+    div.tooltip > span {
+        width: 300px;
+        padding: 10px 20px;
+        margin-top: 0;
+        margin-left: -120px;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 10;
+        position: absolute;
+        font-family: Arial;
+        font-size: 12px;
+        font-style: normal;
+        border-radius: 3px;
+        box-shadow: 2px 2px 2px #999;
+        -webkit-transition-property: opacity, margin-top, visibility, margin-left;
+        -webkit-transition-duration: 0.4s, 0.3s, 0.4s, 0.3s;
+        -webkit-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+        transition-property: opacity, margin-top, visibility, margin-left;
+        transition-duration: 0.4s, 0.3s, 0.4s, 0.3s;
+        transition-timing-function: 
+            ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+    }
 
+    /*a.tooltip > span:hover,*/
+    div.tooltip:hover > span {
+        opacity: 1;
+        text-decoration: none;
+        visibility: visible;
+        overflow: visible;
+        margin-top: 50px;
+        display: inline;
+        margin-left: -90px;
+    }
+
+   
+    div.tooltip > span {
+        color: #FFFFFF; 
+        background: #333333;
+        background: -webkit-linear-gradient(top, #333333, #999999);
+        background: linear-gradient(top, #333333, #999999);	    
+        border: 1px solid #000000;	     
+    }    
+
+    div.tooltip span b {
+        color: greenyellow;
+        border-top: 1px solid #000000;
+        border-right: 1px solid #000000;
+    }
+
+    .pop-title
+    {
+        font-size: 20px;
+        color: rgb(200, 200, 200 );
+        text-align: center;
+        margin-left: 5%;
+        margin-right:  5%;
+        margin-bottom: 5px;
+        margin-top: 1px;
+    }
 
 </style>
 

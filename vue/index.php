@@ -20,6 +20,9 @@ $adminview = 0;
 if (isset($pub_admin)) {
     $adminview = (int) $pub_admin;
 }
+
+
+
 // enregistrement formulaire
 if (isset($pub_uni) && $adminview == 1) {
     insert_config("uni", (int) ($pub_uni));
@@ -123,25 +126,37 @@ include_once MOD_ROOT_VUE . "css.php";
 
         <form method="post" action="index.php?action=superapix&admin=1">
             <legend>Administration</legend>
-            <div class="form-grp">
+            <div class="form-grp tooltip">
                 <label for="name">Numero D'univers <span class="required">*</span></label>
-
                 <input type="text" id="uni" name="uni" value="<?php echo (int) find_config("uni"); ?>" placeholder="67" required="required" /> 
-
+                <span> <div class="pop-title">Numero </div>
+                    Indiquer le numero  de la page du jeu <br />
+                    exemple : 01, 67, ... <br />
+                    cf : https://s<b>01</b>-fr.ogame.gameforge.com
+                    
+                </span> 
             </div>
 
 
-            <div class="form-grp">
+            <div class="form-grp tooltip">
                 <label for="name">Nombre de requere max <span class="required">*</span></label>
                 <input type="text" id="requete_max" name="requete_max" value="<?php echo (int) find_config("requete_max"); ?>" placeholder="500" required="required" />
+                <span> <div class="pop-title">Requete max</div>
+                    500 semble etre correct
+                </span> 
             </div>
 
-            <div class="form-grp">
+            <div class="form-grp tooltip">
                 <label for="enquiry">Pays </label>
                 <input type="text" id="pays" name="pays" value="<?php echo find_config("pays"); ?>" placeholder="it" required="required" />
+                <span> <div class="pop-title">Pays</div>
+                    Indiquer le pays de la page du jeu <br />
+                    exemple : fr, it, en , ...
+                     cf : https://s01-<b>fr</b>.ogame.gameforge.com
+                </span> 
             </div>
 
-            <div class="form-grp">
+            <div class="form-grp tooltip">
                 <label for="enquiry">Mode developpeur </label>
                 <select id="debug" name="debug">
                     <?php if (find_config("debug") == 1) : ?>
@@ -160,6 +175,9 @@ include_once MOD_ROOT_VUE . "css.php";
                         </option>
                     <?php endif; ?>
                 </select>
+                <span> <div class="pop-title">Debug</div>
+                    Activer la journalisation des actions du mod.
+                </span> 
 
             </div>
 
@@ -167,12 +185,12 @@ include_once MOD_ROOT_VUE . "css.php";
 
             <legend>Options xtense CallBacks</legend>
             <?php $tReelCallBacks = GetAllCallBacks($uIdSuperapix); ?>
-            <p class="success">Nombre de CallBacks Xtense activé : <?php echo count($tReelCallBacks) ; ?></p>
+            <p class="success">Nombre de CallBacks Xtense activé : <?php echo count($tReelCallBacks); ?></p>
 
 
 
             <?php foreach ($tcallbacks as $callback) : ?>
-                <div class="form-grp">
+                <div class="form-grp tooltip">
                     <label for="enquiry"><?php echo $callback; ?></label>
                     <select id="<?php echo $callback; ?>" name="<?php echo $callback; ?>">
                         <?php if (in_array($callback, $tReelCallBacks)) : ?>
@@ -192,21 +210,25 @@ include_once MOD_ROOT_VUE . "css.php";
                         <?php endif; ?>
                     </select>
 
+                    <span> <div class="pop-title">CallBacks Xtense</div>
+                        Ajouter ou supprimer la liaison avec la barre xtense sur la page "<?php echo $callback; ?>"
+                    </span> 
+
                 </div>
 
 
 
             <?php endforeach; ?>  
-
-
-
-
-
-
-
-
             <input class = "btn" type="submit" value="Envoyer!"  />
 
+              <legend>Autre</legend>
+               <div class="form-grp tooltip">
+            <a class ="btn" href="index.php?action=superapix&create_uni">Uni vide</a>
+               <span> <div class="pop-title">Uni Vide</div>
+                        rempli l'univers d'entrée vide, Pour ogspy tout neuf.
+                    </span> 
+            </div>
+            
         </form>
         <?php
         if (find_config("debug") == 1) {
@@ -274,20 +296,20 @@ include_once MOD_ROOT_VUE . "css.php";
                         <th width="60%">post_max_size</th>
                         <th><?php echo ini_get('post_max_size'); ?></th>
                     </tr>
-        
+
                     <tr>
                         <td class="c_tech" colspan="2">Dernieres maj via superapix</td>
                     </tr>
-        
+
         <?php foreach ($tab as $key => $value) : ?>
-                                                                    <tr>
-                                                                        <th width="60%"><?php echo lang($value); ?></th>
-                                                                        <th><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></th>
-                                                                    </tr>
+                                                                                            <tr>
+                                                                                                <th width="60%"><?php echo lang($value); ?></th>
+                                                                                                <th><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></th>
+                                                                                            </tr>
         <?php endforeach; ?>
                 </table>
-        
-        
+
+
     <?php
     endif;
     ?>
