@@ -336,6 +336,7 @@ function traitement_player($value) {
             implode(',', $querys));
 
     insert_config("last_" . $type, $timestamp);
+    change_date($type, $timestamp);
 }
 
 function traitement_alliance($value) {
@@ -360,6 +361,7 @@ function traitement_alliance($value) {
 
 
     insert_config("last_" . $type, $timestamp);
+    change_date($type, $timestamp);
 }
 
 function traitement_alliance_rank($value, $type) {
@@ -409,6 +411,7 @@ function traitement_alliance_rank($value, $type) {
     $db->sql_query($sql);
 
     insert_config("last_" . $type, $timestamp);
+    change_date($type, $timestamp);
 }
 
 function find_table_rank_alliance($type) {
@@ -478,6 +481,7 @@ function traitement_player_rank($value, $type) {
     $db->sql_query($sql);
 
     insert_config("last_" . $type, $timestamp);
+    change_date($type, $timestamp);
 }
 
 function find_table_rank_player($type) {
@@ -555,4 +559,12 @@ function DistantIsFileIXml($url) {
         fclose($stream);
     }
     return FALSE;
+}
+
+//changen la date du fichier xml pour correspondre à la date du timestamp en base ( evite décalage ... )
+function change_date($path, $time) {
+    $path = MOD_ROOT_XML . $path . ".xml";
+    touch($path, $time);
+    
+    
 }
