@@ -57,26 +57,28 @@ function xml_is_out_of_date($type) {
 }
 
 function _is_out_of_date($type, $origin) {
+    // cf : http://board.fr.ogame.gameforge.com/board1474-ogame-le-jeu/board641-les-cr-ations-ogamiennes/board642-logiciels-tableurs/1053082-ogame-api/
+    // dans les limites d'ogspy
     $datadate = array(
-        "CST_PLAYERS" => "1",
-        "CST_ALLIANCES" => "1",
-        "CST_ALLIANCES_RANK_POINTS" => "1",
-        "CST_ALLIANCES_RANK_ECO" => "1",
-        "CST_ALLIANCES_RANK_TECHNOLOGY" => "1",
-        "CST_ALLIANCES_RANK_MILITARY" => "1",
-        "CST_ALLIANCES_RANK_MILITARY_BUILT" => "1",
-        "CST_ALLIANCES_RANK_MILITARY_DESTROYED" => "1",
-        "CST_ALLIANCES_RANK_MILITARY_LOST" => "1",
-        "CST_ALLIANCES_RANK_MILITARY_HONNOR" => "1",
-        "CST_PLAYERS_RANK_POINTS" => "1", // pour tout ce qui est classement joueur
-        "CST_PLAYERS_RANK_ECO" => "1", // maj toutes les heures, mais comme decoupage par 8 heures, autzant laisser par jour
-        "CST_PLAYERS_RANK_TECHNOLOGY" => "1",
-        "CST_PLAYERS_RANK_MILITARY" => "1",
-        "CST_PLAYERS_RANK_MILITARY_BUILT" => "1",
-        "CST_PLAYERS_RANK_MILITARY_DESTROYED" => "1",
-        "CST_PLAYERS_RANK_MILITARY_LOST" => "1",
-        "CST_PLAYERS_RANK_MILITARY_HONNOR" => "1",
-        "CST_UNIVERSE" => "7" // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
+        "CST_PLAYERS" => "24",
+        "CST_ALLIANCES" => "24",
+        "CST_PLAYERS_RANK_POINTS" => "8", // pour tout ce qui est classement joueur
+        "CST_PLAYERS_RANK_ECO" => "8", // maj toutes les heures, mais comme decoupage par 8 heures, autzant laisser par jour
+        "CST_PLAYERS_RANK_TECHNOLOGY" => "8",
+        "CST_PLAYERS_RANK_MILITARY" => "8",
+        "CST_PLAYERS_RANK_MILITARY_BUILT" => "8",
+        "CST_PLAYERS_RANK_MILITARY_DESTROYED" => "8",
+        "CST_PLAYERS_RANK_MILITARY_LOST" => "8",
+        "CST_PLAYERS_RANK_MILITARY_HONNOR" => "8",
+        "CST_ALLIANCES_RANK_POINTS" => "24",
+        "CST_ALLIANCES_RANK_ECO" => "24",
+        "CST_ALLIANCES_RANK_TECHNOLOGY" => "24",
+        "CST_ALLIANCES_RANK_MILITARY" => "24",
+        "CST_ALLIANCES_RANK_MILITARY_BUILT" => "24",
+        "CST_ALLIANCES_RANK_MILITARY_DESTROYED" => "24",
+        "CST_ALLIANCES_RANK_MILITARY_LOST" => "24",
+        "CST_ALLIANCES_RANK_MILITARY_HONNOR" => "24",
+        "CST_UNIVERSE" => "168" // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
     );
 
     $retour = true; // retour par defaut
@@ -106,7 +108,7 @@ function _is_out_of_date($type, $origin) {
         $datadate_maj = 1; // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
     }
 
-    if (($now - $last_update) > ($datadate_maj * 24 * 60 * 60)) {
+    if (($now - $last_update) > ($datadate_maj *  60 * 60)) { //($datadate_maj (en heure )) * nb de minutes * nb de secondes
         $retour = true;
     } else {
         $retour = false;
