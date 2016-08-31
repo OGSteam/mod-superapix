@@ -53,18 +53,6 @@ if ($adminview == 1) {
 
 include_once MOD_ROOT_VUE . "css.php";
 ?>
-<div class ="mod error">
-    <h2>Version de developpement @ tester</h2>
-    <p>reste à ajouter :</p>
-    <ul>
-        <li>
-            <a href="">Création uni vide ( nouvel univers ... )</a>
-        </li>
-        <li>
-            <a href="">CallBack Xtense</a>
-        </li>
-    </ul>
-</div>    
 
 <?php if ($adminview != 1): ?>
 

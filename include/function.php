@@ -70,14 +70,14 @@ function _is_out_of_date($type, $origin) {
         "CST_PLAYERS_RANK_MILITARY_DESTROYED" => "8",
         "CST_PLAYERS_RANK_MILITARY_LOST" => "8",
         "CST_PLAYERS_RANK_MILITARY_HONNOR" => "8",
-        "CST_ALLIANCES_RANK_POINTS" => "24",
-        "CST_ALLIANCES_RANK_ECO" => "24",
-        "CST_ALLIANCES_RANK_TECHNOLOGY" => "24",
-        "CST_ALLIANCES_RANK_MILITARY" => "24",
-        "CST_ALLIANCES_RANK_MILITARY_BUILT" => "24",
-        "CST_ALLIANCES_RANK_MILITARY_DESTROYED" => "24",
-        "CST_ALLIANCES_RANK_MILITARY_LOST" => "24",
-        "CST_ALLIANCES_RANK_MILITARY_HONNOR" => "24",
+        "CST_ALLIANCES_RANK_POINTS" => "8",
+        "CST_ALLIANCES_RANK_ECO" => "8",
+        "CST_ALLIANCES_RANK_TECHNOLOGY" => "8",
+        "CST_ALLIANCES_RANK_MILITARY" => "8",
+        "CST_ALLIANCES_RANK_MILITARY_BUILT" => "8",
+        "CST_ALLIANCES_RANK_MILITARY_DESTROYED" => "8",
+        "CST_ALLIANCES_RANK_MILITARY_LOST" => "8",
+        "CST_ALLIANCES_RANK_MILITARY_HONNOR" => "8",
         "CST_UNIVERSE" => "168" // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
     );
 
