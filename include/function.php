@@ -108,7 +108,7 @@ function _is_out_of_date($type, $origin) {
         $datadate_maj = 1; // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
     }
 
-    if (($now - $last_update) > ($datadate_maj *  60 * 60)) { //($datadate_maj (en heure )) * nb de minutes * nb de secondes
+    if (($now - $last_update) > ($datadate_maj * 60 * 60)) { //($datadate_maj (en heure )) * nb de minutes * nb de secondes
         $retour = true;
     } else {
         $retour = false;
@@ -261,7 +261,7 @@ function GetTimer($utime) {
 
 function traitement_universe($value) {
 
-    global $db, $user_data, $server_config, $pub_timestamp;
+    global $db, $user_data, $server_config, $pub_timestamp, $type;
     $table = TABLE_UNIVERS;
     $sender_id = $user_data['user_id'];
 
@@ -317,7 +317,8 @@ function traitement_universe($value) {
     prepare_table_universe($timestamp);
 
 
-    insert_config("last_CST_UNIVERSE", $timestamp);
+    insert_config("last_" . $type, $timestamp);
+    change_date($type, $timestamp);
 }
 
 function traitement_player($value) {
@@ -567,6 +568,11 @@ function DistantIsFileIXml($url) {
 function change_date($path, $time) {
     $path = MOD_ROOT_XML . $path . ".xml";
     touch($path, $time);
-    
-    
+}
+
+function isSecure() {
+    if (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+        return TRUE;
+    }
+    return false;
 }

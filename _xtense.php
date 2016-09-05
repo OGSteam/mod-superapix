@@ -36,7 +36,13 @@ if (class_exists("Callback")) {
         private function callSpa() {
             define('IN_SUPERAPIX', true); // pour inclusion de fichier
             include_once("mod/superapix/common.php");
-            $sUri = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
+            $sSheme = "http";
+            if(isSecure())
+            {
+                $sSheme = "https";
+            }
+            
+            $sUri = $sSheme."://" . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
             $sUri = str_replace("xtense/xtense.php", "superapix/cron.php", $sUri); // récupération url
 
             $page = file_get_contents($sUri);
