@@ -37,16 +37,30 @@ if (class_exists("Callback")) {
             define('IN_SUPERAPIX', true); // pour inclusion de fichier
             include_once("mod/superapix/common.php");
             $sSheme = "http";
-            if(isSecure())
+            
+            $sUri = $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
+            $sUri = str_replace("xtense/xtense.php", "superapix/cron.php", $sUri); // récupération url
+            
+            if (fileInfoExist("http://".$sUri))
             {
-                $sSheme = "https";
+                $sUri = "http://".$sUri;
+                loggeur("fileInfo en http existe");
+            }
+            elseif (fileInfoExist("https://".$sUri))
+            {
+                $sUri = "https://".$sUri;
+                loggeur("fileInfo en https existe");
+            }
+            else
+            {
+                loggeur("Impossible de récuperer fileInfo en http et https ... ");
+                return false;
             }
             
-            $sUri = $sSheme."://" . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
-            $sUri = str_replace("xtense/xtense.php", "superapix/cron.php", $sUri); // récupération url
 
-            $page = file_get_contents($sUri);
-            loggeur("PAGE => " . $page); // pour logger directement le résultat 
+            $page = @file_get_contents($sUri);
+
+           loggeur("PAGE => " . $page); // pour logger directement le résultat 
             //echo "SUPERAPIX : " . $page; // pour visualiser directement sur page ogame le résultat  => pour dev only car si activé pas de status xtense
 
             $page = json_decode($page, true);
@@ -60,3 +74,4 @@ if (class_exists("Callback")) {
     }
 
 }
+    

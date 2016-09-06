@@ -570,9 +570,14 @@ function change_date($path, $time) {
     touch($path, $time);
 }
 
-function isSecure() {
-    if (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-        return TRUE;
-    }
-    return false;
+function fileInfoExist($sUri) {
+    
+     $sUri = str_replace("cron.php", "info.txt", $sUri); // récupération url
+     $response = @get_headers($sUri, 1);
+     if (isset($response[0]) &&  trim($response[0]) == "HTTP/1.1 200 OK" )
+     {
+         return true;
+     }
+             
+      return false;
 }

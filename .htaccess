@@ -8,3 +8,8 @@
     Order Allow,Deny
     Allow from all
 </Files>
+
+<Files info.txt>
+    Order Allow,Deny
+    Allow from all
+</Files>
