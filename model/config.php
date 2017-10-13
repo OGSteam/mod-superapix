@@ -46,6 +46,27 @@ function create_uni_vide() {
     }
 }
 
+function reinit(){
+    //change last date
+    $tab = constante_stepper();
+foreach ($tab as $key => $value)
+{
+    insert_config("last_" . $value,0);
+}
+
+    // purge le dossier xml (voir pour glob dans prochaine maj )
+    $rep=opendir(MOD_ROOT_XML);
+    while($file = readdir($rep)){
+        if($file != '..' && $file !='.' && $file !='' && $file!='.htaccess'&& $file!='index.php'){
+            unlink(MOD_ROOT_XML.$file);
+        }
+    }
+
+
+
+
+}
+
 function defineDebug() {
     global $db;
 

@@ -13,7 +13,7 @@ function create_table_config() {
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_CFG . " ( ";
-    $sql .= " config_name varchar(255) NOT NULL default '', ";
+    $sql .= " config_name varchar(50) NOT NULL default '', ";
     $sql .= " config_value varchar(255) NOT NULL default '', ";
     $sql .= " PRIMARY KEY  (config_name) ) ;";
 

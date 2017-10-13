@@ -25,6 +25,16 @@ if (isset($pub_create_uni)) {
     create_uni_vide();
 }
 
+if (isset($pub_reinit)) {
+
+    reinit();
+    header("Refresh: 0; url=index.php?action=superapix&admin=1");
+    die();
+
+}
+
+
+
 
 // point d access à supprimer 
 if (isset($pub_sub_action) && $pub_sub_action == "cross") {
@@ -83,7 +93,10 @@ if (isset($pub_step) && is_numeric($pub_step)) {
 
 require_once("views/page_header.php");
 
+
+
 // page d acceuil
+
 include(MOD_ROOT_VUE . "index.php");
 
 require_once("views/page_tail.php");
