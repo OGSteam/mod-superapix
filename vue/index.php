@@ -77,10 +77,13 @@ include_once MOD_ROOT_VUE . "css.php";
 
 
             <h2>Mettre à jour</h2>
-            <p>
 
-            <progress id="avancement" class="progress"  value="0" max="39"><div id="content"></div></progress> <a class=""  onclick="startStepping()">Mettre à jour </a>
-            </p>
+              <progress id="avancement" class="progress"  value="0" max="39">
+
+            </progress>
+            <div id="content"></div>
+                <a class="btn"  onclick="startStepping()">Mettre à jour </a>
+
 
         <?php endif; ?>
 
@@ -322,6 +325,8 @@ include_once MOD_ROOT_VUE . "css.php";
     <?php
     endif;
     ?>
+
+
 
 
         <script src="mod/superapix/js/step.js"><script>

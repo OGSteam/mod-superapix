@@ -37,6 +37,8 @@ if ($security == true) {
     
     // installation d un joueur 
     newPlayer();
+
+    fixPtPerMember();
    
 }
 

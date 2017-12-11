@@ -99,5 +99,11 @@ require_once("views/page_header.php");
 
 include(MOD_ROOT_VUE . "index.php");
 
+
+
+
+
+
+
 require_once("views/page_tail.php");
 ?>

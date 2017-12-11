@@ -227,3 +227,27 @@ function spaModId() {
     }
     return 0;
 }
+
+
+function fixPtPerMember()
+{
+    global $db;
+    $output = array();
+    $query = "describe ".TABLE_RANK_ALLY_POINTS."; ";
+    $result = $db->sql_query($query);
+
+    while ($row = $db->sql_fetch_row($result))
+    {
+        $output[$row[0]] = $row[4];
+    }
+    if ($output['points_per_member'] == null)
+    {
+      // la valeur n'est pas correcte
+        $qeury2 =   "ALTER TABLE ".TABLE_RANK_ALLY_POINTS." ALTER COLUMN points_per_member SET DEFAULT '0'";
+        $result = $db->sql_query($qeury2);
+    }
+
+
+}
+
+
