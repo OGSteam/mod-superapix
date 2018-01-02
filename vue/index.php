@@ -101,6 +101,9 @@ include_once MOD_ROOT_VUE . "css.php";
 
         <h2>liens</h2>
         <ul>
+			<li>
+                <a href="index.php?action=superapix&help">Aide à L'usage (Tuto Video)</a>
+            </li>
             <li>
                 <a href="https://forum.ogsteam.fr/">Forum Ogsteam/</a>
             </li>
