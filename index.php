@@ -95,9 +95,18 @@ require_once("views/page_header.php");
 
 
 
-// page d acceuil
+if (isset($pub_help))
+{
+	//page d'aide
+	include(MOD_ROOT_VUE . "help.php");
+}
+else
+{
+	// page d acceuil
+	include(MOD_ROOT_VUE . "index.php");
+}
 
-include(MOD_ROOT_VUE . "index.php");
+
 
 
 
