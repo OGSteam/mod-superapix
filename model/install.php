@@ -100,7 +100,7 @@ function create_table_rank_player() {
     $sql .= " rank INT(11) NOT NULL , ";
     $sql .= " id INT(11) NOT NULL , ";
     $sql .= " points INT(11) NOT NULL, ";
-    $sql .= " ships INT(11) NOT NULL default '0' , ";
+    $sql .= " nb_spacecraft INT(11) NOT NULL default '0' , ";
     $sql .= " sender_id INT(11) NOT NULL, ";
     $sql .= " PRIMARY KEY (`rank`,`datadate`,`id`));";
 

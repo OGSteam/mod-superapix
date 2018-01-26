@@ -32,6 +32,11 @@ newPlayer();
 fixPtPerMember();
 
 
+// reinitialisation de le table player
+delete_table_rank_player();
+create_table_rank_player() ;
+
+
 
 
   
