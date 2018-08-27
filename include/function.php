@@ -253,7 +253,7 @@ function get_client_ip() {
  * @return float temps total (microtime)
  */
 function GetTimer($utime) {
-    $uEndTimer = microtime();
+    $uEndTimer = microtime(1);
     $uTotal = $uEndTimer - $utime;
 
     return abs($uTotal);

@@ -40,7 +40,7 @@ loggeur("Lancement script");
 $tNameXml = constante_stepper(); // tab principal
 // variable
 $uDate = time();
-$uStartTimer = microtime();
+$uStartTimer = microtime(1);
 
 
 // 
