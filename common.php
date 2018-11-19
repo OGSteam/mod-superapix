@@ -33,7 +33,7 @@ define("MOD_ROOT_XML", MOD_ROOT . "xml/");
 define("MOD_ROOT_PARSER", MOD_ROOT . "parser/");
 
 //joueur superapix
-define("SPA_PLAYER", "SPA_WebService");
+define("SPA_PLAYER", "SuperApix");
 
 // include générique
 include(MOD_ROOT_MODEL . "config.php");
