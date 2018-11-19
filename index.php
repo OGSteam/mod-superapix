@@ -33,9 +33,6 @@ if (isset($pub_reinit)) {
 
 }
 
-
-
-
 // point d access à supprimer 
 if (isset($pub_sub_action) && $pub_sub_action == "cross") {
     require_once("views/page_header.php");
@@ -106,13 +103,4 @@ else
 	include(MOD_ROOT_VUE . "index.php");
 }
 
-
-
-
-
-
-
-
-
 require_once("views/page_tail.php");
-?>

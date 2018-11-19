@@ -29,6 +29,7 @@ define("CST_PLAYERS_RANK_MILITARY_BUILT", "https://s{uni}-{pays}.ogame.gameforge
 define("CST_PLAYERS_RANK_MILITARY_DESTROYED", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=1&type=6");
 define("CST_PLAYERS_RANK_MILITARY_LOST", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=1&type=4");
 define("CST_PLAYERS_RANK_MILITARY_HONNOR", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=1&type=7");
+define("CST_PLAYERS_RANK_FREQ", 1);
 
 //classement alliance
 define("CST_ALLIANCES_RANK_POINTS", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=2&type=0");
@@ -39,6 +40,10 @@ define("CST_ALLIANCES_RANK_MILITARY_BUILT", "https://s{uni}-{pays}.ogame.gamefor
 define("CST_ALLIANCES_RANK_MILITARY_DESTROYED", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=2&type=6");
 define("CST_ALLIANCES_RANK_MILITARY_LOST", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=2&type=4");
 define("CST_ALLIANCES_RANK_MILITARY_HONNOR", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=2&type=7");
+define("CST_ALLIANCES_RANK_FREQ", 24);
+
+//Liste Serveurs
+define("CST_SERVER_LIST", "https://s{uni}-{pays}.ogame.gameforge.com/api/universes.xml");
 
 function uni_replace($string) {
     $string = constant($string);
@@ -118,4 +123,4 @@ function constante_stepper() {
 }
 
 //référence :
-//cf : http://board.ogame.fr/board1474-ogame-le-jeu/board641-les-cr-ations-ogamiennes/board642-logiciels-tableurs/1053082-ogame-api/
+//cf : https://board.fr.ogame.gameforge.com/index.php/Thread/619580-OGame-API/

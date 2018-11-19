@@ -13,12 +13,6 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))die("Hacking attempt");
 
 include_once ("mod/superapix/common.php");
 
-?>
-
-
-
-
-<?php
 
 $url = null;
 

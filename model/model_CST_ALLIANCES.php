@@ -34,5 +34,5 @@ $db->sql_query('REPLACE INTO '.TABLE_ALLIANCES.' ('.$fields.') VALUES '.implode(
 echo "mise a jour de ".$total." ligne(s) d' alliance ";
     
 
-insert_config("last_".$pub_type,$timestamp );
+mod_set_option("last_".$pub_type,$timestamp );
 

@@ -22,7 +22,6 @@ if ($security == true) {
   
    
     // création tables
-    create_table_config();
     create_table_players();
     create_table_alliances();
     create_table_rank_alliance();
@@ -31,15 +30,15 @@ if ($security == true) {
 
     rempli_table_univers();
 
-    insert_config("uni", 0);
-    insert_config("dev", 0);
-    insert_config("pays", "fr");
+    mod_set_option("uni", 0);
+    mod_set_option("dev", 0);
+    mod_set_option("pays", "fr");
+    mod_set_option("requete_max",500);
     
     // installation d un joueur 
     newPlayer();
 
     fixPtPerMember();
-   
 }
 
 

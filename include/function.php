@@ -88,7 +88,7 @@ function _is_out_of_date($type, $origin) {
 
 //!\\ swith bdd <=> xml pour utiliserr meme fonction 
     if ($origin == "bdd") {
-        $last_update = (int) find_config("last_" . $type);
+        $last_update = (int) mod_get_option("last_" . $type);
     } else {
 // ici on veut xml
         $sPathXml = MOD_ROOT_XML . $type . ".xml";
@@ -198,7 +198,7 @@ function checkSecurity() {
 // verificatiopn des differentes constantes
     $tConfigName = array("uni", "requete_max", "pays");
     foreach ($tConfigName as $sConfigName) {
-        $value = strval(find_config($sConfigName));
+        $value = strval(mod_get_option($sConfigName));
         if (($value == "" || $value == "0")) {
             $error = TRUE;
             $str = "Erreur Config " . $sConfigName . " => " . strval($value);
@@ -226,7 +226,6 @@ function checkSecurity() {
 //http://stackoverflow.com/questions/15699101/get-the-client-ip-address-using-php
 function get_client_ip() {
     global $_SERVER;
-    $ipaddress = '';
     if (isset($_SERVER['HTTP_CLIENT_IP']))
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
     else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
@@ -317,7 +316,7 @@ function traitement_universe($value) {
     prepare_table_universe($timestamp);
 
 
-    insert_config("last_" . $type, $timestamp);
+    mod_set_option("last_" . $type, $timestamp);
     change_date($type, $timestamp);
 }
 
@@ -338,7 +337,7 @@ function traitement_player($value) {
     $db->sql_query('REPLACE INTO ' . TABLE_PLAYERS . ' (' . $fields . ') VALUES ' .
             implode(',', $querys));
 
-    insert_config("last_" . $type, $timestamp);
+    mod_set_option("last_" . $type, $timestamp);
     change_date($type, $timestamp);
 }
 
@@ -363,7 +362,7 @@ function traitement_alliance($value) {
 
 
 
-    insert_config("last_" . $type, $timestamp);
+    mod_set_option("last_" . $type, $timestamp);
     change_date($type, $timestamp);
 }
 
@@ -413,7 +412,7 @@ function traitement_alliance_rank($value, $type) {
     $sql = "DELETE FROM " . TABLE_RANK_ALLIANCES . " ;";
     $db->sql_query($sql);
 
-    insert_config("last_" . $type, $timestamp);
+    mod_set_option("last_" . $type, $timestamp);
     change_date($type, $timestamp);
 }
 

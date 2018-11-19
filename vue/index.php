@@ -18,23 +18,23 @@ $uIdSuperapix = spaModId();
 
 $adminview = 0;
 if (isset($pub_admin)) {
-    $adminview = (int) $pub_admin;
+    $adminview = intval($pub_admin);
 }
 
 
 
 // enregistrement formulaire
 if (isset($pub_uni) && $adminview == 1) {
-    insert_config("uni", (int) ($pub_uni));
+    mod_set_option("uni", (int) ($pub_uni));
 }
 if (isset($pub_requete_max) && $adminview == 1) {
-    insert_config("requete_max", (int) ($pub_requete_max));
+    mod_set_option("requete_max", (int) ($pub_requete_max));
 }
 if (isset($pub_pays) && strlen($pub_pays) < 4 && $adminview == 1) {
-    insert_config("pays", $pub_pays);
+    mod_set_option("pays", $pub_pays);
 }
 if (isset($pub_debug) && $adminview == 1) {
-    insert_config("debug", (int) $pub_debug);
+    mod_set_option("debug", (int) $pub_debug);
 }
 // partie callbacks
 if ($adminview == 1) {
@@ -88,13 +88,13 @@ include_once MOD_ROOT_VUE . "css.php";
         <?php endif; ?>
 
 
-        <h2><?php echo help("liste des dernieres mises à jour"); ?>Dernieres mise à jour</h2>
+        <h2><?php echo help("Liste des dernières mises à jour"); ?>Dernières mises à jour</h2>
 
 
         <ul>
             <?php foreach ($tab as $key => $value) : ?>
                 <li>
-                    <?php echo lang($value); ?>: <strong><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></strong>
+                    <?php echo lang($value); ?>: <strong><?php echo strftime("%d %b %Y %H:%M", mod_get_option("last_" . $value)); ?></strong>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -121,8 +121,6 @@ include_once MOD_ROOT_VUE . "css.php";
 <?php else : ?>
 
 
-
-
     <div class="mod">
 
         <a href="index.php?action=superapix">Retour</a>
@@ -131,7 +129,7 @@ include_once MOD_ROOT_VUE . "css.php";
             <legend>Administration</legend>
             <div class="form-grp tooltip">
                 <label for="name">Numero D'univers <span class="required">*</span></label>
-                <input type="text" id="uni" name="uni" value="<?php echo (int) find_config("uni"); ?>" placeholder="67" required="required" />
+                <input type="text" id="uni" name="uni" value="<?php echo mod_get_option("uni"); ?>" placeholder="67" required="required" />
                 <span> <div class="pop-title">Numero </div>
                     Indiquer le numero  de la page du jeu <br />
                     exemple : 01, 67, ... <br />
@@ -143,7 +141,7 @@ include_once MOD_ROOT_VUE . "css.php";
 
             <div class="form-grp tooltip">
                 <label for="name">Nombre de requere max <span class="required">*</span></label>
-                <input type="text" id="requete_max" name="requete_max" value="<?php echo (int) find_config("requete_max"); ?>" placeholder="500" required="required" />
+                <input type="text" id="requete_max" name="requete_max" value="<?php echo mod_get_option("requete_max"); ?>" placeholder="500" required="required" />
                 <span> <div class="pop-title">Requete max</div>
                     500 semble etre correct
                 </span>
@@ -151,7 +149,7 @@ include_once MOD_ROOT_VUE . "css.php";
 
             <div class="form-grp tooltip">
                 <label for="enquiry">Pays </label>
-                <input type="text" id="pays" name="pays" value="<?php echo find_config("pays"); ?>" placeholder="it" required="required" />
+                <input type="text" id="pays" name="pays" value="<?php echo mod_get_option("pays"); ?>" placeholder="it" required="required" />
                 <span> <div class="pop-title">Pays</div>
                     Indiquer le pays de la page du jeu <br />
                     exemple : fr, it, en , ...
@@ -162,7 +160,7 @@ include_once MOD_ROOT_VUE . "css.php";
             <div class="form-grp tooltip">
                 <label for="enquiry">Mode developpeur </label>
                 <select id="debug" name="debug">
-                    <?php if (find_config("debug") == 1) : ?>
+                    <?php if (mod_get_option("debug") == 1) : ?>
                         <option value="0">
                             NON
                         </option>
@@ -230,20 +228,20 @@ include_once MOD_ROOT_VUE . "css.php";
                <div class="form-grp tooltip">
                    <a class ="btn" href="index.php?action=superapix&create_uni">Uni vide</a>
                    <span> <div class="pop-title">Uni Vide</div>
-                        rempli l'univers d'entrée vide,<br /> Pour ogspy tout neuf.<br /><br /> Ne lancer qu'une seule fois
+                        rempli l'univers d'entrées vide,<br /> Pour OGSpy tout neuf.<br /><br /> Ne lancer qu'une seule fois
                     </span>
                </div>
                    <div class="form-grp tooltip">
             <a class ="btn" href="index.php?action=superapix&reinit">Réinitalisation</a>
             <span> <div class="pop-title">Réinitalisation</div>
-                      En cas de blocage ponctuel, permet de :<br /> Vider le cache XML <br /> et de <br /> supprimer la date de derniere insertion
+                      En cas de blocage ponctuel, permet de :<br /> Vider le cache XML <br /> et de <br /> supprimer la date de dernière insertion
 
                     </span>
     </div>
 </div>
 </form>
         <?php
-        if (find_config("debug") == 1) {
+        if (mod_get_option("debug") == 1) {
             loggeur("INFO Conf php allow_url_fopen " . ini_get('allow_url_fopen'));
             loggeur("Conf php max_execution_time" . ini_get('max_execution_time'));
             loggeur("Conf php post_max_size" . ini_get('post_max_size'));
@@ -277,15 +275,15 @@ include_once MOD_ROOT_VUE . "css.php";
                         </tr>
                         <tr>
                             <th width="60%">numero d'univers</th>
-                            <th><input type="text" name="uni" size="5" value="<?php echo (int) find_config("uni"); ?>" /></th>
+                            <th><input type="text" name="uni" size="5" value="<?php echo mod_get_option("uni"); ?>" /></th>
                         </tr>
                         <tr>
                             <th width="60%">Nombre Max de requete</th>
-                            <th><input type="text" name="requete_max" size="5" value="<?php echo (int) find_config("requete_max"); ?>" /></th>
+                            <th><input type="text" name="requete_max" size="5" value="<?php echo mod_get_option("requete_max"); ?>" /></th>
                         </tr>
                         <tr>
                             <th width="60%">lancer la mise a jour</th>
-                            <th><?php if (((int) find_config("uni")) != 0) : ?><a href="index.php?action=superapix&sub_action=cross&step=0">ENJOY</a><?php else : ?> <?php endif; ?></th>
+                            <th><?php if ((mod_get_option("uni")) != 0) : ?><a href="index.php?action=superapix&sub_action=cross&step=0">ENJOY</a><?php else : ?> <?php endif; ?></th>
                         </tr>
                         <tr>
                             <th width="60%">Creer univers vide</th>
@@ -319,7 +317,7 @@ include_once MOD_ROOT_VUE . "css.php";
         <?php foreach ($tab as $key => $value) : ?>
                                                                                             <tr>
                                                                                                 <th width="60%"><?php echo lang($value); ?></th>
-                                                                                                <th><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></th>
+                                                                                                <th><?php echo strftime("%d %b %Y %H:%M", ((int) mod_get_option("last_" . $value))); ?></th>
                                                                                             </tr>
         <?php endforeach; ?>
                 </table>

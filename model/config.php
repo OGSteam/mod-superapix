@@ -11,24 +11,6 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
-function insert_config($name, $value) {
-    global $db;
-    $query = "REPLACE INTO " . TABLE_CFG . " (config_name, config_value) VALUES ('" . $name . "','" . $value . "')";
-    $db->sql_query($query);
-}
-
-function find_config($name) {
-    global $db;
-
-    $query = "SELECT config_value FROM " . TABLE_CFG . " WHERE config_name = '" . $name . "' ";
-    $result = $db->sql_query($query);
-    $row = $db->sql_fetch_assoc($result);
-    if ($row) {
-        return $row['config_value'];
-    }
-    return NULL;
-}
-
 function create_uni_vide() {
     global $db, $server_config;
 
@@ -51,7 +33,7 @@ function reinit(){
     $tab = constante_stepper();
 foreach ($tab as $key => $value)
 {
-    insert_config("last_" . $value,0);
+    mod_set_option("last_" . $value,0);
 }
 
     // purge le dossier xml (voir pour glob dans prochaine maj )
@@ -61,21 +43,10 @@ foreach ($tab as $key => $value)
             unlink(MOD_ROOT_XML.$file);
         }
     }
-
-
-
-
 }
 
 function defineDebug() {
-    global $db;
 
-            // Check if xtense_callbacks table exists :
-    $query = 'SHOW TABLES LIKE "' . TABLE_CFG . '"';
-    $result = $db->sql_query($query);
-    if ($db->sql_numrows($result) != 0) {
-        define("DEBUG", find_config("debug"));
+        //define("DEBUG", mod_get_option("debug"));
+        define("DEBUG", 1);
     }
-
-
-}

@@ -82,14 +82,7 @@ update_table_universe($uni);
 
 
     
-insert_config("last_".$pub_type,$timestamp );
-
-
-
-
-
-   
-
+mod_set_option("last_".$pub_type,$timestamp );
 
 
 function update_table_universe($uni = 0)
@@ -117,6 +110,7 @@ $sql .= " U.galaxy = ".$uni." ";
 
 $db->sql_query($sql); 
 
+// TODO : Seems to be an issue here : $datadate is not defined
 prepare_table_universe($datadate);
 /// ensuite il faut une requete d update pour mettre a 0 tout ce qui a pas le bon timestamps min : c que pas dans universe.xml
 }

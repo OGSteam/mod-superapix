@@ -55,7 +55,7 @@ echo "injection de de ".$db->sql_affectedrows()." ligne(s) classement alliance d
 $sql = "DELETE FROM ".TABLE_RANK_ALLIANCES." ;";
 $db->sql_query($sql);
 
-insert_config("last_".$pub_type,$timestamp );
+mod_set_option("last_".$pub_type,$timestamp );
 
 
 

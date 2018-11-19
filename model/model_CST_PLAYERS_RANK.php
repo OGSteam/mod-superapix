@@ -64,25 +64,11 @@ echo "injection de de ".$db->sql_affectedrows()." ligne(s) classement player ";
 $sql = "DELETE FROM ".TABLE_RANK_PLAYERS." ;";
 $db->sql_query($sql);
 
-insert_config("last_".$pub_type,$timestamp );
-
-
-
-
-
-
-
-
-
-
-
-
-
+mod_set_option("last_".$pub_type,$timestamp );
 
 
 function find_table($type)
 {
-    $tab = array();
     $tab = array(
     "CST_PLAYERS_RANK_POINTS" => TABLE_RANK_PLAYER_POINTS,
     "CST_PLAYERS_RANK_ECO" => TABLE_RANK_PLAYER_ECO,

@@ -36,5 +36,5 @@ echo "mise a jour de ".$total." ligne(s) de joueur ";
     
  
 
-insert_config("last_".$pub_type,$timestamp );
+mod_set_option("last_".$pub_type,$timestamp );
 

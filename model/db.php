@@ -12,7 +12,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX')) die("Hacking attempt");
 function mass_replace_into($table , $field , $query)
 {
     global $db ;
-    $max_requete = (int)find_config("requete_max");
+    $max_requete = intval(mod_get_option("requete_max"));
     
     $new_query = array();
     if ($max_requete != 0 )

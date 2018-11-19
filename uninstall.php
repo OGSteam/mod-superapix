@@ -9,6 +9,8 @@
 
 if (!defined('IN_SPYOGAME')) die("Hacking attempt");
 define('IN_SUPERAPIX', true);
+define('IN_XTENSE', true);
+
 global $db;
 include_once("mod/superapix/common.php");
 
@@ -19,7 +21,8 @@ uninstall_mod($mod_uninstall_name,null);
 
  // on supp en manuel 
 include_once(MOD_ROOT_MODEL."install.php");
-delete_table_config();
+delete_table_config(); //table legacy
+mod_del_all_option();
 delete_table_players();
 delete_table_alliances();
 delete_table_rank_alliance();
@@ -27,4 +30,4 @@ delete_table_rank_player();
 delete_table_univers();
 delPlayer();
 DelAllCallbacks(spaModId());
-?>
+
