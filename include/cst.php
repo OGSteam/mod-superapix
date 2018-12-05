@@ -20,6 +20,7 @@ define("CST_ALLIANCES", "https://s{uni}-{pays}.ogame.gameforge.com/api/alliances
 define("CST_UNIVERSE", "https://s{uni}-{pays}.ogame.gameforge.com/api/universe.xml");
 // serverdata
 define("CST_SERVERDATA", "https://s{uni}-{pays}.ogame.gameforge.com/api/serverData.xml");
+define("CST_SERVERDATA_FREQ", 24);
 //classement player
 define("CST_PLAYERS_RANK_POINTS", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=1&type=0");
 define("CST_PLAYERS_RANK_ECO", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=1&type=1");
@@ -49,7 +50,7 @@ function uni_replace($string) {
     $string = constant($string);
     $tRemplacement = array("pays", "uni");
     foreach ($tRemplacement as $sRemplacement) {
-        $string = str_replace("{" . $sRemplacement . "}", find_config($sRemplacement), $string);
+        $string = str_replace("{" . $sRemplacement . "}", mod_get_option($sRemplacement), $string);
     }
     return $string;
 }
