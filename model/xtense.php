@@ -10,6 +10,11 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
+
+if (!defined('TABLE_XTENSE_CALLBACKS')) {
+    define('TABLE_XTENSE_CALLBACKS', $table_prefix.'xtense_callbacks');
+}
+
 function IsXtenseInstalled() {
     global $db;
     // Check if xtense_callbacks table exists :

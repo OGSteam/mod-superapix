@@ -19,6 +19,8 @@ uninstall_mod($mod_uninstall_name,null);
 
  // on supp en manuel 
 include_once(MOD_ROOT_MODEL."install.php");
+$spaModId = spaModId();
+
 delete_table_config();
 delete_table_players();
 delete_table_alliances();
@@ -26,5 +28,5 @@ delete_table_rank_alliance();
 delete_table_rank_player();
 delete_table_univers();
 delPlayer();
-DelAllCallbacks(spaModId());
+DelAllCallbacks($spaModId);
 ?>
