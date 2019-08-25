@@ -97,12 +97,12 @@ foreach ($tNameXml as $uId => $sNameXml) {
                 traitement_player_rank($value, $sNameXml);
             } else {
                 // si pas pris en charge
-                jsonResponse(array("ERROR" => "Moi pas comprendre", "temps" => GetTimer($uStartTimer)));
+                jsonResponse(array("ERROR" => "Moi pas comprendre", "temps" => GetTimer($uStartTimer), "State" => "Error"));
             }
-            jsonResponse(array("ok" => "Injection " . $sNameXml, "temps" => GetTimer($uStartTimer)));
+            jsonResponse(array("ok" => "Injection " . $sNameXml, "temps" => GetTimer($uStartTimer), "State" => "AtWork"));
         }
     }
 }
 
 
-jsonResponse(array("ok" => "Aucune Action", "temps" => GetTimer($uStartTimer)));
+jsonResponse(array("ok" => "Aucune Action", "temps" => GetTimer($uStartTimer), "State" => "NoWork"));
