@@ -512,10 +512,11 @@ function find_timestamp($value) {
     return $timestamp;
 }
 
-/// voir si utile
+/// permet de mettre à niveau toutes les tables qui n'apparaissent pas dans le universe.xml
 function prepare_table_universe($datadate) {
     global $db, $user_data, $server_config;
     $table = TABLE_UNIVERSE;
+    $spaId = findSpaId();
 
 
 
@@ -529,8 +530,8 @@ function prepare_table_universe($datadate) {
     $sql .= " phalanx = '0' , ";
     $sql .= " last_update = '" . $datadate . "' ,";
     $sql .= " name =  '', ";
-    $sql .= " moon = '0' ";
-
+    $sql .= " moon = '0', ";
+    $sql .= " last_update_user_id = '".$spaId."' ";
 
     $sql .= " where last_update < '" . (int) $datadate . "' ";
 
