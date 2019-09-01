@@ -56,7 +56,10 @@ function xml_is_out_of_date($type) {
     return _is_out_of_date($type, 'xml');
 }
 
+
 function _is_out_of_date($type, $origin) {
+
+
     // cf : http://board.fr.ogame.gameforge.com/board1474-ogame-le-jeu/board641-les-cr-ations-ogamiennes/board642-logiciels-tableurs/1053082-ogame-api/
     // dans les limites d'ogspy
     $datadate = array(
