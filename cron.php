@@ -61,17 +61,18 @@ foreach ($tNameXml as $uId => $sNameXml) {
     loggeur($sNameXml);
     if (is_out_of_date($sNameXml)) {
         loggeur($sNameXml . " est périmé ");
+
         // verification xml 
         if (xml_is_out_of_date($sNameXml)) {
             loggeur("XML " . $sNameXml . " est périmé ou absent");
             $url = uni_replace($sNameXml);
             loggeur("Telecharement XML " . $sNameXml . " " . $url);
             if (!DistantIsFileIXml($url)) {
-                jsonResponse(array("nook" => "Erreur XML distant " . $url, "temps" => GetTimer($uStartTimer)));
+                jsonResponse(array("nook" => "Erreur XML distant " . $url, "temps" => GetTimer($uStartTimer), "State" => "Error"));
             }
             copy($url, MOD_ROOT_XML . $sNameXml . '.xml');
             loggeur("Telechargement " . $sNameXml);
-            jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer)));
+            jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer), "State" => "AtWork"));
         } else {
             // si on arrive la c que le xml est ok mais pas encore la bdd
             loggeur("xml " . $sNameXml . " est ok, Injection BDD");

@@ -111,9 +111,13 @@ function _is_out_of_date($type, $origin) {
         $datadate_maj = 1; // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
     }
 
+    loggeur("est périmé : (".$now." - ".$last_update.") > (".$datadate_maj." * 60 * 60)" );
+    loggeur("est périmé : (".$now - $last_update.") > (".$datadate_maj * 60 * 60 .")" );
     if (($now - $last_update) > ($datadate_maj * 60 * 60)) { //($datadate_maj (en heure )) * nb de minutes * nb de secondes
+        loggeur("Est périmé ".$origin);
         $retour = true;
     } else {
+        loggeur("Est A jour ".$origin);
         $retour = false;
     }
 
