@@ -54,6 +54,8 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         display: block;
+
+
     }
 
     p.error {

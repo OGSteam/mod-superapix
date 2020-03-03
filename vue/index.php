@@ -240,29 +240,32 @@ include_once MOD_ROOT_VUE . "css.php";
 
                     </span>
     </div>
-</div>
-</form>
-        <?php
-        if (find_config("debug") == 1) {
-            loggeur("INFO Conf php allow_url_fopen " . ini_get('allow_url_fopen'));
-            loggeur("Conf php max_execution_time" . ini_get('max_execution_time'));
-            loggeur("Conf php post_max_size" . ini_get('post_max_size'));
-        }
-        ?>
-
-        <?php if ($tcheckSecurity != NULL):
+            <!--MESSAGE ERREUR OU MESSAGE CORRECT-->
+            <?php
+            if (find_config("debug") == 1) {
+                loggeur("INFO Conf php allow_url_fopen " . ini_get('allow_url_fopen'));
+                loggeur("Conf php max_execution_time" . ini_get('max_execution_time'));
+                loggeur("Conf php post_max_size" . ini_get('post_max_size'));
+            }
             ?>
-            <?php foreach ($tcheckSecurity as $error) : ?>
+
+            <?php if ($tcheckSecurity != NULL):
+                ?>
+                <?php foreach ($tcheckSecurity as $error) : ?>
                 <p class="error">
                     <?php echo $error; ?>
                 </p>
             <?php endforeach; ?>
-        <?php else : ?>
-            <p class="success">
-                La configuration du mod semble correcte
-</p>
+            <?php else : ?>
+                <p class="success">
+                    La configuration du mod semble correcte
+                </p>
 
-        <?php endif; ?>
+            <?php endif; ?>
+
+</div>
+</form>
+
 
 
 

@@ -93,9 +93,12 @@ if (isset($pub_step) && is_numeric($pub_step)) {
 
 require_once("views/page_header.php");
 
-
-
-if (isset($pub_help))
+if (!IsXtenseInstalled()) {
+    $errormsg = array();
+    $errormsg[] = "Le mod xtense doit etre installé !!!";
+    include(MOD_ROOT_VUE . "error.php");
+}
+elseif (isset($pub_help))
 {
 	//page d'aide
 	include(MOD_ROOT_VUE . "help.php");
@@ -105,13 +108,6 @@ else
 	// page d acceuil
 	include(MOD_ROOT_VUE . "index.php");
 }
-
-
-
-
-
-
-
 
 
 require_once("views/page_tail.php");
