@@ -112,7 +112,7 @@ function _is_out_of_date($type, $origin) {
     }
 
     loggeur("est périmé : (".$now." - ".$last_update.") > (".$datadate_maj." * 60 * 60)" );
-    loggeur("est périmé : (".$now - $last_update.") > (".$datadate_maj * 60 * 60 .")" );
+    //loggeur("est périmé : (".$now - $last_update.") > (".$datadate_maj * 60 * 60 .")" );
     if (($now - $last_update) > ($datadate_maj * 60 * 60)) { //($datadate_maj (en heure )) * nb de minutes * nb de secondes
         loggeur("Est périmé ".$origin);
         $retour = true;
@@ -300,7 +300,7 @@ function traitement_universe($value) {
     mass_replace_into($table, $fields, $query);
 
 
-// on a plus qu a updater ...
+    // on a plus qu a updater ...
 
 
     $sql = "UPDATE " . TABLE_UNIVERSE . " as U INNER JOIN " . TABLE_UNIVERS . " as T ";
@@ -330,20 +330,69 @@ function traitement_universe($value) {
 
 function traitement_player($value) {
     global $db, $type;
-    $fields = "id_player, name_player, status, id_ally";
-    $querys = array();
-    $querys[] = "( 0, '' , '', 0 ) "; // player vide
     $timestamp = find_timestamp($value);
+
+     #3 etapes
+
+    //step 1
+    //récuperation des data de l'api'
+    $fields = "id_player, name_player, status, id_ally, datadate ";
+    $querys = array();
+    $querys[] = "( 0, '' , '', 0 , ".$timestamp.") "; // player vide
 
 
     foreach ($value->player as $ta_xml_player) {
         $querys[] = "( " . (int) $ta_xml_player[0]['id'] . ", '" . my_encodage(strval($ta_xml_player[0]['name'])) .
                 "' , '" . strval($ta_xml_player[0]['status']) . "', " . (int) strval($ta_xml_player[0]['alliance']) .
-                " ) ";
+                " , ".$timestamp." ) ";
     }
 
     $db->sql_query('REPLACE INTO ' . TABLE_PLAYERS . ' (' . $fields . ') VALUES ' .
             implode(',', $querys));
+
+    //step 2
+    // copie des data plus recentes (xtense par exemple)
+    $SQL = " REPLACE INTO";
+    $SQL .= "   ".TABLE_PLAYERS."  ";
+    $SQL .= "   ( ";
+    $SQL .= "       `id_player`, `name_player`, `status`, `id_ally`, `datadate` ";
+    $SQL .= "   ) ";
+    $SQL .= "SELECT ";
+    $SQL .= "       `player_id`," ;
+    $SQL .= "       `player`,";
+    $SQL .= "       `status`,";
+    $SQL .= "       `ally_id`,";
+    $SQL .= "       `datadate`";
+    $SQL .= " FROM ";
+    $SQL .= "       ".TABLE_GAME_PLAYER." ";
+    $SQL .= "WHERE ";
+    $SQL .= "       `datadate` > $timestamp";
+    $SQL .= ";";
+    $db->sql_query($SQL);
+
+
+
+    //step 3
+    // On transfert le tout pour avoir la base la plus a jour
+    $SQL = " REPLACE INTO";
+    $SQL .= "   ".TABLE_GAME_PLAYER."";
+    $SQL .= "   ( ";
+    $SQL .= "       `player_id`, `player`, `status`, `ally_id`, `datadate`";
+    $SQL .= "   ) ";
+    $SQL .= " SELECT ";
+    $SQL .= "        `id_player`,";
+    $SQL .= "        `name_player`, ";
+    $SQL .= "        `status`, ";
+    $SQL .= "        `id_ally`, ";
+    $SQL .= "        `datadate` ";
+    $SQL .= " FROM ";
+    $SQL .= "       ".TABLE_PLAYERS."";
+    $SQL .= ";";
+    $db->sql_query($SQL);
+
+
+
+    // a voir si possible de regrouper  requete en une seule ( replace into select avec des jointures semble impossible ....:s)
 
     insert_config("last_" . $type, $timestamp);
     change_date($type, $timestamp);
@@ -351,17 +400,19 @@ function traitement_player($value) {
 
 function traitement_alliance($value) {
     global $db, $type;
-    $fields = "id_alliance, tag, nb ";
-    $querys = array();
-    $querys[] = "( 0 , '' , 0 ) "; // ally vide
-
     $timestamp = find_timestamp($value);
+
+    $fields = "id_alliance, tag, nb , datadate ";
+    $querys = array();
+    $querys[] = "( 0 , '' , 0 , ".$timestamp.") "; // ally vide
+
+
 
     foreach ($value->alliance as $ta_xml_alliance) {
 
         $count = count($ta_xml_alliance->children()); // PHP < 5.3
 
-        $temp_query = "( " . intval($ta_xml_alliance[0]['id']) . ", '" . my_encodage(strval($ta_xml_alliance[0]['tag'])) . "' , '" . $count . "' ) ";
+        $temp_query = "( " . intval($ta_xml_alliance[0]['id']) . ", '" . my_encodage(strval($ta_xml_alliance[0]['tag'])) . "' , '" . $count . "', '" . $timestamp . "' ) ";
         $querys[] = $temp_query;
     }
 

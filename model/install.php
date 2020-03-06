@@ -36,6 +36,7 @@ function create_table_players() {
     $sql .= " name_player varchar(65) NOT NULL , ";
     $sql .= " status varchar(6) NOT NULL default '', ";
     $sql .= " id_ally INT(6) NOT NULL ,  ";
+    $sql .= " datadate INT(11) NOT NULL , ";
     $sql .= " PRIMARY KEY  (id_player) ) ;";
 
     $db->sql_query($sql);
@@ -56,6 +57,7 @@ function create_table_alliances() {
     $sql .= " id_alliance INT(6) NOT NULL , ";
     $sql .= " tag varchar(65) NOT NULL , ";
     $sql .= " nb varchar(6) NOT NULL default '', ";
+    $sql .= " datadate INT(11) NOT NULL , ";
     $sql .= " PRIMARY KEY  (id_alliance) ) ;";
 
     $db->sql_query($sql);
