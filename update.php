@@ -36,11 +36,12 @@ fixPtPerMember();
 delete_table_rank_player();
 create_table_rank_player() ;
 
-// ajout datadate
-create_table_players();
+// ajout datadate et tag ally_name
 delete_table_players();
-create_table_alliances() ;
+create_table_players();
 delete_table_alliances();
+create_table_alliances() ;
+
 
 
 

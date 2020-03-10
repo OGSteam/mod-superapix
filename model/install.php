@@ -56,6 +56,7 @@ function create_table_alliances() {
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_ALLIANCES . " ( ";
     $sql .= " id_alliance INT(6) NOT NULL , ";
     $sql .= " tag varchar(65) NOT NULL , ";
+    $sql .= " name_ally varchar(65) NOT NULL , ";
     $sql .= " nb varchar(6) NOT NULL default '', ";
     $sql .= " datadate INT(11) NOT NULL , ";
     $sql .= " PRIMARY KEY  (id_alliance) ) ;";

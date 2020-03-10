@@ -402,9 +402,9 @@ function traitement_alliance($value) {
     global $db, $type;
     $timestamp = find_timestamp($value);
 
-    $fields = "id_alliance, tag, nb , datadate ";
+    $fields = "id_alliance, tag, nb , name_ally , datadate ";
     $querys = array();
-    $querys[] = "( 0 , '' , 0 , ".$timestamp.") "; // ally vide
+    $querys[] = "( 0 , '' , 0 ,  '' , ".$timestamp.") "; // ally vide
 
 
 
@@ -412,12 +412,56 @@ function traitement_alliance($value) {
 
         $count = count($ta_xml_alliance->children()); // PHP < 5.3
 
-        $temp_query = "( " . intval($ta_xml_alliance[0]['id']) . ", '" . my_encodage(strval($ta_xml_alliance[0]['tag'])) . "' , '" . $count . "', '" . $timestamp . "' ) ";
+        $temp_query = "( " . intval($ta_xml_alliance[0]['id']) . ", '" . my_encodage(strval($ta_xml_alliance[0]['tag'])) . "' , '" . $count . "',  '" . my_encodage(strval($ta_xml_alliance[0]['name'])) . "' ,'" . $timestamp . "' ) ";
         $querys[] = $temp_query;
     }
 
     $db->sql_query('REPLACE INTO ' . TABLE_ALLIANCES . ' (' . $fields . ') VALUES ' .
             implode(',', $querys));
+
+
+    //step 2
+    // copie des data plus recentes (xtense par exemple)
+    $SQL = " REPLACE INTO";
+    $SQL .= "   ".TABLE_ALLIANCES."  ";
+    $SQL .= "   ( ";
+    $SQL .= "       `id_alliance`, `tag`, `nb`, `name_ally`, `datadate` ";
+    $SQL .= "   ) ";
+    $SQL .= "SELECT ";
+    $SQL .= "       `ally_id`," ;
+    $SQL .= "       `tag`,";
+    $SQL .= "       `number_member`,";
+    $SQL .= "       `ally`,";
+    $SQL .= "       `datadate` " ;
+    $SQL .= " FROM  ";
+    $SQL .= "       ".TABLE_GAME_ALLY." ";
+    $SQL .= "WHERE ";
+    $SQL .= "       `datadate` > $timestamp";
+    $SQL .= ";";
+    $db->sql_query($SQL);
+
+
+
+    //step 3
+    // On transfert le tout pour avoir la base la plus a jour
+    $SQL = " REPLACE INTO";
+    $SQL .= "   ".TABLE_GAME_ALLY."";
+    $SQL .= "   ( ";
+    $SQL .= "       `ally_id`, `tag`, `number_member`, `ally`, `datadate`";
+    $SQL .= "   ) ";
+    $SQL .= " SELECT ";
+    $SQL .= "        `id_alliance`,";
+    $SQL .= "        `tag`, ";
+    $SQL .= "        `nb`, ";
+    $SQL .= "        `name_ally`, ";
+    $SQL .= "        `datadate` ";
+    $SQL .= " FROM ";
+    $SQL .= "       ".TABLE_ALLIANCES."";
+    $SQL .= ";";
+    $db->sql_query($SQL);
+
+
+
 
 
 
