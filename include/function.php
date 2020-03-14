@@ -502,8 +502,8 @@ function traitement_alliance_rank($value, $type) {
 // on fait la jointure qui va bien pour injecter le bon classement
 
     $sql = "REPLACE INTO " . find_table_rank_alliance($type) . "  ";
-    $sql .= " ( `datadate`, `rank`, `ally`, `number_member`, `points` , `sender_id`) ";
-    $sql .= " SELECT sra.datadate, sra.rank, sa.tag, sa.nb , sra.points , sra.sender_id ";
+    $sql .= " ( `datadate`, `rank`, `ally`, `ally_id`, `number_member`, `points` , `sender_id`) ";
+    $sql .= " SELECT sra.datadate, sra.rank, sa.tag, sra.id_alliance , sa.nb , sra.points , sra.sender_id ";
     $sql .= " FROM  " . TABLE_ALLIANCES . " as sa ";
     $sql .= "INNER JOIN " . TABLE_RANK_ALLIANCES . " as sra ";
     $sql .= " on sa.id_alliance	= sra.id_alliance ; ";
@@ -565,11 +565,12 @@ function traitement_player_rank($value, $type) {
             implode(',', $querys));
 
 
+
     $table = find_table_rank_player($type);
 // on fait la jointure qui va bien pour injecter le bon classement
     $sql = "REPLACE INTO " . $table . "  ";
-    $sql .= ($type != "CST_PLAYERS_RANK_MILITARY" ) ? " ( `datadate`, `rank`, `player`, `ally`, `points` , `sender_id`) " : " ( `datadate`, `rank`, `player`, `ally`, `points` , `nb_spacecraft` ,`sender_id`) ";
-    $sql .= ($type != "CST_PLAYERS_RANK_MILITARY" ) ? " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag,  srp.points , srp.sender_id " : " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag, srp.points , srp.nb_spacecraft,srp.sender_id ";
+    $sql .= ($type != "CST_PLAYERS_RANK_MILITARY" ) ? " ( `datadate`, `rank`, `player`, `player_id`, `ally`, `ally_id`, `points` , `sender_id`) " : " ( `datadate`, `rank`, `player`, `player_id`, `ally`, `ally_id` , `points` , `nb_spacecraft` ,`sender_id`) ";
+    $sql .= ($type != "CST_PLAYERS_RANK_MILITARY" ) ? " SELECT srp.datadate, srp.rank,sp.name_player  , sp.id_player  ,sa.tag,  sp.id_ally,  srp.points , srp.sender_id " : " SELECT srp.datadate, srp.rank,sp.name_player , sp.id_player   ,sa.tag,sp.id_ally, srp.points , srp.nb_spacecraft,srp.sender_id ";
     $sql .= " FROM  " . TABLE_PLAYERS . " as sp ";
     $sql .= "INNER JOIN " . TABLE_RANK_PLAYERS . " as srp ";
     $sql .= " on sp.id_player	= srp.id ";

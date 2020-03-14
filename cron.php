@@ -11,7 +11,7 @@ define('IN_SPYOGAME', true);
 define('IN_SUPERAPIX', true);
 define('IN_XTENSE', true);
 
-date_default_timezone_set(date_default_timezone_get());
+date_default_timezone_set(@date_default_timezone_get());
 
 if (preg_match('#mod#', getcwd()))
     chdir('../../');
