@@ -277,7 +277,7 @@ function traitement_universe($value) {
 
     $query = array();
 
-    $fields = "g, s, r, id_player , datadate , name_planete ,name_moon , moon  , sender_id   ";
+    $fields = "g, s, r, id_player  , datadate , name_planete ,name_moon , moon  , sender_id   ";
 
     foreach ($value->planet as $ta_planete_en_cours) {
         $t_coordonnee = explode(':', $ta_planete_en_cours[0]['coords']); // récuperation coord en cours
@@ -313,7 +313,7 @@ function traitement_universe($value) {
     $sql .= " ON ";
     $sql .= "( A.id_alliance = P.id_ally  )   ";
     $sql .= " SET ";
-    $sql .= " U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
+    $sql .= "  U.player_id   = T.id_player  ,  U.ally_id   = P.id_ally   , U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
     $sql .= " WHERE  ";
     $sql .= "  U.last_update <= T.datadate "; // <= pour permettre d ecraser la derniere importation si plantage de la derniere
 
@@ -655,7 +655,7 @@ function findSpaId() {
 // le chemin distant renvoit il a un xml ?????
 function DistantIsFileIXml($url) {
     if ($stream = fopen($url, 'r')) {
-        // 5 premier octet => verif bidons todo voir charge avec get_headers ...
+        // 5 premier octet => verif bidons
         $sStream = stream_get_contents($stream, 5);
         if ($sStream == "<?xml") {
             loggeur("check fichier XML ok " . $url);

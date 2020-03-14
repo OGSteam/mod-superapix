@@ -41,6 +41,9 @@ delete_table_players();
 create_table_players();
 delete_table_alliances();
 create_table_alliances() ;
+delete_table_univers();
+create_table_univers();
+rempli_table_univers();
 
 
 

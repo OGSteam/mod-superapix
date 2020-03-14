@@ -227,12 +227,14 @@ include_once MOD_ROOT_VUE . "css.php";
             <hr />
 
             <legend>Autres</legend>
+            <!-- obsolete et plus necessaire
                <div class="form-grp tooltip">
                    <a class ="btn" href="index.php?action=superapix&create_uni">Uni vide</a>
                    <span> <div class="pop-title">Uni Vide</div>
                         rempli l'univers d'entrée vide,<br /> Pour ogspy tout neuf.<br /><br /> Ne lancer qu'une seule fois
                     </span>
                </div>
+               -->
                    <div class="form-grp tooltip">
             <a class ="btn" href="index.php?action=superapix&reinit">Réinitalisation</a>
             <span> <div class="pop-title">Réinitalisation</div>

@@ -148,7 +148,7 @@ function rempli_table_univers() {
     $query = array();
 
 
-    $fields = "g, s, r, id_player , datadate , name_planete ,name_moon , moon  , sender_id   ";
+    $fields = "g, s, r, id_player ,  datadate , name_planete ,name_moon , moon  , sender_id   ";
 
 
 

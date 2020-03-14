@@ -29,7 +29,15 @@ function find_config($name) {
     return NULL;
 }
 
+function  check_uni_vide()
+{
+
+}
+
+/// devenu obsolete : rempli_table_univers() a l'install et update garantisse les datas
 function create_uni_vide() {
+    return null;
+    // ce qui suit ne sera pas executé
     global $db, $server_config;
 
     $query = array();
