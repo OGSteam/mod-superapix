@@ -44,6 +44,7 @@ create_table_alliances() ;
 delete_table_univers();
 create_table_univers();
 rempli_table_univers();
+    create_uni_vide();
 
 
 

@@ -39,6 +39,7 @@ if ($security == true) {
     newPlayer();
 
     fixPtPerMember();
+    create_uni_vide();
    
 }
 
