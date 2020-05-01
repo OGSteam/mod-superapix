@@ -36,6 +36,10 @@ if (checkSecurity() != NULL) {
     die();
 }
 loggeur("Lancement script");
+logmemoryusage("Lancement script");
+
+
+
 // differents array necessaires
 $tNameXml = constante_stepper(); // tab principal
 // variable
@@ -70,8 +74,10 @@ foreach ($tNameXml as $uId => $sNameXml) {
             if (!DistantIsFileIXml($url)) {
                 jsonResponse(array("nook" => "Erreur XML distant " . $url, "temps" => GetTimer($uStartTimer), "State" => "Error"));
             }
+            logmemoryusage("Telechargement");
             copy($url, MOD_ROOT_XML . $sNameXml . '.xml');
             loggeur("Telechargement " . $sNameXml);
+            logmemoryusage("fin Telechargement");
             jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer), "State" => "AtWork"));
         } else {
             // si on arrive la c que le xml est ok mais pas encore la bdd
@@ -81,26 +87,38 @@ foreach ($tNameXml as $uId => $sNameXml) {
 
             loggeur("Chargement fichier XML");
             loggeur("link  fichier XML" . MOD_ROOT_XML . $sNameXml . ".xml");
+            logmemoryusage("chargement XML ".MOD_ROOT_XML . $sNameXml . ".xml");
             $value = f_chargement_fichier_xml(MOD_ROOT_XML . $sNameXml . ".xml");
+            logmemoryusage("Fin chargement XML ".MOD_ROOT_XML . $sNameXml . ".xml");
             loggeur("Traitement fichier XML");
 
 
             // ROUTINE DE CONTROLE
             if ($sNameXml == "CST_PLAYERS") {
                 traitement_player($value);
+                logmemoryusage("fin traitement_player");
             } else if ($sNameXml == "CST_ALLIANCES") {
                 traitement_alliance($value);
+                logmemoryusage("fin traitement_alliance");
             } else if ($sNameXml == "CST_UNIVERSE") {
                 traitement_universe($value);
+                logmemoryusage("fin traitement_universe");
             } else if (strstr($sNameXml, "CST_ALLIANCES_RANK_")) {
                 traitement_alliance_rank($value, $sNameXml);
+                logmemoryusage("fin traitement_alliance_rank ".$sNameXml);
             } else if (strstr($sNameXml, "CST_PLAYERS_RANK_")) {
                 traitement_player_rank($value, $sNameXml);
+                logmemoryusage("fin traitement_player_rank ".$sNameXml);
             } else {
                 // si pas pris en charge
                 jsonResponse(array("ERROR" => "Moi pas comprendre", "temps" => GetTimer($uStartTimer), "State" => "Error"));
             }
+            logmemoryusage("fin script ".$sNameXml);
+            // on supprime l'objet
+            unset($value);
+
             jsonResponse(array("ok" => "Injection " . $sNameXml, "temps" => GetTimer($uStartTimer), "State" => "AtWork"));
+
         }
     }
 }

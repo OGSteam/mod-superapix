@@ -167,6 +167,33 @@ function loggeur($option) {
     }
 }
 
+function logmemoryusage($option)
+{
+    global $pub_action;
+    // pk pas mettre option pour voir usage memoire
+    if (constant("DEBUG") == "1") {
+        if (!isset($pub_action)) {
+            $pub_action = "superapix"; // fix si appel exterieur 'IN_SPYOGAME'
+        }
+        $usage = unitformat(memory_get_usage());
+        $alloue= unitformat(memory_get_peak_usage());
+
+        log_("mod", "Usage memoire : ".$usage." / ".$alloue." [".$option."]");
+    }
+}
+
+
+function unitformat($value)
+{
+    $value= (int)$value;
+    if ($value === 0)
+    {return '0b';}
+    $unit=array('b','kb','mb','gb','tb','pb');
+    $value = round($value/pow(1024,($i=floor(log($value,1024)))),2).' '.$unit[$i];
+    return $value;
+}
+
+
 function jsonResponse($data) {
     $data = json_encode($data);
     loggeur("retour " . $data);
