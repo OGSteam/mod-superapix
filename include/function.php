@@ -178,8 +178,22 @@ function logmemoryusage($option)
         $usage = unitformat(memory_get_usage());
         $alloue= unitformat(memory_get_peak_usage());
 
-        log_("mod", "Usage memoire : ".$usage." / ".$alloue." [".$option."]");
+        log_("mod", "Usage memoire : ".$usage." / ".$alloue." ".cpuusage()." [".$option."]");
     }
+}
+
+// returne Moyenne d'usage CPU sur la derniere minute
+function cpuusage()
+{
+    if (function_exists (  sys_getloadavg ))
+    {
+        $load = sys_getloadavg();
+        if (isset($load[0]))
+        {
+            return "[ CPU :".round($load[0], 2)." %]"  ;
+        }
+    }
+    return "";
 }
 
 
