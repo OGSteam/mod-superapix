@@ -185,7 +185,7 @@ function logmemoryusage($option)
 // returne Moyenne d'usage CPU sur la derniere minute
 function cpuusage()
 {
-    if (function_exists (  sys_getloadavg ))
+    if (function_exists (  "sys_getloadavg" ))
     {
         $load = sys_getloadavg();
         if (isset($load[0]))
