@@ -9,7 +9,7 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
-// par defaut 19, nb de colonne dans l array 
+// par defaut 19, nb de colonne dans l array
 function progress_barre($value, $nom, $valueMax = 19) {
     $pct = (int) ((int) $value * 100 / (int) $valueMax);
 
@@ -20,9 +20,9 @@ function progress_barre($value, $nom, $valueMax = 19) {
 
 /**
  * formatage_timestamp_for_rank
- * 
+ *
  * change l'horaire du classement avec un horaire compatible pour un affichage dans ogspy
- * 
+ *
  * @param int $time timestamp
  * @return int
  */
@@ -89,7 +89,7 @@ function _is_out_of_date($type, $origin) {
     $now = time();
     $last_update = 0;
 
-//!\\ swith bdd <=> xml pour utiliserr meme fonction 
+//!\\ swith bdd <=> xml pour utiliserr meme fonction
     if ($origin == "bdd") {
         $last_update = (int) find_config("last_" . $type);
     } else {
@@ -101,7 +101,7 @@ function _is_out_of_date($type, $origin) {
             loggeur(filemtime($sPathXml));
         }
     }
-//!\\ fin swith bdd <=> xml pour utiliserr meme fonction 
+//!\\ fin swith bdd <=> xml pour utiliserr meme fonction
 
     $datadate_maj = 0;
     if (isset($datadate[$type])) {
@@ -167,6 +167,29 @@ function loggeur($option) {
     }
 }
 
+
+function  getMemoryUsage()
+{
+    $usage = unitformat(memory_get_usage());
+    $alloue= unitformat(memory_get_peak_usage());
+
+    return $usage." / ".$alloue ;
+
+}
+
+function getCPUUsage()
+{
+    if (function_exists (  "sys_getloadavg" ))
+    {
+        $load = sys_getloadavg();
+        if (isset($load[0]))
+        {
+            return $load[0]  ;
+        }
+    }
+    return null;
+}
+
 function logmemoryusage($option)
 {
     global $pub_action;
@@ -178,20 +201,17 @@ function logmemoryusage($option)
         $usage = unitformat(memory_get_usage());
         $alloue= unitformat(memory_get_peak_usage());
 
-        log_("mod", "Usage memoire : ".$usage." / ".$alloue." ".cpuusage()." [".$option."]");
+        log_("mod", "Usage memoire : ".getMemoryUsage()." ".FormatCpuUsage()." [".$option."]");
     }
 }
 
 // returne Moyenne d'usage CPU sur la derniere minute
-function cpuusage()
+function FormatCpuUsage()
 {
-    if (function_exists (  "sys_getloadavg" ))
+    $cpu = getCPUUsage();
+    if ($cpu != null)
     {
-        $load = sys_getloadavg();
-        if (isset($load[0]))
-        {
-            return "[ CPU :".round($load[0], 2)." %]"  ;
-        }
+        return "[ CPU :".round($cpu, 2)." %]"  ;
     }
     return "";
 }
@@ -294,9 +314,9 @@ function get_client_ip() {
 
 /**
  * GetTimer
- * 
+ *
  * Retourne la difference de temps
- * 
+ *
  * @param type float
  * @return float temps total (microtime)
  */
@@ -330,7 +350,7 @@ function traitement_universe($value) {
         $name_planete = strval($ta_planete_en_cours[0]['name']);
         $name_moon = empty($ta_planete_en_cours[0]->moon['name']) ? '' : strval($ta_planete_en_cours[0]->moon['name']);
         $moon = empty($name_moon) ? '0' : '1';
-//$sender_id = 
+//$sender_id =
 
 
 
@@ -716,13 +736,13 @@ function change_date($path, $time) {
 }
 
 function fileInfoExist($sUri) {
-    
+
      $sUri = str_replace("cron.php", "info.txt", $sUri); // récupération url
      $response = @get_headers($sUri, 1);
      if (isset($response[0]) &&  trim($response[0]) == "HTTP/1.1 200 OK" )
      {
          return true;
      }
-             
+
       return false;
 }

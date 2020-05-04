@@ -72,13 +72,13 @@ foreach ($tNameXml as $uId => $sNameXml) {
             $url = uni_replace($sNameXml);
             loggeur("Telecharement XML " . $sNameXml . " " . $url);
             if (!DistantIsFileIXml($url)) {
-                jsonResponse(array("nook" => "Erreur XML distant " . $url, "temps" => GetTimer($uStartTimer), "State" => "Error"));
+                jsonResponse(array("nook" => "Erreur XML distant " . $url, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "Error"));
             }
             logmemoryusage("Telechargement");
             copy($url, MOD_ROOT_XML . $sNameXml . '.xml');
             loggeur("Telechargement " . $sNameXml);
             logmemoryusage("fin Telechargement");
-            jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer), "State" => "AtWork"));
+            jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "AtWork"));
         } else {
             // si on arrive la c que le xml est ok mais pas encore la bdd
             loggeur("xml " . $sNameXml . " est ok, Injection BDD");
@@ -117,7 +117,7 @@ foreach ($tNameXml as $uId => $sNameXml) {
             // on supprime l'objet
             unset($value);
 
-            jsonResponse(array("ok" => "Injection " . $sNameXml, "temps" => GetTimer($uStartTimer), "State" => "AtWork"));
+            jsonResponse(array("ok" => "Injection " . $sNameXml, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "AtWork"));
 
         }
     }
