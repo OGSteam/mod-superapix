@@ -11,9 +11,10 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
 <style>
 
-    body{
+    body {
         background-color: black;
     }
+
     h1 {
         font-size: 40px;
         color: white;
@@ -22,9 +23,10 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         margin-right: 10%;
 
     }
+
     h2 {
         font-size: 25px;
-        color: rgb(240, 240, 240 );
+        color: rgb(240, 240, 240);
         text-align: left;
         margin-left: 10%;
         margin-right: 10%;
@@ -32,41 +34,45 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
     p {
         font-size: 15px;
-        color: rgb(200, 200, 200 );
+        color: rgb(200, 200, 200);
         text-align: left;
         margin-left: 5%;
-        margin-right:  5%;
+        margin-right: 5%;
         margin-bottom: 5px;
         margin-top: 1px;
 
     }
 
-    p.error, p.success{
-
+    p.error, p.success {
 
         padding: 15px;
         margin-bottom: 5px;
         border: 1px solid transparent;
         border-radius: 4px;
-        border-color : red;
+        border-color: red;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         display: block;
+
+
     }
-    p.error{
+
+    p.error {
         color: #a94442;
-        background-color:  rgba(215, 44, 44, 0.3);
+        background-color: rgba(215, 44, 44, 0.3);
         border-color: red;
     }
-    p.success{
+
+    p.success {
         color: #3c763d;
-        background-color:  rgba(98, 146, 64, 0.3);
+        background-color: rgba(98, 146, 64, 0.3);
         border-color: green;
     }
+
     div.mod {
-        background-color:  rgba(20, 20, 20, 0.9);
-        margin:  20px;
+        background-color: rgba(20, 20, 20, 0.9);
+        margin: 20px;
         padding: 10px;
         display: block;
         border-radius: 8px;
@@ -75,49 +81,48 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         box-sizing: border-box;
     }
 
-    div.error{
+    div.error {
         color: #a94442;
-        background-color:  rgba(215, 44, 44, 0.3);
+        background-color: rgba(215, 44, 44, 0.3);
         border-color: red;
     }
 
     div.error:hover {
-        background-color:  rgba(215, 44, 44, 0.4);
+        background-color: rgba(215, 44, 44, 0.4);
     }
 
-
-    div.success{
+    div.success {
         color: #3c763d;
-        background-color:  rgba(98, 146, 64, 0.3);
+        background-color: rgba(98, 146, 64, 0.3);
         border-color: green;
     }
 
     p.error:hover {
-        background-color:  rgba(215, 44, 44, 0.4);
+        background-color: rgba(215, 44, 44, 0.4);
     }
 
     p.success:hover {
-        background-color:  rgba(98, 146, 64, 0.4);
+        background-color: rgba(98, 146, 64, 0.4);
     }
 
     p.error:hover, p.success:hover {
-        padding-left : 20px;
+        padding-left: 20px;
     }
 
     .mod ul {
         text-align: left;
         list-style-type: none;
-        list-style:none; 
+        list-style: none;
         margin-bottom: 6px;
         margin-left: 8%;
         margin-right: 8%;
-        padding:10px 0; 
-        color: rgb(180, 180, 180 );
+        padding: 10px 0;
+        color: rgb(180, 180, 180);
     }
 
     .mod li {
-        font:Helvetica, Verdana, sans-serif;
-        color: rgb(200, 200, 200 );
+        font: Helvetica, Verdana, sans-serif;
+        color: rgb(200, 200, 200);
 
     }
 
@@ -127,7 +132,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
     .mod li a {
         text-decoration: none;
-        color: rgb(200, 200, 200 );
+        color: rgb(200, 200, 200);
 
         -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
         -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
@@ -142,6 +147,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         font-size: 30px;
         color: white;
     }
+
     .btn {
         -webkit-border-radius: 28;
         -moz-border-radius: 28;
@@ -154,7 +160,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         margin: 30px;
         margin-left: 20%;
         text-decoration: none;
-        display: inline-block;      
+        display: inline-block;
     }
 
     .btn:hover {
@@ -174,20 +180,18 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         box-sizing: border-box;
     }
 
-
     form {
         max-width: 400px;
         margin: 10px auto;
         padding: 10px 20px;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         border-radius: 8px;
         color: white;
     }
 
-
     input[type="text"],
     select {
-        background: rgba(255,255,255,0.1);
+        background: rgba(255, 255, 255, 0.1);
         border: none;
         font-size: 16px;
         height: auto;
@@ -197,7 +201,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         width: 100%;
         background-color: #e8eeef;
         color: #8a97a0;
-        box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
         margin-bottom: 30px;
     }
 
@@ -212,7 +216,6 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         border-radius: 2px;
     }
 
-
     legend {
         font-size: 1.4em;
         margin-bottom: 10px;
@@ -225,7 +228,6 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     }
 
     /*cf http://www.menucool.com/tooltip/css-tooltip*/
-
 
     div.tooltip > span {
         width: 300px;
@@ -246,8 +248,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         -webkit-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
         transition-property: opacity, margin-top, visibility, margin-left;
         transition-duration: 0.4s, 0.3s, 0.4s, 0.3s;
-        transition-timing-function: 
-            ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+        transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
     }
 
     /*a.tooltip > span:hover,*/
@@ -261,14 +262,13 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         margin-left: -90px;
     }
 
-   
     div.tooltip > span {
-        color: #FFFFFF; 
+        color: #FFFFFF;
         background: #333333;
         background: -webkit-linear-gradient(top, #333333, #999999);
-        background: linear-gradient(top, #333333, #999999);	    
-        border: 1px solid #000000;	     
-    }    
+        background: linear-gradient(top, #333333, #999999);
+        border: 1px solid #000000;
+    }
 
     div.tooltip span b {
         color: greenyellow;
@@ -276,16 +276,28 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         border-right: 1px solid #000000;
     }
 
-    .pop-title
-    {
+    .pop-title {
         font-size: 20px;
-        color: rgb(200, 200, 200 );
+        color: rgb(200, 200, 200);
         text-align: center;
         margin-left: 5%;
-        margin-right:  5%;
+        margin-right: 5%;
         margin-bottom: 5px;
         margin-top: 1px;
     }
+
+    .progress {
+
+        width: 350px;
+        height: 30px;
+
+        padding: 3px 3px 2px 3px;
+        border-radius: 15px;
+
+    }
+
+    }
+
 
 </style>
 

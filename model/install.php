@@ -13,7 +13,7 @@ function create_table_config() {
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_CFG . " ( ";
-    $sql .= " config_name varchar(255) NOT NULL default '', ";
+    $sql .= " config_name varchar(50) NOT NULL default '', ";
     $sql .= " config_value varchar(255) NOT NULL default '', ";
     $sql .= " PRIMARY KEY  (config_name) ) ;";
 
@@ -36,6 +36,7 @@ function create_table_players() {
     $sql .= " name_player varchar(65) NOT NULL , ";
     $sql .= " status varchar(6) NOT NULL default '', ";
     $sql .= " id_ally INT(6) NOT NULL ,  ";
+    $sql .= " datadate INT(11) NOT NULL , ";
     $sql .= " PRIMARY KEY  (id_player) ) ;";
 
     $db->sql_query($sql);
@@ -55,7 +56,9 @@ function create_table_alliances() {
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_ALLIANCES . " ( ";
     $sql .= " id_alliance INT(6) NOT NULL , ";
     $sql .= " tag varchar(65) NOT NULL , ";
+    $sql .= " name_ally varchar(65) NOT NULL , ";
     $sql .= " nb varchar(6) NOT NULL default '', ";
+    $sql .= " datadate INT(11) NOT NULL , ";
     $sql .= " PRIMARY KEY  (id_alliance) ) ;";
 
     $db->sql_query($sql);
@@ -100,7 +103,7 @@ function create_table_rank_player() {
     $sql .= " rank INT(11) NOT NULL , ";
     $sql .= " id INT(11) NOT NULL , ";
     $sql .= " points INT(11) NOT NULL, ";
-    $sql .= " ships INT(11) NOT NULL default '0' , ";
+    $sql .= " nb_spacecraft INT(11) NOT NULL default '0' , ";
     $sql .= " sender_id INT(11) NOT NULL, ";
     $sql .= " PRIMARY KEY (`rank`,`datadate`,`id`));";
 
@@ -145,7 +148,7 @@ function rempli_table_univers() {
     $query = array();
 
 
-    $fields = "g, s, r, id_player , datadate , name_planete ,name_moon , moon  , sender_id   ";
+    $fields = "g, s, r, id_player ,  datadate , name_planete ,name_moon , moon  , sender_id   ";
 
 
 
@@ -227,3 +230,27 @@ function spaModId() {
     }
     return 0;
 }
+
+
+function fixPtPerMember()
+{
+    global $db;
+    $output = array();
+    $query = "describe ".TABLE_RANK_ALLY_POINTS."; ";
+    $result = $db->sql_query($query);
+
+    while ($row = $db->sql_fetch_row($result))
+    {
+        $output[$row[0]] = $row[4];
+    }
+    if ($output['points_per_member'] == null)
+    {
+      // la valeur n'est pas correcte
+        $qeury2 =   "ALTER TABLE ".TABLE_RANK_ALLY_POINTS." ALTER COLUMN points_per_member SET DEFAULT '0'";
+        $result = $db->sql_query($qeury2);
+    }
+
+
+}
+
+

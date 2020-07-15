@@ -28,6 +28,27 @@ insert_config("requete_max",500);
 rempli_table_univers();
 
 newPlayer();
+
+fixPtPerMember();
+
+
+// reinitialisation de le table player
+delete_table_rank_player();
+create_table_rank_player() ;
+
+// ajout datadate et tag ally_name
+delete_table_players();
+create_table_players();
+delete_table_alliances();
+create_table_alliances() ;
+delete_table_univers();
+create_table_univers();
+rempli_table_univers();
+    create_uni_vide();
+
+
+
+
   
 }
 

@@ -16,7 +16,7 @@ $table = find_table($db->sql_escape_string($pub_type));
 $total = 0;
 $query = array();
 
-$fields =  "datadate, rank, id, points , ships , sender_id " ;
+$fields =  "datadate, rank, id, points , nb_spacecraft , sender_id " ;
 
 
 foreach($pub_value as $value)
@@ -42,8 +42,8 @@ echo "mise a jour de ".$total." ligne(s) classement player ";
 // on fait la jointure qui va bien pour injecter le bon classement
 
 $sql = "REPLACE INTO ".$table."  ";
-$sql .= ($table != "CST_PLAYERS_RANK_MILITARY" ) ? " ( `datadate`, `rank`, `player`, `ally`, `points` , `sender_id`) " : " ( `datadate`, `rank`, `player`, `ally`, `points` , `ships` ,`sender_id`) " ;
-$sql .= ($table != "CST_PLAYERS_RANK_MILITARY" ) ? " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag,  srp.points , srp.sender_id " : " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag, srp.points , srp.ships,srp.sender_id ";
+$sql .= ($table != "CST_PLAYERS_RANK_MILITARY" ) ? " ( `datadate`, `rank`, `player`, `ally`, `points` , `sender_id`) " : " ( `datadate`, `rank`, `player`, `ally`, `points` , `nb_spacecraft` ,`sender_id`) " ;
+$sql .= ($table != "CST_PLAYERS_RANK_MILITARY" ) ? " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag,  srp.points , srp.sender_id " : " SELECT srp.datadate, srp.rank,sp.name_player  ,sa.tag, srp.points , srp.nb_spacecraft,srp.sender_id ";
 $sql .= " FROM  ".TABLE_PLAYERS." as sp ";
 $sql .= "INNER JOIN ".TABLE_RANK_PLAYERS." as srp "; 
 $sql .= " on sp.id_player	= srp.id " ;

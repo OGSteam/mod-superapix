@@ -29,6 +29,12 @@ function find_config($name) {
     return NULL;
 }
 
+function  check_uni_vide()
+{
+
+}
+
+/// devenu obsolete : rempli_table_univers() a l'install et update garantisse les datas
 function create_uni_vide() {
     global $db, $server_config;
 
@@ -44,6 +50,27 @@ function create_uni_vide() {
         $db->sql_query('INSERT  IGNORE  INTO ' . TABLE_UNIVERSE . ' ( galaxy,system,row) VALUES ' . implode(',', $query));
         $query = array();
     }
+}
+
+function reinit(){
+    //change last date
+    $tab = constante_stepper();
+foreach ($tab as $key => $value)
+{
+    insert_config("last_" . $value,0);
+}
+
+    // purge le dossier xml (voir pour glob dans prochaine maj )
+    $rep=opendir(MOD_ROOT_XML);
+    while($file = readdir($rep)){
+        if($file != '..' && $file !='.' && $file !='' && $file!='.htaccess'&& $file!='index.php'){
+            unlink(MOD_ROOT_XML.$file);
+        }
+    }
+
+
+
+
 }
 
 function defineDebug() {

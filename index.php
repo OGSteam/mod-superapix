@@ -21,9 +21,19 @@ if (ini_get('allow_url_fopen') == 0) {
 }
 
 if (isset($pub_create_uni)) {
-
+    //plus necessaire
     create_uni_vide();
 }
+
+if (isset($pub_reinit)) {
+
+    reinit();
+    header("Refresh: 0; url=index.php?action=superapix&admin=1");
+    die();
+
+}
+
+
 
 
 // point d access à supprimer 
@@ -83,8 +93,22 @@ if (isset($pub_step) && is_numeric($pub_step)) {
 
 require_once("views/page_header.php");
 
-// page d acceuil
-include(MOD_ROOT_VUE . "index.php");
+if (!IsXtenseInstalled()) {
+    $errormsg = array();
+    $errormsg[] = "Le mod xtense doit etre installé !!!";
+    include(MOD_ROOT_VUE . "error.php");
+}
+elseif (isset($pub_help))
+{
+	//page d'aide
+	include(MOD_ROOT_VUE . "help.php");
+}
+else
+{
+	// page d acceuil
+	include(MOD_ROOT_VUE . "index.php");
+}
+
 
 require_once("views/page_tail.php");
 ?>

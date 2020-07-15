@@ -52,7 +52,7 @@ foreach($pub_value as $value)
 
  // avant de traiter le $_post, on va preparer uni vide avec le timestamp si besoin
  
- // todo faire une requete update apour remise a 0 avec comme where la galaxie et le timstamp ( si inf => 0 )
+ //  faire une requete update apour remise a 0 avec comme where la galaxie et le timstamp ( si inf => 0 )
 //$uni = (int)$galaxie;
 
   //  for ($i = 1; $i < ((int)$server_config['num_of_systems'] + 1 ); $i++) {
