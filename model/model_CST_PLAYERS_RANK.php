@@ -25,7 +25,7 @@ foreach($pub_value as $value)
     $rank = (int)$value["position"] ;
     $id = (int)$value["id"] ;
     $points = (int)$value["score"] ;
-    $ships = $value["ships"] ;
+    $ships = isset($value["ships"]) ? $value["ships"] : 0;
     $sender_id = (int)$user_data['user_id'] ;
     
      $temp_query = "( ".$datadate.", ".$rank.", ".$id." , ".$points." , ".(int)$ships." , ".$user_data['user_id'] ." ) ";
