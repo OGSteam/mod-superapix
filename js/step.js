@@ -17,7 +17,8 @@ function startstep(step) {
 
         },
         error: function (err) {
-            alert("une erreur est survenue " + err);
+            alert("une erreur est survenue : Vérifiez la console de votre Navigateur");
+            console.log("une erreur est survenue " + JSON.stringify(err))
         }
 
     });
