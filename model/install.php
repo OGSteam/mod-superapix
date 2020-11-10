@@ -79,7 +79,7 @@ function create_table_rank_alliance() {
     $sql .= " datadate INT(11) NOT NULL , ";
     $sql .= " rank INT(11) NOT NULL , ";
     $sql .= " id_alliance INT(11) NOT NULL , ";
-    $sql .= " points INT(11) NOT NULL, ";
+    $sql .= " points BIGINT NOT NULL, ";
     $sql .= " sender_id INT(11) NOT NULL, ";
     $sql .= " PRIMARY KEY (`rank`,`datadate`,`id_alliance`));";
 
@@ -102,7 +102,7 @@ function create_table_rank_player() {
     $sql .= " datadate INT(11) NOT NULL , ";
     $sql .= " rank INT(11) NOT NULL , ";
     $sql .= " id INT(11) NOT NULL , ";
-    $sql .= " points INT(11) NOT NULL, ";
+    $sql .= " points BIGINT NOT NULL, ";
     $sql .= " nb_spacecraft INT(11) NOT NULL default '0' , ";
     $sql .= " sender_id INT(11) NOT NULL, ";
     $sql .= " PRIMARY KEY (`rank`,`datadate`,`id`));";
