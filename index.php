@@ -83,7 +83,7 @@ if (isset($pub_step) && is_numeric($pub_step)) {
     //echo '<script src="'.MOD_ROOT_JS.'alliance.js" type="text/javascript"> </script>';
     //echo '<script src="'.MOD_ROOT_JS.'rank_alliance.js" type="text/javascript"> </script>';
     //echo '<script src="'.MOD_ROOT_JS.'rank_player.js" type="text/javascript"> </script>';
-    echo '<script src="' . MOD_ROOT_JS . 'step.js" type="text/javascript"> </script>';
+
     // on va d ailleurs pas se casser la tete, le decode on le met ici :
     include(MOD_ROOT_VUE . "step.php"); // traitement des envois
     require_once("views/page_tail.php");
@@ -92,6 +92,7 @@ if (isset($pub_step) && is_numeric($pub_step)) {
 
 
 require_once("views/page_header.php");
+echo '<script src="' . MOD_ROOT_JS . 'step.js" type="text/javascript"> </script>';
 
 if (!IsXtenseInstalled()) {
     $errormsg = array();
