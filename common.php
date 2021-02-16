@@ -20,9 +20,8 @@ define("TABLE_RANK_ALLIANCES", $table_prefix . MOD_NAME . "_rank_alliance");
 define("TABLE_RANK_PLAYERS", $table_prefix . MOD_NAME . "_rank_player");
 define("TABLE_UNIVERS", $table_prefix . MOD_NAME . "_universe");
 
-if(!IN_XTENSE) { // pour _xtense.php
-    define("TABLE_XTENSE_CALLBACKS", $table_prefix . "xtense_callbacks"); // xtense Callbacks
-}
+define("TABLE_XTENSE_CALLBACKS", $table_prefix . "xtense_callbacks"); // xtense Callbacks
+
 // paths
 define("MOD_ROOT", "mod/" . MOD_NAME . "/");
 define("MOD_ROOT_MODEL", MOD_ROOT . "model/");
