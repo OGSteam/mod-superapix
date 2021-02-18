@@ -2,7 +2,7 @@
 /**
  * @package [Mod] Superapix
  * @author Machine
- * @copyright Copyright &copy; 2016, http://ogsteam.fr/
+ * @copyright Copyright &copy; 2016, http://ogsteam.eu/
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
@@ -105,10 +105,10 @@ include_once MOD_ROOT_VUE . "css.php";
                 <a href="index.php?action=superapix&help">Aide à L'usage (Tuto Video)</a>
             </li>
             <li>
-                <a href="https://forum.ogsteam.fr/">Forum Ogsteam/</a>
+                <a href="https://forum.ogsteam.eu/">Forum Ogsteam/</a>
             </li>
             <li>
-                <a href="https://forum.ogsteam.fr/index.php?topic=783.0">Topic du mod/</a>
+                <a href="https://forum.ogsteam.eu/index.php?topic=783.0">Topic du mod/</a>
             </li>
             <li>
                 <a href="https://github.com/OGSteam/mod-superapix/issues">Signaler un Bug/</a>
