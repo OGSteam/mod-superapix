@@ -15,10 +15,10 @@ include_once("mod/superapix/common.php");
 $mod_uninstall_name = MOD_NAME;
 
 
-uninstall_mod($mod_uninstall_name,null);
+uninstall_mod($mod_uninstall_name, null);
 
- // on supp en manuel 
-include_once(MOD_ROOT_MODEL."install.php");
+// on supp en manuel
+include_once(MOD_ROOT_MODEL . "install.php");
 $spaModId = spaModId();
 
 delete_table_config();

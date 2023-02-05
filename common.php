@@ -44,6 +44,3 @@ include(MOD_ROOT_INCLUDE . "lang.php");
 include_once(MOD_ROOT_MODEL . "install.php");
 
 defineDebug();
-
-
-

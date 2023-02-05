@@ -47,26 +47,26 @@ $uDate = time();
 $uStartTimer = microtime(1);
 
 
-// 
-// 
+//
+//
 // on va parcourir le tableau de constante name
 // si c'est out of date on regarde le xml pour savoir si necessaire de modifier également
 foreach ($tNameXml as $uId => $sNameXml) {
 
 
     // fix pour utilisation web(js) <=>  cron
-// cf traitement_xxx
+    // cf traitement_xxx
     global $type, $user_data;
     $type = $sNameXml;
     $user_data['user_id'] = findSpaId(); // id pour injection
     $user_data['user_name'] = SPA_PLAYER; // username pour log ( ne marche pas, doit etre ecrasé ... :s )
-// fin fix
+    // fin fix
 
     loggeur($sNameXml);
     if (is_out_of_date($sNameXml)) {
         loggeur($sNameXml . " est périmé ");
 
-        // verification xml 
+        // verification xml
         if (xml_is_out_of_date($sNameXml)) {
             loggeur("XML " . $sNameXml . " est périmé ou absent");
             $url = uni_replace($sNameXml);
@@ -87,9 +87,9 @@ foreach ($tNameXml as $uId => $sNameXml) {
 
             loggeur("Chargement fichier XML");
             loggeur("link  fichier XML" . MOD_ROOT_XML . $sNameXml . ".xml");
-            logmemoryusage("chargement XML ".MOD_ROOT_XML . $sNameXml . ".xml");
+            logmemoryusage("chargement XML " . MOD_ROOT_XML . $sNameXml . ".xml");
             $value = f_chargement_fichier_xml(MOD_ROOT_XML . $sNameXml . ".xml");
-            logmemoryusage("Fin chargement XML ".MOD_ROOT_XML . $sNameXml . ".xml");
+            logmemoryusage("Fin chargement XML " . MOD_ROOT_XML . $sNameXml . ".xml");
             loggeur("Traitement fichier XML");
 
 
@@ -105,20 +105,19 @@ foreach ($tNameXml as $uId => $sNameXml) {
                 logmemoryusage("fin traitement_universe");
             } else if (strstr($sNameXml, "CST_ALLIANCES_RANK_")) {
                 traitement_alliance_rank($value, $sNameXml);
-                logmemoryusage("fin traitement_alliance_rank ".$sNameXml);
+                logmemoryusage("fin traitement_alliance_rank " . $sNameXml);
             } else if (strstr($sNameXml, "CST_PLAYERS_RANK_")) {
                 traitement_player_rank($value, $sNameXml);
-                logmemoryusage("fin traitement_player_rank ".$sNameXml);
+                logmemoryusage("fin traitement_player_rank " . $sNameXml);
             } else {
                 // si pas pris en charge
                 jsonResponse(array("ERROR" => "Moi pas comprendre", "temps" => GetTimer($uStartTimer), "State" => "Error"));
             }
-            logmemoryusage("fin script ".$sNameXml);
+            logmemoryusage("fin script " . $sNameXml);
             // on supprime l'objet
             unset($value);
 
             jsonResponse(array("ok" => "Injection " . $sNameXml, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "AtWork"));
-
         }
     }
 }

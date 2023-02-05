@@ -384,7 +384,8 @@ function traitement_universe($value)
     $sql .= " ON ";
     $sql .= "( A.id_alliance = P.id_ally  )   ";
     $sql .= " SET ";
-    $sql .= "  U.player_id   = T.id_player  ,  U.ally_id   = P.id_ally , U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
+    //$sql .= "  U.player_id   = T.id_player  ,  U.ally_id   = P.id_ally , U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
+    $sql .= "  U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
     $sql .= " WHERE  ";
     $sql .= "  U.last_update <= T.datadate "; // <= pour permettre d ecraser la derniere importation si plantage de la derniere
 

@@ -10,9 +10,6 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX')) die("Hacking attempt");
 global $db, $user_data,  $server_config;
 
-
-
-
 global $db, $user_data,  $server_config, $pub_timestamp;
 $timestamp = (int)$pub_timestamp;
 
@@ -26,8 +23,6 @@ $pre_query = array();
 $fields =  "g, s, r, id_player , datadate , name_planete ,name_moon , moon  , sender_id   ";
 
 $galaxie = 0;
-
-
 
 foreach ($pub_value as $value) {
 
@@ -47,29 +42,6 @@ foreach ($pub_value as $value) {
     $query[] = $temp_query;
     $total++;
 }
-
-// avant de traiter le $_post, on va preparer uni vide avec le timestamp si besoin
-
-//  faire une requete update apour remise a 0 avec comme where la galaxie et le timstamp ( si inf => 0 )
-//$uni = (int)$galaxie;
-
-//  for ($i = 1; $i < ((int)$server_config['num_of_systems'] + 1 ); $i++) {
-//     for ($j = 1; $j < 16 ; $j++)
-//     {
-//       $temp_query = "( ".$uni.", ".$i." , ".$j."  , 0 , ".$timestamp." , '' , '' , '0'  , ".$sender_id." ) ";
-//      $pre_query[] = $temp_query;
-
-//   }
-// }
-// $db->sql_query('REPLACE INTO '.$table.' ('.$fields.') VALUES '.implode(',', $pre_query));
-// on vide prequery
-// $pre_query = array();
-
-
-
-
-// et maintenant l envoi qui va bien ( $_post)
-
 
 $db->sql_query('REPLACE INTO ' . $table . ' (' . $fields . ') VALUES ' . implode(',', $query));
 echo "mise a jour de " . $total . " ligne(s) univers ";
@@ -91,7 +63,7 @@ function update_table_universe($uni = 0)
     $sql .= " ON ";
     $sql .= "( A.id_alliance = P.id_ally  )   ";
     $sql .= " SET ";
-    $sql .= " U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
+    $sql .= " U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate, U.last_update_user_id = T.sender_id  ";
     $sql .= " WHERE  ";
     $sql .= "  U.last_update < T.datadate ";
     if ($uni != 0) {

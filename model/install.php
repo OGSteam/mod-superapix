@@ -162,9 +162,6 @@ function rempli_table_univers()
 
     $fields = "g, s, r, id_player ,  datadate , name_planete ,name_moon , moon  , sender_id   ";
 
-
-
-
     $g = (int) $server_config["num_of_galaxies"];
     $s = (int) $server_config["num_of_systems"];
     $r = 15;

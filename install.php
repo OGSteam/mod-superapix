@@ -18,9 +18,9 @@ $security = false;
 $mod_folder = MOD_NAME;
 $security = install_mod($mod_folder);
 if ($security == true) {
-    // on ajoute 
-  
-   
+    // on ajoute
+
+
     // création tables
     create_table_config();
     create_table_players();
@@ -34,14 +34,10 @@ if ($security == true) {
     insert_config("uni", 0);
     insert_config("dev", 0);
     insert_config("pays", "fr");
-    
-    // installation d un joueur 
+
+    // installation d un joueur
     newPlayer();
 
     fixPtPerMember();
     create_uni_vide();
-   
 }
-
-
-
