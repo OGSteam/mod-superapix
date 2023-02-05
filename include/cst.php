@@ -9,7 +9,7 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
-//debug 
+//debug
 global $server_config;
 // player
 define("CST_PLAYERS", "https://s{uni}-{pays}.ogame.gameforge.com/api/players.xml");
@@ -40,7 +40,8 @@ define("CST_ALLIANCES_RANK_MILITARY_DESTROYED", "https://s{uni}-{pays}.ogame.gam
 define("CST_ALLIANCES_RANK_MILITARY_LOST", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=2&type=4");
 define("CST_ALLIANCES_RANK_MILITARY_HONNOR", "https://s{uni}-{pays}.ogame.gameforge.com/api/highscore.xml?category=2&type=7");
 
-function uni_replace($string) {
+function uni_replace($string)
+{
     $string = constant($string);
     $tRemplacement = array("pays", "uni");
     foreach ($tRemplacement as $sRemplacement) {
@@ -49,15 +50,18 @@ function uni_replace($string) {
     return $string;
 }
 
-function constante_array() {
+function constante_array()
+{
     $tab = array("CST_PLAYERS" => CST_PLAYERS, "CST_ALLIANCES" => CST_ALLIANCES);
     $retour = array_merge($tab, constante_array_rank_alliance(), constante_array_rank_player(), constante_array_universe());
     return $retour;
 }
 
-function constante_array_rank_alliance() {
+function constante_array_rank_alliance()
+{
 
-    $retour = array("CST_ALLIANCES_RANK_POINTS" => CST_ALLIANCES_RANK_POINTS,
+    $retour = array(
+        "CST_ALLIANCES_RANK_POINTS" => CST_ALLIANCES_RANK_POINTS,
         "CST_ALLIANCES_RANK_ECO" => CST_ALLIANCES_RANK_ECO,
         "CST_ALLIANCES_RANK_TECHNOLOGY" => CST_ALLIANCES_RANK_TECHNOLOGY,
         "CST_ALLIANCES_RANK_MILITARY" => CST_ALLIANCES_RANK_MILITARY,
@@ -69,9 +73,11 @@ function constante_array_rank_alliance() {
     return $retour;
 }
 
-function constante_array_rank_player() {
+function constante_array_rank_player()
+{
 
-    $retour = array("CST_PLAYERS_RANK_POINTS" => CST_PLAYERS_RANK_POINTS,
+    $retour = array(
+        "CST_PLAYERS_RANK_POINTS" => CST_PLAYERS_RANK_POINTS,
         "CST_PLAYERS_RANK_ECO" => CST_PLAYERS_RANK_ECO,
         "CST_PLAYERS_RANK_TECHNOLOGY" => CST_PLAYERS_RANK_TECHNOLOGY,
         "CST_PLAYERS_RANK_MILITARY" => CST_PLAYERS_RANK_MILITARY,
@@ -83,18 +89,21 @@ function constante_array_rank_player() {
     return $retour;
 }
 
-function constante_array_universe() {
+function constante_array_universe()
+{
 
     $retour = array("CST_UNIVERSE" => CST_UNIVERSE);
     return $retour;
 }
 
-function constante_xtense_callbacks() {
+function constante_xtense_callbacks()
+{
     $retour = array("spy", "ennemy_spy", "rc", "msg", "ally_msg", "expedition",  "overview", "buildings", "research", "fleet", "defense");
     return $retour;
 }
 
-function constante_stepper() {
+function constante_stepper()
+{
     global $server_config;
 
     $retour = array();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package [Mod] Superapix
  * @author Machine
@@ -11,15 +12,10 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 ?>
 
 <ul>
-	<li>
-		<a href="index.php?action=superapix">Retour</a>
-	</li>
+    <li>
+        <a href="index.php?action=superapix">Retour</a>
+    </li>
 </ul>
 
-<iframe width="880" height="470" 
-	src="https://www.youtube.com/embed/2Y6iT6jYnk0" 
-	frameborder="0" gesture="media" 
-	allow="encrypted-media" allowfullscreen>
+<iframe width="880" height="470" src="https://www.youtube.com/embed/2Y6iT6jYnk0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
 </iframe>
-
-

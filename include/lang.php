@@ -11,7 +11,8 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
-function lang($str) {
+function lang($str)
+{
     $retour = "";
     $lang = variable_lang();
 
@@ -24,7 +25,8 @@ function lang($str) {
     }
 }
 
-function variable_lang() {
+function variable_lang()
+{
     $lang = array();
     $lang['CST_PLAYERS'] = "Liste joueurs";
     $lang['CST_ALLIANCES'] = "Liste alliance";

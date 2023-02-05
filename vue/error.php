@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package [Mod] Superapix
  * @author Machine
@@ -14,12 +15,10 @@ include_once MOD_ROOT_VUE . "css.php";
 ?>
 
 
-<?php if (isset($errormsg)): ?>
+<?php if (isset($errormsg)) : ?>
     <?php foreach ($errormsg as $msg) : ?>
         <p class="error">
             <?php echo $msg; ?>
         </p>
     <?php endforeach; ?>
 <?php endif; ?>
-
-

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package [Mod] Superapix
  * @author Machine
@@ -55,18 +56,18 @@ include_once MOD_ROOT_VUE . "css.php";
 
 ?>
 
-<?php if ($adminview != 1): ?>
+<?php if ($adminview != 1) : ?>
 
 
-    <div class ="mod">
+    <div class="mod">
         <h1>Superapix</h1>
         <?php if ($user_data["user_admin"] = 1 || $user_data["user_coadmin"] = 1) : ?>
             <p><a class="btn" href="index.php?action=superapix&admin=1">Administration </a></p>
         <?php endif; ?>
 
         <p>Superapix est un mod Ogspy permettant de mettre à jour depuis l'api XML d'ogame</p>
-        <p>Celui ci est maintenant profilé pour automatiquement se mettre à jour sans actions utilisateurs  </p>
-        <?php if ($tcheckSecurity != NULL): ?>
+        <p>Celui ci est maintenant profilé pour automatiquement se mettre à jour sans actions utilisateurs </p>
+        <?php if ($tcheckSecurity != NULL) : ?>
             <p class="error">
                 La configuration du mod semble incorrecte (<?php echo count($tcheckSecurity); ?> erreur(s)).
             </p>
@@ -78,11 +79,11 @@ include_once MOD_ROOT_VUE . "css.php";
 
             <h2>Mettre à jour</h2>
 
-              <progress id="avancement" class="progress"  value="0" max="39">
+            <progress id="avancement" class="progress" value="0" max="39">
 
             </progress>
             <div id="content"></div>
-                <a class="btn"  onclick="startStepping()">Mettre à jour </a>
+            <a class="btn" onclick="startStepping()">Mettre à jour </a>
 
 
         <?php endif; ?>
@@ -101,7 +102,7 @@ include_once MOD_ROOT_VUE . "css.php";
 
         <h2>liens</h2>
         <ul>
-			<li>
+            <li>
                 <a href="index.php?action=superapix&help">Aide à L'usage (Tuto Video)</a>
             </li>
             <li>
@@ -132,8 +133,9 @@ include_once MOD_ROOT_VUE . "css.php";
             <div class="form-grp tooltip">
                 <label for="name">Numero D'univers <span class="required">*</span></label>
                 <input type="text" id="uni" name="uni" value="<?php echo (int) find_config("uni"); ?>" placeholder="67" required="required" />
-                <span> <div class="pop-title">Numero </div>
-                    Indiquer le numero  de la page du jeu <br />
+                <span>
+                    <div class="pop-title">Numero </div>
+                    Indiquer le numero de la page du jeu <br />
                     exemple : 01, 67, ... <br />
                     cf : https://s<b>01</b>-fr.ogame.gameforge.com
 
@@ -144,7 +146,8 @@ include_once MOD_ROOT_VUE . "css.php";
             <div class="form-grp tooltip">
                 <label for="name">Nombre de requere max <span class="required">*</span></label>
                 <input type="text" id="requete_max" name="requete_max" value="<?php echo (int) find_config("requete_max"); ?>" placeholder="500" required="required" />
-                <span> <div class="pop-title">Requete max</div>
+                <span>
+                    <div class="pop-title">Requete max</div>
                     500 semble etre correct
                 </span>
             </div>
@@ -152,10 +155,11 @@ include_once MOD_ROOT_VUE . "css.php";
             <div class="form-grp tooltip">
                 <label for="enquiry">Pays </label>
                 <input type="text" id="pays" name="pays" value="<?php echo find_config("pays"); ?>" placeholder="it" required="required" />
-                <span> <div class="pop-title">Pays</div>
+                <span>
+                    <div class="pop-title">Pays</div>
                     Indiquer le pays de la page du jeu <br />
                     exemple : fr, it, en , ...
-                     cf : https://s01-<b>fr</b>.ogame.gameforge.com
+                    cf : https://s01-<b>fr</b>.ogame.gameforge.com
                 </span>
             </div>
 
@@ -173,12 +177,13 @@ include_once MOD_ROOT_VUE . "css.php";
                         <option value="0" selected>
                             NON
                         </option>
-                        <option value="1" >
+                        <option value="1">
                             OUI
                         </option>
                     <?php endif; ?>
                 </select>
-                <span> <div class="pop-title">Debug</div>
+                <span>
+                    <div class="pop-title">Debug</div>
                     Activer la journalisation des actions du mod.
                 </span>
 
@@ -207,13 +212,14 @@ include_once MOD_ROOT_VUE . "css.php";
                             <option value="0" selected>
                                 NON
                             </option>
-                            <option value="1" >
+                            <option value="1">
                                 OUI
                             </option>
                         <?php endif; ?>
                     </select>
 
-                    <span> <div class="pop-title">CallBacks Xtense</div>
+                    <span>
+                        <div class="pop-title">CallBacks Xtense</div>
                         Ajouter ou supprimer la liaison avec la barre xtense sur la page "<?php echo $callback; ?>"
                     </span>
 
@@ -222,7 +228,7 @@ include_once MOD_ROOT_VUE . "css.php";
 
 
             <?php endforeach; ?>
-            <input class = "btn" type="submit" value="Envoyer!"  />
+            <input class="btn" type="submit" value="Envoyer!" />
 
             <hr />
 
@@ -235,13 +241,14 @@ include_once MOD_ROOT_VUE . "css.php";
                     </span>
                </div>
                -->
-                   <div class="form-grp tooltip">
-            <a class ="btn" href="index.php?action=superapix&reinit">Réinitalisation</a>
-            <span> <div class="pop-title">Réinitalisation</div>
-                      En cas de blocage ponctuel, permet de :<br /> Vider le cache XML <br /> et de <br /> supprimer la date de derniere insertion
+            <div class="form-grp tooltip">
+                <a class="btn" href="index.php?action=superapix&reinit">Réinitalisation</a>
+                <span>
+                    <div class="pop-title">Réinitalisation</div>
+                    En cas de blocage ponctuel, permet de :<br /> Vider le cache XML <br /> et de <br /> supprimer la date de derniere insertion
 
-                    </span>
-    </div>
+                </span>
+            </div>
             <!--MESSAGE ERREUR OU MESSAGE CORRECT-->
             <?php
             if (find_config("debug") == 1) {
@@ -251,13 +258,13 @@ include_once MOD_ROOT_VUE . "css.php";
             }
             ?>
 
-            <?php if ($tcheckSecurity != NULL):
-                ?>
+            <?php if ($tcheckSecurity != NULL) :
+            ?>
                 <?php foreach ($tcheckSecurity as $error) : ?>
-                <p class="error">
-                    <?php echo $error; ?>
-                </p>
-            <?php endforeach; ?>
+                    <p class="error">
+                        <?php echo $error; ?>
+                    </p>
+                <?php endforeach; ?>
             <?php else : ?>
                 <p class="success">
                     La configuration du mod semble correcte
@@ -265,20 +272,16 @@ include_once MOD_ROOT_VUE . "css.php";
 
             <?php endif; ?>
 
-</div>
-</form>
+    </div>
+    </form>
 
-
-
-
-
-        <!--
+    <!--
                 <table width = "100%">
                     <form method = "POST" action = "index.php?action=superapix">
                         <input name = "max_battlereport" type = "hidden" size = "5" value = "10" />
                         <tr>
                             <td class = "c_ogspy" colspan = "2">Options <?php echo MOD_NAME;
-        ?></td>
+                                                                        ?></td>
                         </tr>
                         <tr>
                             <th width="60%">numero d'univers</th>
@@ -331,7 +334,7 @@ include_once MOD_ROOT_VUE . "css.php";
 
 
     <?php
-    endif;
+endif;
     ?>
 
 

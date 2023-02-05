@@ -9,7 +9,8 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
-function create_table_config() {
+function create_table_config()
+{
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_CFG . " ( ";
@@ -20,7 +21,8 @@ function create_table_config() {
     $db->sql_query($sql);
 }
 
-function delete_table_config() {
+function delete_table_config()
+{
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_CFG . " ;";
@@ -28,7 +30,8 @@ function delete_table_config() {
     $db->sql_query($sql);
 }
 
-function create_table_players() {
+function create_table_players()
+{
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_PLAYERS . " ( ";
@@ -42,7 +45,8 @@ function create_table_players() {
     $db->sql_query($sql);
 }
 
-function delete_table_players() {
+function delete_table_players()
+{
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_PLAYERS . " ;";
@@ -50,7 +54,8 @@ function delete_table_players() {
     $db->sql_query($sql);
 }
 
-function create_table_alliances() {
+function create_table_alliances()
+{
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_ALLIANCES . " ( ";
@@ -64,7 +69,8 @@ function create_table_alliances() {
     $db->sql_query($sql);
 }
 
-function delete_table_alliances() {
+function delete_table_alliances()
+{
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_ALLIANCES . " ;";
@@ -72,7 +78,8 @@ function delete_table_alliances() {
     $db->sql_query($sql);
 }
 
-function create_table_rank_alliance() {
+function create_table_rank_alliance()
+{
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_RANK_ALLIANCES . " ( ";
@@ -87,7 +94,8 @@ function create_table_rank_alliance() {
     $db->sql_query($sql);
 }
 
-function delete_table_rank_alliance() {
+function delete_table_rank_alliance()
+{
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_RANK_ALLIANCES . " ;";
@@ -95,7 +103,8 @@ function delete_table_rank_alliance() {
     $db->sql_query($sql);
 }
 
-function create_table_rank_player() {
+function create_table_rank_player()
+{
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_RANK_PLAYERS . " ( ";
@@ -111,7 +120,8 @@ function create_table_rank_player() {
     $db->sql_query($sql);
 }
 
-function delete_table_rank_player() {
+function delete_table_rank_player()
+{
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_RANK_PLAYERS . " ;";
@@ -119,7 +129,8 @@ function delete_table_rank_player() {
     $db->sql_query($sql);
 }
 
-function create_table_univers() {
+function create_table_univers()
+{
     global $db;
 
     $sql = " CREATE TABLE If NOT EXISTS " . TABLE_UNIVERS . " ( ";
@@ -138,7 +149,8 @@ function create_table_univers() {
     $db->sql_query($sql);
 }
 
-function rempli_table_univers() {
+function rempli_table_univers()
+{
     global $db, $user_data, $server_config;
 
     $table = TABLE_UNIVERS;
@@ -163,13 +175,13 @@ function rempli_table_univers() {
                 $query[] = "( " . $galaxie . ", " . $system . " , " . $row . "  , " . 0 . " , " . 0 . " , '' , '' , '0'  , " . $sender_id . " ) ";
             }
         }
-        $db->sql_query('REPLACE INTO ' . $table . ' (' . $fields . ') VALUES ' . implode
-                        (',', $query));
+        $db->sql_query('REPLACE INTO ' . $table . ' (' . $fields . ') VALUES ' . implode(',', $query));
         $query = array();
     }
 }
 
-function delete_table_univers() {
+function delete_table_univers()
+{
     global $db;
 
     $sql = " DROP TABLE IF EXISTS " . TABLE_UNIVERS . " ;";
@@ -177,7 +189,8 @@ function delete_table_univers() {
     $db->sql_query($sql);
 }
 
-function newPlayer() {
+function newPlayer()
+{
     if (!playerExist()) {
         global $db;
         $sql = "  replace INTO " . TABLE_USER . "  (`user_id`, `user_name`, `user_password`) VALUES (NULL, '" . constant("SPA_PLAYER") . "' , 'noconnection');";
@@ -185,7 +198,8 @@ function newPlayer() {
     }
 }
 
-function playerExist($name = NULL) {
+function playerExist($name = NULL)
+{
     global $db;
     if ($name == NULL) {
         $name = constant("SPA_PLAYER");
@@ -199,13 +213,15 @@ function playerExist($name = NULL) {
     return FALSE;
 }
 
-function delPlayer() {
+function delPlayer()
+{
     global $db;
     $sql = "delete from " . TABLE_USER . " where user_name = '" . constant("SPA_PLAYER") . "';";
     $db->sql_query($sql);
 }
 
-function spaActive() {
+function spaActive()
+{
     global $db;
 
     $query = "SELECT active FROM " . TABLE_MOD . " WHERE root = 'superapix' ";
@@ -219,7 +235,8 @@ function spaActive() {
     return NULL;
 }
 
-function spaModId() {
+function spaModId()
+{
     global $db;
 
     $query = "SELECT id FROM " . TABLE_MOD . " WHERE root = 'superapix' ";
@@ -236,21 +253,15 @@ function fixPtPerMember()
 {
     global $db;
     $output = array();
-    $query = "describe ".TABLE_RANK_ALLY_POINTS."; ";
+    $query = "describe " . TABLE_RANK_ALLY_POINTS . "; ";
     $result = $db->sql_query($query);
 
-    while ($row = $db->sql_fetch_row($result))
-    {
+    while ($row = $db->sql_fetch_row($result)) {
         $output[$row[0]] = $row[4];
     }
-    if ($output['points_per_member'] == null)
-    {
-      // la valeur n'est pas correcte
-        $qeury2 =   "ALTER TABLE ".TABLE_RANK_ALLY_POINTS." ALTER COLUMN points_per_member SET DEFAULT '0'";
+    if ($output['points_per_member'] == null) {
+        // la valeur n'est pas correcte
+        $qeury2 =   "ALTER TABLE " . TABLE_RANK_ALLY_POINTS . " ALTER COLUMN points_per_member SET DEFAULT '0'";
         $result = $db->sql_query($qeury2);
     }
-
-
 }
-
-

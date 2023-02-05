@@ -12,10 +12,11 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
 
 if (!defined('TABLE_XTENSE_CALLBACKS')) {
-    define('TABLE_XTENSE_CALLBACKS', $table_prefix.'xtense_callbacks');
+    define('TABLE_XTENSE_CALLBACKS', $table_prefix . 'xtense_callbacks');
 }
 
-function IsXtenseInstalled() {
+function IsXtenseInstalled()
+{
     global $db;
     // Check if xtense_callbacks table exists :
     $query = 'SHOW TABLES LIKE "' . TABLE_XTENSE_CALLBACKS . '"';
@@ -26,27 +27,31 @@ function IsXtenseInstalled() {
     return FALSE;
 }
 
-function AddCallback($appels, $uIdMod) {
+function AddCallback($appels, $uIdMod)
+{
     global $db;
     $query = 'REPLACE INTO ' . TABLE_XTENSE_CALLBACKS . ' (mod_id, function, type, active) VALUES (' . $uIdMod . ', "spaXtense", "' . $appels . '", 1)';
     $db->sql_query($query);
 }
 
-function DelCallback($appels , $uIdMod) {
+function DelCallback($appels, $uIdMod)
+{
     global $db;
     $query = 'DELETE FROM ' . TABLE_XTENSE_CALLBACKS . ' WHERE type = \'' . $appels . '\' and mod_id = ' . $uIdMod;
     $db->sql_query($query);
 }
 
-function DelAllCallbacks($uIdMod) {
+function DelAllCallbacks($uIdMod)
+{
     global $db;
     $query = 'DELETE FROM ' . TABLE_XTENSE_CALLBACKS . ' WHERE mod_id = ' . $uIdMod;
     $db->sql_query($query);
 }
 
-function GetAllCallBacks($uIdMod) {
+function GetAllCallBacks($uIdMod)
+{
     global $db;
-    $sql = "select type from " . TABLE_XTENSE_CALLBACKS . " WHERE mod_id = ".$uIdMod." ;";
+    $sql = "select type from " . TABLE_XTENSE_CALLBACKS . " WHERE mod_id = " . $uIdMod . " ;";
     $result = $db->sql_query($sql);
     $tResult = array();
     while ($row = $db->sql_fetch_assoc($result)) {

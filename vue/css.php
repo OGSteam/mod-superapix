@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package [Mod] Superapix
  * @author Machine
@@ -10,7 +11,6 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 ?>
 
 <style>
-
     body {
         background-color: black;
     }
@@ -43,7 +43,8 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
     }
 
-    p.error, p.success {
+    p.error,
+    p.success {
 
         padding: 15px;
         margin-bottom: 5px;
@@ -105,7 +106,8 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         background-color: rgba(98, 146, 64, 0.4);
     }
 
-    p.error:hover, p.success:hover {
+    p.error:hover,
+    p.success:hover {
         padding-left: 20px;
     }
 
@@ -174,7 +176,9 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         text-decoration: none;
     }
 
-    *, *:before, *:after {
+    *,
+    *:before,
+    *:after {
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
@@ -229,7 +233,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
     /*cf http://www.menucool.com/tooltip/css-tooltip*/
 
-    div.tooltip > span {
+    div.tooltip>span {
         width: 300px;
         padding: 10px 20px;
         margin-top: 0;
@@ -252,7 +256,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     }
 
     /*a.tooltip > span:hover,*/
-    div.tooltip:hover > span {
+    div.tooltip:hover>span {
         opacity: 1;
         text-decoration: none;
         visibility: visible;
@@ -262,7 +266,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         margin-left: -90px;
     }
 
-    div.tooltip > span {
+    div.tooltip>span {
         color: #FFFFFF;
         background: #333333;
         background: -webkit-linear-gradient(top, #333333, #999999);
@@ -297,9 +301,4 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     }
 
     }
-
-
 </style>
-
-
-
