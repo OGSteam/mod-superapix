@@ -10,7 +10,8 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
 // par defaut 19, nb de colonne dans l array
-function progress_barre($value, $nom, $valueMax = 19) {
+function progress_barre($value, $nom, $valueMax = 19)
+{
     $pct = (int) ((int) $value * 100 / (int) $valueMax);
 
     $retour = '<progress value="' . $pct . '" max="100" width="80%" height="20%"  background-color="red">' . $nom . ' (' . $pct . '%)</progress>';
@@ -26,11 +27,12 @@ function progress_barre($value, $nom, $valueMax = 19) {
  * @param int $time timestamp
  * @return int
  */
-function formatage_timestamp_for_rank($time) {
-/// il faut garder le format ogspy ( toutes les 8 heeures ... ) )
+function formatage_timestamp_for_rank($time)
+{
+    /// il faut garder le format ogspy ( toutes les 8 heeures ... ) )
     $temp = getdate($time);
 
-// on format la date
+    // on format la date
     $temp['seconds'] = 0;
     $temp['minutes'] = 0;
     if ($temp['hours'] >= 0 && $temp['hours'] < 8) {
@@ -48,16 +50,19 @@ function formatage_timestamp_for_rank($time) {
     return $time;
 }
 
-function is_out_of_date($type) {
+function is_out_of_date($type)
+{
     return _is_out_of_date($type, 'bdd');
 }
 
-function xml_is_out_of_date($type) {
+function xml_is_out_of_date($type)
+{
     return _is_out_of_date($type, 'xml');
 }
 
 
-function _is_out_of_date($type, $origin) {
+function _is_out_of_date($type, $origin)
+{
 
 
     // cf : http://board.fr.ogame.gameforge.com/board1474-ogame-le-jeu/board641-les-cr-ations-ogamiennes/board642-logiciels-tableurs/1053082-ogame-api/
@@ -89,11 +94,11 @@ function _is_out_of_date($type, $origin) {
     $now = time();
     $last_update = 0;
 
-//!\\ swith bdd <=> xml pour utiliserr meme fonction
+    //!\\ swith bdd <=> xml pour utiliserr meme fonction
     if ($origin == "bdd") {
         $last_update = (int) find_config("last_" . $type);
     } else {
-// ici on veut xml
+        // ici on veut xml
         $sPathXml = MOD_ROOT_XML . $type . ".xml";
         loggeur($sPathXml);
         if (file_exists($sPathXml)) {
@@ -101,7 +106,7 @@ function _is_out_of_date($type, $origin) {
             loggeur(filemtime($sPathXml));
         }
     }
-//!\\ fin swith bdd <=> xml pour utiliserr meme fonction
+    //!\\ fin swith bdd <=> xml pour utiliserr meme fonction
 
     $datadate_maj = 0;
     if (isset($datadate[$type])) {
@@ -111,25 +116,27 @@ function _is_out_of_date($type, $origin) {
         $datadate_maj = 1; // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
     }
 
-    loggeur("est périmé : (".$now." - ".$last_update.") > (".$datadate_maj." * 60 * 60)" );
+    loggeur("est périmé : (" . $now . " - " . $last_update . ") > (" . $datadate_maj . " * 60 * 60)");
     //loggeur("est périmé : (".$now - $last_update.") > (".$datadate_maj * 60 * 60 .")" );
     if (($now - $last_update) > ($datadate_maj * 60 * 60)) { //($datadate_maj (en heure )) * nb de minutes * nb de secondes
-        loggeur("Est périmé ".$origin);
+        loggeur("Est périmé " . $origin);
         $retour = true;
     } else {
-        loggeur("Est A jour ".$origin);
+        loggeur("Est A jour " . $origin);
         $retour = false;
     }
 
     return $retour;
 }
 
-function my_encodage($str) {
-// return utf8_decode($str);
+function my_encodage($str)
+{
+    // return utf8_decode($str);
     return $str;
 }
 
-function stream_copy($src, $dest) {
+function stream_copy($src, $dest)
+{
     $fsrc = fopen($src, 'r');
     $fdest = fopen($dest, 'w+');
     $len = stream_copy_to_stream($fsrc, $fdest);
@@ -138,8 +145,9 @@ function stream_copy($src, $dest) {
     return $len;
 }
 
-function f_chargement_fichier_xml($s_fichier_xml) {
-// On test voir si les fichiers que l'on va traiter existe
+function f_chargement_fichier_xml($s_fichier_xml)
+{
+    // On test voir si les fichiers que l'on va traiter existe
 
     if (file_exists($s_fichier_xml)) {
         $o_xml = simplexml_load_file($s_fichier_xml);
@@ -150,7 +158,8 @@ function f_chargement_fichier_xml($s_fichier_xml) {
     }
 }
 
-function loggeur($option) {
+function loggeur($option)
+{
     global $pub_action;
     if (constant("DEBUG") == "1") {
         if (!isset($pub_action)) {
@@ -171,20 +180,17 @@ function loggeur($option) {
 function  getMemoryUsage()
 {
     $usage = unitformat(memory_get_usage());
-    $alloue= unitformat(memory_get_peak_usage());
+    $alloue = unitformat(memory_get_peak_usage());
 
-    return $usage." / ".$alloue ;
-
+    return $usage . " / " . $alloue;
 }
 
 function getCPUUsage()
 {
-    if (function_exists (  "sys_getloadavg" ))
-    {
+    if (function_exists("sys_getloadavg")) {
         $load = sys_getloadavg();
-        if (isset($load[0]))
-        {
-            return $load[0]  ;
+        if (isset($load[0])) {
+            return $load[0];
         }
     }
     return null;
@@ -199,9 +205,9 @@ function logmemoryusage($option)
             $pub_action = "superapix"; // fix si appel exterieur 'IN_SPYOGAME'
         }
         $usage = unitformat(memory_get_usage());
-        $alloue= unitformat(memory_get_peak_usage());
+        $alloue = unitformat(memory_get_peak_usage());
 
-        log_("mod", "Usage memoire : ".getMemoryUsage()." ".FormatCpuUsage()." [".$option."]");
+        log_("mod", "Usage memoire : " . getMemoryUsage() . " " . FormatCpuUsage() . " [" . $option . "]");
     }
 }
 
@@ -209,9 +215,8 @@ function logmemoryusage($option)
 function FormatCpuUsage()
 {
     $cpu = getCPUUsage();
-    if ($cpu != null)
-    {
-        return "[ CPU :".round($cpu, 2)." %]"  ;
+    if ($cpu != null) {
+        return "[ CPU :" . round($cpu, 2) . " %]";
     }
     return "";
 }
@@ -219,16 +224,18 @@ function FormatCpuUsage()
 
 function unitformat($value)
 {
-    $value= (int)$value;
-    if ($value === 0)
-    {return '0b';}
-    $unit=array('b','kb','mb','gb','tb','pb');
-    $value = round($value/pow(1024,($i=floor(log($value,1024)))),2).' '.$unit[$i];
+    $value = (int)$value;
+    if ($value === 0) {
+        return '0b';
+    }
+    $unit = array('b', 'kb', 'mb', 'gb', 'tb', 'pb');
+    $value = round($value / pow(1024, ($i = floor(log($value, 1024)))), 2) . ' ' . $unit[$i];
     return $value;
 }
 
 
-function jsonResponse($data) {
+function jsonResponse($data)
+{
     $data = json_encode($data);
     loggeur("retour " . $data);
     header('Content-Type: application/json');
@@ -236,18 +243,19 @@ function jsonResponse($data) {
     die();
 }
 
-function checkSecurity() {
+function checkSecurity()
+{
     $error = FALSE;
     $tError = array();
 
-// si pas actif pas acces au page on die de suite on attend pas les autres checks ..
+    // si pas actif pas acces au page on die de suite on attend pas les autres checks ..
     if (spaActive() == NULL) {
         $str = "Tentative d'accés via superapix IP : " . get_client_ip();
         jsonResponse(array("ERROR" => $str));
         die(); // deja fait dans jsonresponse
     }
 
-// xml droit en ecriture
+    // xml droit en ecriture
     if (!is_writable(MOD_ROOT_XML) || !file_exists(MOD_ROOT_XML)) {
         $error = TRUE;
         $str = "Dossier " . MOD_ROOT_XML . " nom accessible ";
@@ -255,7 +263,7 @@ function checkSecurity() {
         loggeur($str);
     }
 
-//verification présence joueur spa
+    //verification présence joueur spa
     if (findSpaId() == NULL) {
         $error = TRUE;
         $str = "Aucun compte de service SuperApix";
@@ -263,7 +271,7 @@ function checkSecurity() {
         loggeur($str);
     }
 
-// verificatiopn des differentes constantes
+    // verificatiopn des differentes constantes
     $tConfigName = array("uni", "requete_max", "pays");
     foreach ($tConfigName as $sConfigName) {
         $value = strval(find_config($sConfigName));
@@ -275,8 +283,8 @@ function checkSecurity() {
         }
     }
 
-// config php
-    if (ini_get('allow_url_fopen') == 0) {
+    // config php
+    if (!ini_get('allow_url_fopen')) {
         $error = TRUE;
         $str = "Erreur Config PHP : allow_url_fopen " . ini_get('allow_url_fopen');
         $tError[] = $str;
@@ -292,23 +300,25 @@ function checkSecurity() {
 
 // Function to get the client IP address
 //http://stackoverflow.com/questions/15699101/get-the-client-ip-address-using-php
-function get_client_ip() {
+function get_client_ip()
+{
     global $_SERVER;
     $ipaddress = '';
-    if (isset($_SERVER['HTTP_CLIENT_IP']))
+    if (isset($_SERVER['HTTP_CLIENT_IP'])) {
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+    } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    else if (isset($_SERVER['HTTP_X_FORWARDED']))
+    } elseif (isset($_SERVER['HTTP_X_FORWARDED'])) {
         $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    else if (isset($_SERVER['HTTP_FORWARDED_FOR']))
+    } elseif (isset($_SERVER['HTTP_FORWARDED_FOR'])) {
         $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    else if (isset($_SERVER['HTTP_FORWARDED']))
+    } elseif (isset($_SERVER['HTTP_FORWARDED'])) {
         $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    else if (isset($_SERVER['REMOTE_ADDR']))
+    } elseif (isset($_SERVER['REMOTE_ADDR'])) {
         $ipaddress = $_SERVER['REMOTE_ADDR'];
-    else
+    } else {
         $ipaddress = 'UNKNOWN';
+    }
     return $ipaddress;
 }
 
@@ -320,14 +330,16 @@ function get_client_ip() {
  * @param type float
  * @return float temps total (microtime)
  */
-function GetTimer($utime) {
+function GetTimer($utime)
+{
     $uEndTimer = microtime(1);
     $uTotal = $uEndTimer - $utime;
 
     return abs($uTotal);
 }
 
-function traitement_universe($value) {
+function traitement_universe($value)
+{
 
     global $db, $user_data, $server_config, $pub_timestamp, $type;
     $table = TABLE_UNIVERS;
@@ -350,14 +362,12 @@ function traitement_universe($value) {
         $name_planete = strval($ta_planete_en_cours[0]['name']);
         $name_moon = empty($ta_planete_en_cours[0]->moon['name']) ? '' : strval($ta_planete_en_cours[0]->moon['name']);
         $moon = empty($name_moon) ? '0' : '1';
-//$sender_id =
-
-
+        //$sender_id =
 
         $query[] = "( " . $g . ", " . $s . " , " . $r . "  , " . $id_player . " , " . $datadate . " , '" . my_encodage($name_planete) . "' , '" . $name_moon . "' , '" . $moon . "'  , " . $sender_id . " ) ";
     }
 
-//$db->sql_query('REPLACE INTO '.$table.' ('.$fields.') VALUES '.implode(',', $query));
+    //$db->sql_query('REPLACE INTO '.$table.' ('.$fields.') VALUES '.implode(',', $query));
     mass_replace_into($table, $fields, $query);
 
 
@@ -374,7 +384,7 @@ function traitement_universe($value) {
     $sql .= " ON ";
     $sql .= "( A.id_alliance = P.id_ally  )   ";
     $sql .= " SET ";
-    $sql .= "  U.player_id   = T.id_player  ,  U.ally_id   = P.id_ally   , U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
+    $sql .= "  U.player_id   = T.id_player  ,  U.ally_id   = P.id_ally , U.moon = T.moon , U.name = T.name_planete  , U.ally = A.tag , U.player = P.name_player , U.status = P.status   , U.last_update = T.datadate   , U.last_update_user_id = T.sender_id  ";
     $sql .= " WHERE  ";
     $sql .= "  U.last_update <= T.datadate "; // <= pour permettre d ecraser la derniere importation si plantage de la derniere
 
@@ -389,43 +399,44 @@ function traitement_universe($value) {
     change_date($type, $timestamp);
 }
 
-function traitement_player($value) {
+function traitement_player($value)
+{
     global $db, $type;
     $timestamp = find_timestamp($value);
 
-     #3 etapes
+    #3 etapes
 
     //step 1
     //récuperation des data de l'api'
     $fields = "id_player, name_player, status, id_ally, datadate ";
     $querys = array();
-    $querys[] = "( 0, '' , '', 0 , ".$timestamp.") "; // player vide
+    $querys[] = "( 0, '' , '', 0 , " . $timestamp . ") "; // player vide
 
 
     foreach ($value->player as $ta_xml_player) {
         $querys[] = "( " . (int) $ta_xml_player[0]['id'] . ", '" . my_encodage(strval($ta_xml_player[0]['name'])) .
-                "' , '" . strval($ta_xml_player[0]['status']) . "', " . (int) strval($ta_xml_player[0]['alliance']) .
-                " , ".$timestamp." ) ";
+            "' , '" . strval($ta_xml_player[0]['status']) . "', " . (int) strval($ta_xml_player[0]['alliance']) .
+            " , " . $timestamp . " ) ";
     }
 
     $db->sql_query('REPLACE INTO ' . TABLE_PLAYERS . ' (' . $fields . ') VALUES ' .
-            implode(',', $querys));
+        implode(',', $querys));
 
     //step 2
     // copie des data plus recentes (xtense par exemple)
     $SQL = " REPLACE INTO";
-    $SQL .= "   ".TABLE_PLAYERS."  ";
+    $SQL .= "   " . TABLE_PLAYERS . "  ";
     $SQL .= "   ( ";
     $SQL .= "       `id_player`, `name_player`, `status`, `id_ally`, `datadate` ";
     $SQL .= "   ) ";
     $SQL .= "SELECT ";
-    $SQL .= "       `player_id`," ;
+    $SQL .= "       `player_id`,";
     $SQL .= "       `player`,";
     $SQL .= "       `status`,";
     $SQL .= "       `ally_id`,";
     $SQL .= "       `datadate`";
     $SQL .= " FROM ";
-    $SQL .= "       ".TABLE_GAME_PLAYER." ";
+    $SQL .= "       " . TABLE_GAME_PLAYER . " ";
     $SQL .= "WHERE ";
     $SQL .= "       `datadate` > $timestamp";
     $SQL .= ";";
@@ -436,7 +447,7 @@ function traitement_player($value) {
     //step 3
     // On transfert le tout pour avoir la base la plus a jour
     $SQL = " REPLACE INTO";
-    $SQL .= "   ".TABLE_GAME_PLAYER."";
+    $SQL .= "   " . TABLE_GAME_PLAYER . "";
     $SQL .= "   ( ";
     $SQL .= "       `player_id`, `player`, `status`, `ally_id`, `datadate`";
     $SQL .= "   ) ";
@@ -447,11 +458,9 @@ function traitement_player($value) {
     $SQL .= "        `id_ally`, ";
     $SQL .= "        `datadate` ";
     $SQL .= " FROM ";
-    $SQL .= "       ".TABLE_PLAYERS."";
+    $SQL .= "       " . TABLE_PLAYERS . "";
     $SQL .= ";";
     $db->sql_query($SQL);
-
-
 
     // a voir si possible de regrouper  requete en une seule ( replace into select avec des jointures semble impossible ....:s)
 
@@ -459,13 +468,14 @@ function traitement_player($value) {
     change_date($type, $timestamp);
 }
 
-function traitement_alliance($value) {
+function traitement_alliance($value)
+{
     global $db, $type;
     $timestamp = find_timestamp($value);
 
     $fields = "id_alliance, tag, nb , name_ally , datadate ";
     $querys = array();
-    $querys[] = "( 0 , '' , 0 ,  '' , ".$timestamp.") "; // ally vide
+    $querys[] = "( 0 , '' , 0 ,  '' , " . $timestamp . ") "; // ally vide
 
 
 
@@ -478,24 +488,24 @@ function traitement_alliance($value) {
     }
 
     $db->sql_query('REPLACE INTO ' . TABLE_ALLIANCES . ' (' . $fields . ') VALUES ' .
-            implode(',', $querys));
+        implode(',', $querys));
 
 
     //step 2
     // copie des data plus recentes (xtense par exemple)
     $SQL = " REPLACE INTO";
-    $SQL .= "   ".TABLE_ALLIANCES."  ";
+    $SQL .= "   " . TABLE_ALLIANCES . "  ";
     $SQL .= "   ( ";
     $SQL .= "       `id_alliance`, `tag`, `nb`, `name_ally`, `datadate` ";
     $SQL .= "   ) ";
     $SQL .= "SELECT ";
-    $SQL .= "       `ally_id`," ;
+    $SQL .= "       `ally_id`,";
     $SQL .= "       `tag`,";
     $SQL .= "       `number_member`,";
     $SQL .= "       `ally`,";
-    $SQL .= "       `datadate` " ;
+    $SQL .= "       `datadate` ";
     $SQL .= " FROM  ";
-    $SQL .= "       ".TABLE_GAME_ALLY." ";
+    $SQL .= "       " . TABLE_GAME_ALLY . " ";
     $SQL .= "WHERE ";
     $SQL .= "       `datadate` > $timestamp";
     $SQL .= ";";
@@ -506,7 +516,7 @@ function traitement_alliance($value) {
     //step 3
     // On transfert le tout pour avoir la base la plus a jour
     $SQL = " REPLACE INTO";
-    $SQL .= "   ".TABLE_GAME_ALLY."";
+    $SQL .= "   " . TABLE_GAME_ALLY . "";
     $SQL .= "   ( ";
     $SQL .= "       `ally_id`, `tag`, `number_member`, `ally`, `datadate`";
     $SQL .= "   ) ";
@@ -517,62 +527,53 @@ function traitement_alliance($value) {
     $SQL .= "        `name_ally`, ";
     $SQL .= "        `datadate` ";
     $SQL .= " FROM ";
-    $SQL .= "       ".TABLE_ALLIANCES."";
+    $SQL .= "       " . TABLE_ALLIANCES . "";
     $SQL .= ";";
     $db->sql_query($SQL);
-
-
-
-
-
 
     insert_config("last_" . $type, $timestamp);
     change_date($type, $timestamp);
 }
 
-function traitement_alliance_rank($value, $type) {
+function traitement_alliance_rank($value, $type)
+{
     global $db, $type, $user_data;
     $fields = "datadate, rank, id_alliance, points , sender_id ";
     $querys = array();
     $attribut = array();
 
-// on recupere les attribut :
-
-
+    // on recupere les attribut :
     $timestamp = formatage_timestamp_for_rank(find_timestamp($value));
-
-
 
     foreach ($value->alliance as $ta_xml_rank) {
 
         $datadate = $timestamp;
         $rank = (int) strval($ta_xml_rank[0]['position']);
         $id_alliance = (int) intval($ta_xml_rank[0]['id']);
-        $points = (int) intval($ta_xml_rank[0]['score']);
-        ;
+        $points = (int) intval($ta_xml_rank[0]['score']);;
 
         $temp_query = "( " . $timestamp . ", " . $rank . ", '" . $id_alliance . "' , '" . $points . "' , " . $user_data['user_id'] . " ) ";
         $querys[] = $temp_query;
     }
 
     $db->sql_query('REPLACE INTO ' . TABLE_RANK_ALLIANCES . ' (' . $fields . ') VALUES ' .
-            implode(',', $querys));
+        implode(',', $querys));
 
 
 
-// on fait la jointure qui va bien pour injecter le bon classement
+    // on fait la jointure qui va bien pour injecter le bon classement
 
     $sql = "REPLACE INTO " . find_table_rank_alliance($type) . "  ";
     $sql .= " ( `datadate`, `rank`, `ally`, `ally_id`, `number_member`, `points` , `sender_id`) ";
     $sql .= " SELECT sra.datadate, sra.rank, sa.tag, sra.id_alliance , sa.nb , sra.points , sra.sender_id ";
     $sql .= " FROM  " . TABLE_ALLIANCES . " as sa ";
     $sql .= "INNER JOIN " . TABLE_RANK_ALLIANCES . " as sra ";
-    $sql .= " on sa.id_alliance	= sra.id_alliance ; ";
+    $sql .= " on sa.id_alliance = sra.id_alliance ; ";
 
     $db->sql_query($sql);
 
 
-// on efface la table rank
+    // on efface la table rank
     $sql = "DELETE FROM " . TABLE_RANK_ALLIANCES . " ;";
     $db->sql_query($sql);
 
@@ -580,7 +581,8 @@ function traitement_alliance_rank($value, $type) {
     change_date($type, $timestamp);
 }
 
-function find_table_rank_alliance($type) {
+function find_table_rank_alliance($type)
+{
     $tab = array();
     $tab = array(
         "CST_ALLIANCES_RANK_POINTS" => TABLE_RANK_ALLY_POINTS,
@@ -596,13 +598,14 @@ function find_table_rank_alliance($type) {
     return $retour;
 }
 
-function traitement_player_rank($value, $type) {
+function traitement_player_rank($value, $type)
+{
     global $db, $type, $user_data;
     $fields = "datadate, rank, id, points , nb_spacecraft , sender_id ";
     $querys = array();
     $attribut = array();
 
-// on recupere les attribut :
+    // on recupere les attribut :
 
 
     $timestamp = formatage_timestamp_for_rank(find_timestamp($value));
@@ -623,27 +626,27 @@ function traitement_player_rank($value, $type) {
     }
 
     $db->sql_query('REPLACE INTO ' . TABLE_RANK_PLAYERS . ' (' . $fields . ') VALUES ' .
-            implode(',', $querys));
+        implode(',', $querys));
 
 
 
     $table = find_table_rank_player($type);
-// on fait la jointure qui va bien pour injecter le bon classement
+    // on fait la jointure qui va bien pour injecter le bon classement
     $sql = "REPLACE INTO " . $table . "  ";
-    $sql .= ($type != "CST_PLAYERS_RANK_MILITARY" ) ? " ( `datadate`, `rank`, `player`, `player_id`, `ally`, `ally_id`, `points` , `sender_id`) " : " ( `datadate`, `rank`, `player`, `player_id`, `ally`, `ally_id` , `points` , `nb_spacecraft` ,`sender_id`) ";
-    $sql .= ($type != "CST_PLAYERS_RANK_MILITARY" ) ? " SELECT srp.datadate, srp.rank,sp.name_player  , sp.id_player  ,sa.tag,  sp.id_ally,  srp.points , srp.sender_id " : " SELECT srp.datadate, srp.rank,sp.name_player , sp.id_player   ,sa.tag,sp.id_ally, srp.points , srp.nb_spacecraft,srp.sender_id ";
+    $sql .= ($type != "CST_PLAYERS_RANK_MILITARY") ? " ( `datadate`, `rank`, `player`, `player_id`, `ally`, `ally_id`, `points` , `sender_id`) " : " ( `datadate`, `rank`, `player`, `player_id`, `ally`, `ally_id` , `points` , `nb_spacecraft` ,`sender_id`) ";
+    $sql .= ($type != "CST_PLAYERS_RANK_MILITARY") ? " SELECT srp.datadate, srp.rank,sp.name_player  , sp.id_player  ,sa.tag,  sp.id_ally,  srp.points , srp.sender_id " : " SELECT srp.datadate, srp.rank,sp.name_player , sp.id_player   ,sa.tag,sp.id_ally, srp.points , srp.nb_spacecraft,srp.sender_id ";
     $sql .= " FROM  " . TABLE_PLAYERS . " as sp ";
     $sql .= "INNER JOIN " . TABLE_RANK_PLAYERS . " as srp ";
-    $sql .= " on sp.id_player	= srp.id ";
+    $sql .= " on sp.id_player   = srp.id ";
     $sql .= "INNER JOIN " . TABLE_ALLIANCES . " as sa ";
-    $sql .= " on sa.id_alliance	= sp.id_ally ; ";
+    $sql .= " on sa.id_alliance = sp.id_ally ; ";
 
 
 
     $db->sql_query($sql);
 
 
-// on efface la table rank
+    // on efface la table rank
     $sql = "DELETE FROM " . TABLE_RANK_PLAYERS . " ;";
     $db->sql_query($sql);
 
@@ -651,7 +654,8 @@ function traitement_player_rank($value, $type) {
     change_date($type, $timestamp);
 }
 
-function find_table_rank_player($type) {
+function find_table_rank_player($type)
+{
     $tab = array();
     $tab = array(
         "CST_PLAYERS_RANK_POINTS" => TABLE_RANK_PLAYER_POINTS,
@@ -667,7 +671,8 @@ function find_table_rank_player($type) {
     return $retour;
 }
 
-function find_timestamp($value) {
+function find_timestamp($value)
+{
     foreach ($value->attributes() as $a => $b) {
         $attribut[$a] = strval($b);
     }
@@ -677,7 +682,8 @@ function find_timestamp($value) {
 }
 
 /// permet de mettre à niveau toutes les tables qui n'apparaissent pas dans le universe.xml
-function prepare_table_universe($datadate) {
+function prepare_table_universe($datadate)
+{
     global $db, $user_data, $server_config;
     $table = TABLE_UNIVERSE;
     $spaId = findSpaId();
@@ -695,7 +701,7 @@ function prepare_table_universe($datadate) {
     $sql .= " last_update = '" . $datadate . "' ,";
     $sql .= " name =  '', ";
     $sql .= " moon = '0', ";
-    $sql .= " last_update_user_id = '".$spaId."' ";
+    $sql .= " last_update_user_id = '" . $spaId . "' ";
 
     $sql .= " where last_update < '" . (int) $datadate . "' ";
 
@@ -703,7 +709,8 @@ function prepare_table_universe($datadate) {
     $db->sql_query($sql);
 }
 
-function findSpaId() {
+function findSpaId()
+{
     global $db;
     $sql = "select user_id from " . TABLE_USER . " WHERE user_name = '" . constant("SPA_PLAYER") . "';";
     $result = $db->sql_query($sql);
@@ -714,35 +721,37 @@ function findSpaId() {
 }
 
 // le chemin distant renvoit il a un xml ?????
-function DistantIsFileIXml($url) {
+function DistantIsFileIXml($url)
+{
     if ($stream = fopen($url, 'r')) {
         // 5 premier octet => verif bidons
         $sStream = stream_get_contents($stream, 5);
         if ($sStream == "<?xml") {
             loggeur("check fichier XML ok " . $url);
-            return TRUE;
+            return true;
         }
         loggeur("retour  " . $sStream);
         loggeur("check fichier XML No Ok " . $url);
         fclose($stream);
     }
-    return FALSE;
+    return false;
 }
 
 //changen la date du fichier xml pour correspondre à la date du timestamp en base ( evite décalage ... )
-function change_date($path, $time) {
+function change_date($path, $time)
+{
     $path = MOD_ROOT_XML . $path . ".xml";
     touch($path, $time);
 }
 
-function fileInfoExist($sUri) {
+function fileInfoExist($sUri)
+{
 
-     $sUri = str_replace("cron.php", "info.txt", $sUri); // récupération url
-     $response = @get_headers($sUri, 1);
-     if (isset($response[0]) &&  trim($response[0]) == "HTTP/1.1 200 OK" )
-     {
-         return true;
-     }
+    $sUri = str_replace("cron.php", "info.txt", $sUri); // récupération url
+    $response = @get_headers($sUri, 1);
+    if (isset($response[0]) &&  trim($response[0]) == "HTTP/1.1 200 OK") {
+        return true;
+    }
 
-      return false;
+    return false;
 }

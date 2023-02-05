@@ -15,7 +15,7 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
 include_once("mod/superapix/common.php");
 
-if (ini_get('allow_url_fopen') == 0) {
+if (!ini_get('allow_url_fopen')) {
     echo " allow_url_fopen non activé, verifier votre configuration php ";
     die();
 }
@@ -30,13 +30,12 @@ if (isset($pub_reinit)) {
     reinit();
     header("Refresh: 0; url=index.php?action=superapix&admin=1");
     die();
-
 }
 
 
 
 
-// point d access à supprimer 
+// point d access à supprimer
 if (isset($pub_sub_action) && $pub_sub_action == "cross") {
     require_once("views/page_header.php");
     // avant traitement on met la progress barre
@@ -78,7 +77,7 @@ if (isset($pub_step) && is_numeric($pub_step)) {
     }
 
     include(MOD_ROOT_JS . "cst_javascript.php");
-//  echo '<script src="'.MOD_ROOT_JS.'superapix.js" type="text/javascript"> </script>';
+    //  echo '<script src="'.MOD_ROOT_JS.'superapix.js" type="text/javascript"> </script>';
     // echo '<script src="'.MOD_ROOT_JS.'player.js" type="text/javascript"> </script>';
     //echo '<script src="'.MOD_ROOT_JS.'alliance.js" type="text/javascript"> </script>';
     //echo '<script src="'.MOD_ROOT_JS.'rank_alliance.js" type="text/javascript"> </script>';
@@ -98,18 +97,13 @@ if (!IsXtenseInstalled()) {
     $errormsg = array();
     $errormsg[] = "Le mod xtense doit etre installé !!!";
     include(MOD_ROOT_VUE . "error.php");
-}
-elseif (isset($pub_help))
-{
-	//page d'aide
-	include(MOD_ROOT_VUE . "help.php");
-}
-else
-{
-	// page d acceuil
-	include(MOD_ROOT_VUE . "index.php");
+} elseif (isset($pub_help)) {
+    //page d'aide
+    include(MOD_ROOT_VUE . "help.php");
+} else {
+    // page d acceuil
+    include(MOD_ROOT_VUE . "index.php");
 }
 
 
 require_once("views/page_tail.php");
-?>
