@@ -95,7 +95,7 @@ include_once MOD_ROOT_VUE . "css.php";
         <ul>
             <?php foreach ($tab as $key => $value) : ?>
                 <li>
-                    <?php echo lang($value); ?>: <strong><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></strong>
+                    <?php echo lang($value); ?>: <strong><?php echo date("d M Y H:i", ((int) find_config("last_" . $value))); ?></strong>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -327,7 +327,7 @@ include_once MOD_ROOT_VUE . "css.php";
         <?php foreach ($tab as $key => $value) : ?>
                                                                                             <tr>
                                                                                                 <th width="60%"><?php echo lang($value); ?></th>
-                                                                                                <th><?php echo strftime("%d %b %Y %H:%M", ((int) find_config("last_" . $value))); ?></th>
+                                                                                                <th><?php echo date("d M Y H:i", ((int) find_config("last_" . $value))); ?></th>
                                                                                             </tr>
         <?php endforeach; ?>
                 </table>
