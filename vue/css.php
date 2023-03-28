@@ -299,6 +299,5 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
         border-radius: 15px;
 
     }
-
-    }
+  
 </style>

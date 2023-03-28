@@ -66,8 +66,8 @@ include_once MOD_ROOT_VUE . "css.php";
         <?php endif; ?>
 
         <p>Superapix est un mod Ogspy permettant de mettre à jour depuis l'api XML d'ogame</p>
-        <p>Celui ci est maintenant profilé pour automatiquement se mettre à jour sans actions utilisateurs </p>
-        <?php if ($tcheckSecurity != NULL) : ?>
+        <p>Celui ci est maintenant prévu pour automatiquement se mettre à jour sans actions utilisateurs </p>
+        <?php if ($tcheckSecurity != null) : ?>
             <p class="error">
                 La configuration du mod semble incorrecte (<?php echo count($tcheckSecurity); ?> erreur(s)).
             </p>
@@ -75,8 +75,6 @@ include_once MOD_ROOT_VUE . "css.php";
             <p class="success">
                 La configuration du mod semble correcte
             </p>
-
-
             <h2>Mettre à jour</h2>
 
             <progress id="avancement" class="progress" value="0" max="39">
@@ -84,18 +82,16 @@ include_once MOD_ROOT_VUE . "css.php";
             </progress>
             <div id="content"></div>
             <a class="btn" onclick="startStepping()">Mettre à jour </a>
-
-
         <?php endif; ?>
 
 
-        <h2><?php echo help("liste des dernieres mises à jour"); ?>Dernieres mise à jour</h2>
+        <h2><?= "<h2>Dernières mise à jour</h2>" ?>
 
 
         <ul>
             <?php foreach ($tab as $key => $value) : ?>
                 <li>
-                    <?php echo lang($value); ?>: <strong><?php echo date("d M Y H:i", ((int) find_config("last_" . $value))); ?></strong>
+                    <?= lang($value) .": " . date("d M Y H:i", ((int) find_config("last_" . $value)))?>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -126,7 +122,7 @@ include_once MOD_ROOT_VUE . "css.php";
 
     <div class="mod">
 
-        <a href="index.php?action=superapix">Retour</a>
+        <a class="btn" href="index.php?action=superapix">Retour</a>
 
         <form method="post" action="index.php?action=superapix&admin=1">
             <legend>Administration</legend>
