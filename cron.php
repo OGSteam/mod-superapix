@@ -78,7 +78,12 @@ foreach ($tNameXml as $uId => $sNameXml) {
             copy($url, MOD_ROOT_XML . $sNameXml . '.xml');
             loggeur("Telechargement " . $sNameXml);
             logmemoryusage("fin Telechargement");
-            jsonResponse(array("ok" => "Telechargement $sNameXml", "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "AtWork"));
+
+            // pause avant reponse json => erreur 503 si appel API trop rapide
+            sleep( 1 );
+            logmemoryusage("fin Pause 1 s");
+            jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "AtWork"));
+
         } else {
             // si on arrive la c que le xml est ok mais pas encore la bdd
             loggeur("xml " . $sNameXml . " est ok, Injection BDD");
