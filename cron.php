@@ -80,8 +80,9 @@ foreach ($tNameXml as $uId => $sNameXml) {
             logmemoryusage("fin Telechargement");
 
             // pause avant reponse json => erreur 503 si appel API trop rapide
-            sleep( 1 );
-            logmemoryusage("fin Pause 1 s");
+            $tempo = (int) find_config("tempo");
+            sleep( $tempo );
+            logmemoryusage("fin Pause ".$tempo."s");
             jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "AtWork"));
 
         } else {

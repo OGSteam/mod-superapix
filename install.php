@@ -34,6 +34,7 @@ if ($security == true) {
     insert_config("uni", 0);
     insert_config("dev", 0);
     insert_config("pays", "fr");
+    insert_config("tempo", 1);
 
     // installation d un joueur
     newPlayer();

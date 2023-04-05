@@ -34,6 +34,11 @@ if (isset($pub_requete_max) && $adminview == 1) {
 if (isset($pub_pays) && strlen($pub_pays) < 4 && $adminview == 1) {
     insert_config("pays", $pub_pays);
 }
+if (isset($pub_tempo) && $adminview == 1) {
+    $tempo= (int)$pub_tempo >3 ? 3 : (int)$pub_tempo; // inf a 3 s
+    $tempo= (int)$pub_tempo < 1 ? 1 : (int)$tempo; // sup a 1 s
+    insert_config("tempo", (int)$tempo);
+}
 if (isset($pub_debug) && $adminview == 1) {
     insert_config("debug", (int) $pub_debug);
 }
@@ -159,6 +164,16 @@ include_once MOD_ROOT_VUE . "css.php";
                 </span>
             </div>
 
+
+            <div class="form-grp tooltip">
+                <label for="name">Temporisation API <span class="required">*</span></label>
+                <input type="text" id="tempo" name="tempo" maxlength="1" value="<?php echo (int) find_config("tempo"); ?>" placeholder="1" required="required" />
+                <span>
+                    <div class="pop-title">Temporisation</div>
+                    Temps d attente entre deux appels.<br /> 1, 2 ou 3 seconde(s).
+                </span>
+            </div>            
+            
             <div class="form-grp tooltip">
                 <label for="enquiry">Mode developpeur </label>
                 <select id="debug" name="debug">
