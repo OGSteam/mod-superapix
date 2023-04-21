@@ -24,7 +24,7 @@ function IsXtenseInstalled()
     if ($db->sql_numrows($result) != 0) {
         return TRUE;
     }
-    return false;
+    return FALSE;
 }
 
 function AddCallback($appels, $uIdMod)

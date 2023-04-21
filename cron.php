@@ -29,7 +29,7 @@ include_once("mod/superapix/common.php");
 
 
 // verif
-if (checkSecurity() != null) {
+if (checkSecurity() != NULL) {
     loggeur(array("ERREUR checkSecurity"));
     loggeur(checkSecurity());
     jsonResponse(array("ERROR" => "checkSecurity error"));
@@ -72,7 +72,7 @@ foreach ($tNameXml as $uId => $sNameXml) {
             $url = uni_replace($sNameXml);
             loggeur("Telecharement XML " . $sNameXml . " " . $url);
             if (!DistantIsFileIXml($url)) {
-                jsonResponse(array("nook" => "Erreur XML distant $sNameXml" . $url, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "Error"));
+                jsonResponse(array("nook" => "Erreur XML distant " . $url, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "Error"));
             }
             logmemoryusage("Telechargement");
             copy($url, MOD_ROOT_XML . $sNameXml . '.xml');
@@ -84,7 +84,6 @@ foreach ($tNameXml as $uId => $sNameXml) {
             sleep( $tempo );
             logmemoryusage("fin Pause ".$tempo."s");
             jsonResponse(array("ok" => "Telechargement " . $sNameXml, "temps" => GetTimer($uStartTimer), "CPU" => getCPUUsage(), "memory" => getMemoryUsage(), "State" => "AtWork"));
-
         } else {
             // si on arrive la c que le xml est ok mais pas encore la bdd
             loggeur("xml " . $sNameXml . " est ok, Injection BDD");
@@ -103,16 +102,16 @@ foreach ($tNameXml as $uId => $sNameXml) {
             if ($sNameXml == "CST_PLAYERS") {
                 traitement_player($value);
                 logmemoryusage("fin traitement_player");
-            } elseif ($sNameXml == "CST_ALLIANCES") {
+            } else if ($sNameXml == "CST_ALLIANCES") {
                 traitement_alliance($value);
                 logmemoryusage("fin traitement_alliance");
-            } elseif ($sNameXml == "CST_UNIVERSE") {
+            } else if ($sNameXml == "CST_UNIVERSE") {
                 traitement_universe($value);
                 logmemoryusage("fin traitement_universe");
-            } elseif (strstr($sNameXml, "CST_ALLIANCES_RANK_")) {
+            } else if (strstr($sNameXml, "CST_ALLIANCES_RANK_")) {
                 traitement_alliance_rank($value, $sNameXml);
                 logmemoryusage("fin traitement_alliance_rank " . $sNameXml);
-            } elseif (strstr($sNameXml, "CST_PLAYERS_RANK_")) {
+            } else if (strstr($sNameXml, "CST_PLAYERS_RANK_")) {
                 traitement_player_rank($value, $sNameXml);
                 logmemoryusage("fin traitement_player_rank " . $sNameXml);
             } else {

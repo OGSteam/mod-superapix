@@ -245,7 +245,7 @@ function jsonResponse($data)
 
 function checkSecurity()
 {
-    $error = false;
+    $error = FALSE;
     $tError = array();
 
     // si pas actif pas acces au page on die de suite on attend pas les autres checks ..
@@ -619,7 +619,7 @@ function traitement_player_rank($value, $type)
         $rank = strval($ta_xml_rank[0]['position']);
         $id = intval($ta_xml_rank[0]['id']);
         $points = intval($ta_xml_rank[0]['score']);
-        $ships = (int) ($ta_xml_rank[0]['ships']) ?? 0;
+        $ships = (int) ($ta_xml_rank[0]['ships']);
         $sender_id = (int) $user_data['user_id'];
 
         $temp_query = $temp_query = "( " . $datadate . ", " . $rank . ", " . $id . " , " . $points . " , " . (int) $ships . " , " . $user_data['user_id'] . " ) ";
