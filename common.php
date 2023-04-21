@@ -19,9 +19,9 @@ define("TABLE_ALLIANCES", $table_prefix . MOD_NAME . "_alliances");
 define("TABLE_RANK_ALLIANCES", $table_prefix . MOD_NAME . "_rank_alliance");
 define("TABLE_RANK_PLAYERS", $table_prefix . MOD_NAME . "_rank_player");
 define("TABLE_UNIVERS", $table_prefix . MOD_NAME . "_universe");
-
-define("TABLE_XTENSE_CALLBACKS", $table_prefix . "xtense_callbacks"); // xtense Callbacks
-
+if (!defined('TABLE_XTENSE_CALLBACKS')) {
+    define("TABLE_XTENSE_CALLBACKS", $table_prefix . "xtense_callbacks"); // xtense Callbacks
+}
 // paths
 define("MOD_ROOT", "mod/" . MOD_NAME . "/");
 define("MOD_ROOT_MODEL", MOD_ROOT . "model/");

@@ -1,5 +1,8 @@
 $(document).ready(function () {
-  next_step(step);
+  //alert($(location).attr('href'));
+
+  next_step(step)
+
 });
 
 function next_step(nb) {
