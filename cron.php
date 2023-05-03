@@ -102,16 +102,16 @@ foreach ($tNameXml as $uId => $sNameXml) {
             if ($sNameXml == "CST_PLAYERS") {
                 traitement_player($value);
                 logmemoryusage("fin traitement_player");
-            } else if ($sNameXml == "CST_ALLIANCES") {
+            } elseif ($sNameXml == "CST_ALLIANCES") {
                 traitement_alliance($value);
                 logmemoryusage("fin traitement_alliance");
-            } else if ($sNameXml == "CST_UNIVERSE") {
+            } elseif ($sNameXml == "CST_UNIVERSE") {
                 traitement_universe($value);
                 logmemoryusage("fin traitement_universe");
-            } else if (strstr($sNameXml, "CST_ALLIANCES_RANK_")) {
+            } elseif (strstr($sNameXml, "CST_ALLIANCES_RANK_")) {
                 traitement_alliance_rank($value, $sNameXml);
                 logmemoryusage("fin traitement_alliance_rank " . $sNameXml);
-            } else if (strstr($sNameXml, "CST_PLAYERS_RANK_")) {
+            } elseif (strstr($sNameXml, "CST_PLAYERS_RANK_")) {
                 traitement_player_rank($value, $sNameXml);
                 logmemoryusage("fin traitement_player_rank " . $sNameXml);
             } else {

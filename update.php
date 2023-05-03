@@ -21,7 +21,7 @@ if (file_exists($filename)) $file = file($filename);
 $security = false;
 $security = update_mod('superapix', 'superapix');
 
-if ($security == true) {
+if ($security) {
     // on ajoute
 
     insert_config("requete_max", 500);
