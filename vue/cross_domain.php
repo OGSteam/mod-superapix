@@ -3,8 +3,8 @@
 /**
  * @package [Mod] Superapix
  * @author Machine
- * @copyright Copyright &copy; 2016, http://ogsteam.eu/
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @copyright Copyright &copy; 2016, https://ogsteam.eu/
+ * @license https://opensource.org/licenses/gpl-license.php GNU Public License
  */
 
 
@@ -94,7 +94,7 @@ if (!file_exists(MOD_ROOT_XML . $pub_url . '.xml')) {
 }
 
   //var_dump($url);
-//http://beubeulblog.fr/anges/ogspy/index.php?action=superapix($pub_url);
+//https://beubeulblog.fr/anges/ogspy/index.php?action=superapix($pub_url);
 
 
  //  $url = uni_replace(find_config('uni'),$url);
