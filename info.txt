@@ -1,1 +1,0 @@
-Module de r&eacute;cuperation des informations de l'api ogame via votre navigateur
