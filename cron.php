@@ -3,8 +3,8 @@
 /**
  * @package [Mod] Superapix
  * @author Machine
- * @copyright Copyright &copy; 2016, http://ogsteam.eu/
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @copyright Copyright &copy; 2016, https://ogsteam.eu/
+ * @license https://opensource.org/licenses/gpl-license.php GNU Public License
  */
 // plagiat xtense
 define('IN_SPYOGAME', true);

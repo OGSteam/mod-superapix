@@ -3,8 +3,8 @@
 /**
  * @package [Mod] Superapix
  * @author Machine
- * @copyright Copyright &copy; 2016, http://ogsteam.eu/
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @copyright Copyright &copy; 2016, https://ogsteam.eu/
+ * @license https://opensource.org/licenses/gpl-license.php GNU Public License
  */
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
@@ -65,7 +65,7 @@ function _is_out_of_date($type, $origin)
 {
 
 
-    // cf : http://board.fr.ogame.gameforge.com/board1474-ogame-le-jeu/board641-les-cr-ations-ogamiennes/board642-logiciels-tableurs/1053082-ogame-api/
+    // cf : https://board.fr.ogame.gameforge.com/board1474-ogame-le-jeu/board641-les-cr-ations-ogamiennes/board642-logiciels-tableurs/1053082-ogame-api/
     // dans les limites d'ogspy
     $datadate = array(
         "CST_PLAYERS" => "24",
@@ -299,7 +299,7 @@ function checkSecurity()
 }
 
 // Function to get the client IP address
-//http://stackoverflow.com/questions/15699101/get-the-client-ip-address-using-php
+//https://stackoverflow.com/questions/15699101/get-the-client-ip-address-using-php
 function get_client_ip()
 {
     global $_SERVER;
