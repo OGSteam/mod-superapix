@@ -722,18 +722,23 @@ function findSpaId()
 }
 
 // le chemin distant renvoit il a un xml ?????
-function DistantIsFileIXml($url)
-{
-    if ($stream = fopen($url, 'r')) {
-        // 5 premier octet => verif bidons
-        $sStream = stream_get_contents($stream, 5);
-        if ($sStream == "<?xml") {
-            loggeur("check fichier XML ok " . $url);
-            return true;
+function DistantIsFileIXml($url) {
+    try {
+         if ($stream = fopen($url, 'r')) {
+            // 5 premier octet => verif bidons
+            $sStream = stream_get_contents($stream, 5);
+            if ($sStream == "<?xml") {
+                loggeur("check fichier XML ok " . $url);
+                return true;
+            }
+            loggeur("retour  " . $sStream);
+            loggeur("check fichier XML No Ok " . $url);
+            fclose($stream);
         }
-        loggeur("retour  " . $sStream);
-        loggeur("check fichier XML No Ok " . $url);
-        fclose($stream);
+     } catch (Exception $e) {
+         loggeur("fichier non disponible via fopen " . $url);
+         loggeur($e->getMessage());
+         return false;
     }
     return false;
 }
