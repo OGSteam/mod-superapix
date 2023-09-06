@@ -300,5 +300,4 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
 
     }
 
-    }
 </style>
