@@ -15,8 +15,6 @@ $tcheckSecurity = checkSecurity();
 $tcallbacks = constante_xtense_callbacks();
 $uIdSuperapix = spaModId();
 
-
-
 //include_once MOD_ROOT_VUE . "css.php";
 
 ?>
@@ -26,7 +24,7 @@ $uIdSuperapix = spaModId();
     <p class="og-content">Celui ci est maintenant profilé pour automatiquement se mettre à jour sans actions utilisateurs </p>
 </div>
 <?php if ($tcheckSecurity != NULL) : ?>
-    <div class="og-msg og-msg-error ">
+    <div class="og-msg og-msg-danger ">
         <h3 class="og-title">Mod Superapix</h3>
         <p class="og-content"> La configuration du mod semble incorrecte (<?php echo count($tcheckSecurity); ?> erreur(s)).</p>
     </div>

@@ -108,8 +108,8 @@ switch ($pub_subaction) {
     case "superapix":
         include(MOD_ROOT_VUE . "index.php");
         break;
-    case 2:
-        echo "i equals 2";
+    case "xml":
+        include(MOD_ROOT_VUE . "xml.php");
         break;
     default:
         include(MOD_ROOT_VUE . "index.php");

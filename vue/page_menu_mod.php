@@ -12,6 +12,7 @@ $pub_subaction = (isset($pub_subaction)) ? $pub_subaction : "superapix";
 $activelink = ($pub_subaction == "link") ? "active" : "";
 $activeadmin = ($pub_subaction == "admin") ? "active" : "";
 $activesuperadmin = ($pub_subaction == "superapix") ? "active" : "";
+$activexml = ($pub_subaction == "xml") ? "active" : "";
 
 ?>
 
@@ -26,7 +27,11 @@ $activesuperadmin = ($pub_subaction == "superapix") ? "active" : "";
             Liens
         </a>
     </div>
-    <div class="nav-page-menu-item  <?php echo $activeadmin; ?> ">
+    <div class="nav-page-menu-item  <?php echo $activexml; ?> ">
+        <a class="nav-page-menu-link" href="index.php?action=superapix&amp;subaction=xml">
+            Info Serveur
+        </a>
+    </div>    <div class="nav-page-menu-item  <?php echo $activeadmin; ?> ">
         <a class="nav-page-menu-link" href="index.php?action=superapix&amp;subaction=admin">
             Administration
         </a>

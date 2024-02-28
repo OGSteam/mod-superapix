@@ -7,7 +7,8 @@ $(document).ready(function () {
 
 function next_step(nb) {
   nb = nb + 1;
-  if (nb == 19) { window.location = "index.php?action=superapix&step=0"; }
+  limit = count(constante_stepper()) +1 ;
+  if (nb == limit) { window.location = "index.php?action=superapix&step=0"; }
   else {
     window.location = "index.php?action=superapix&sub_action=cross&step=" + nb;
   }

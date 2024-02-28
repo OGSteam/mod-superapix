@@ -52,7 +52,7 @@ function uni_replace($string)
 
 function constante_array()
 {
-    $tab = array("CST_PLAYERS" => CST_PLAYERS, "CST_ALLIANCES" => CST_ALLIANCES);
+    $tab = array("CST_PLAYERS" => CST_PLAYERS, "CST_ALLIANCES" => CST_ALLIANCES , "CST_SERVERDATA" => CST_SERVERDATA);
     $retour = array_merge($tab, constante_array_rank_alliance(), constante_array_rank_player(), constante_array_universe());
     return $retour;
 }
@@ -107,11 +107,10 @@ function constante_stepper()
     global $server_config;
 
     $retour = array();
-    $tab = array("CST_PLAYERS" => CST_PLAYERS, "CST_ALLIANCES" => CST_ALLIANCES);
-    $retour = array_merge($tab, constante_array_rank_alliance(), constante_array_rank_player());
-
+    //$tab = array("CST_PLAYERS" => CST_PLAYERS, "CST_ALLIANCES" => CST_ALLIANCES);
+    //$retour = array_merge($tab, constante_array_rank_alliance(), constante_array_rank_player());
+    $retour = constante_array();
     $my_retour = array();
-
 
     foreach ($retour as $key => $val) {
         $my_retour[] = $key;
@@ -121,7 +120,7 @@ function constante_stepper()
     //    for ($i = 1; $i <= $server_config['num_of_galaxies']; $i++) {
     //     $my_retour[] = "CST_UNIVERSE_".$i ;
     //  }
-    $my_retour[] = "CST_UNIVERSE";
+   // $my_retour[] = "CST_UNIVERSE";
 
     return $my_retour;
 }

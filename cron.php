@@ -114,6 +114,9 @@ foreach ($tNameXml as $uId => $sNameXml) {
             } elseif (strstr($sNameXml, "CST_PLAYERS_RANK_")) {
                 traitement_player_rank($value, $sNameXml);
                 logmemoryusage("fin traitement_player_rank " . $sNameXml);
+            } elseif (strstr($sNameXml, "CST_SERVERDATA")) {
+                traitement_serverdata($value);
+                logmemoryusage("Pas de traitement d'insertion pour  " . $sNameXml);
             } else {
                 // si pas pris en charge
                 jsonResponse(array("ERROR" => "Moi pas comprendre", "temps" => GetTimer($uStartTimer), "State" => "Error"));

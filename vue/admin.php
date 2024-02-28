@@ -230,7 +230,7 @@ if ($adminview == 1) {
     <?php if ($tcheckSecurity != NULL) :
     ?>
         <?php foreach ($tcheckSecurity as $error) : ?>
-            <div class="og-msg og-msg-error">
+            <div class="og-msg og-msg-danger">
                 <p class="og-content"><?php echo $error; ?> </p>
                 <br>
 

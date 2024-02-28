@@ -10,11 +10,13 @@ if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX'))
     die("Hacking attempt");
 
 // par defaut 19, nb de colonne dans l array
-function progress_barre($value, $nom, $valueMax = 19)
+function progress_barre($value, $nom, $valueMax = 21)
 {
     $pct = (int) ((int) $value * 100 / (int) $valueMax);
+    $retour = "";
 
-    $retour = '<progress value="' . $pct . '" max="100" width="80%" height="20%"  background-color="red">' . $nom . ' (' . $pct . '%)</progress>';
+
+    $retour .= '<progress value="' . $pct . '" max="100" width="80%" height="20%"  background-color="red">' . $nom . ' (' . $pct . '%)</progress>';
 
     return $retour;
 }
@@ -86,7 +88,8 @@ function _is_out_of_date($type, $origin)
         "CST_ALLIANCES_RANK_MILITARY_DESTROYED" => "8",
         "CST_ALLIANCES_RANK_MILITARY_LOST" => "8",
         "CST_ALLIANCES_RANK_MILITARY_HONNOR" => "8",
-        "CST_UNIVERSE" => "168" // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
+        "CST_UNIVERSE" => "168", // modif suite a maj api ogame a tester ... ( pas d editeur sur pc pour le moment )
+        "CST_SERVERDATA" => "168" // constante univers, pas de modif reguliere, on met comme uni sur une semaine
     );
 
     $retour = true; // retour par defaut
@@ -151,7 +154,6 @@ function f_chargement_fichier_xml($s_fichier_xml)
 
     if (file_exists($s_fichier_xml)) {
         $o_xml = simplexml_load_file($s_fichier_xml);
-
         return $o_xml;
     } else {
         exit('Echec lors de l\'ouverture du fichier ' . $s_fichier_xml . '.');
@@ -394,6 +396,20 @@ function traitement_universe($value)
 
 
     prepare_table_universe($timestamp);
+
+
+    insert_config("last_" . $type, $timestamp);
+    change_date($type, $timestamp);
+}
+
+
+
+
+function traitement_serverdata($value)
+{
+    global  $type;
+    // stub de traitement
+    $timestamp = find_timestamp($value);
 
 
     insert_config("last_" . $type, $timestamp);
@@ -722,9 +738,10 @@ function findSpaId()
 }
 
 // le chemin distant renvoit il a un xml ?????
-function DistantIsFileIXml($url) {
+function DistantIsFileIXml($url)
+{
     try {
-         if ($stream = fopen($url, 'r')) {
+        if ($stream = fopen($url, 'r')) {
             // 5 premier octet => verif bidons
             $sStream = stream_get_contents($stream, 5);
             if ($sStream == "<?xml") {
@@ -735,10 +752,10 @@ function DistantIsFileIXml($url) {
             loggeur("check fichier XML No Ok " . $url);
             fclose($stream);
         }
-     } catch (Exception $e) {
-         loggeur("fichier non disponible via fopen " . $url);
-         loggeur($e->getMessage());
-         return false;
+    } catch (Exception $e) {
+        loggeur("fichier non disponible via fopen " . $url);
+        loggeur($e->getMessage());
+        return false;
     }
     return false;
 }
@@ -761,3 +778,5 @@ function fileInfoExist($sUri)
 
     return false;
 }
+
+
