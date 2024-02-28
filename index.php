@@ -38,12 +38,13 @@ if (isset($pub_reinit)) {
 // point d access à supprimer
 if (isset($pub_sub_action) && $pub_sub_action == "cross") {
     require_once("views/page_header.php");
+
     // avant traitement on met la progress barre
     if (isset($pub_step) && is_numeric($pub_step)) {
         echo progress_barre((int) $pub_step, "");
     }
     include(MOD_ROOT_JS . "cst_javascript.php");
-    echo '<script src="' . MOD_ROOT_JS . 'cross_domain.js" type="text/javascript"> </script>';
+      echo '<script src="' . MOD_ROOT_JS . 'cross_domain.js" type="text/javascript"> </script>';
     include(MOD_ROOT_VUE . "cross_domain.php");
     require_once("views/page_tail.php");
     die;
@@ -71,6 +72,7 @@ if (isset($pub_sub_action) && $pub_sub_action == "send") {
 
 if (isset($pub_step) && is_numeric($pub_step)) {
     require_once("views/page_header.php");
+
     // avant traitement on met la progress barre
     if (isset($pub_step) && is_numeric($pub_step)) {
         echo progress_barre((int) $pub_step, "");
@@ -91,19 +93,35 @@ if (isset($pub_step) && is_numeric($pub_step)) {
 
 
 require_once("views/page_header.php");
+include(MOD_ROOT_VUE . "page_header_mod.php");
+include(MOD_ROOT_VUE . "page_menu_mod.php");
 echo '<script src="' . MOD_ROOT_JS . 'step.js" type="text/javascript"> </script>';
 
 if (!IsXtenseInstalled()) {
     $errormsg = array();
     $errormsg[] = "Le mod xtense doit etre installé !!!";
     include(MOD_ROOT_VUE . "error.php");
-} elseif (isset($pub_help)) {
-    //page d'aide
-    include(MOD_ROOT_VUE . "help.php");
-} else {
-    // page d acceuil
-    include(MOD_ROOT_VUE . "index.php");
 }
 
 
+switch ($pub_subaction) {
+    case "link":
+        include(MOD_ROOT_VUE . "link.php");
+        break;
+    case "admin":
+        include(MOD_ROOT_VUE . "admin.php");
+        break;
+    case "superapix":
+        include(MOD_ROOT_VUE . "index.php");
+        break;
+    case 2:
+        echo "i equals 2";
+        break;
+    default:
+        include(MOD_ROOT_VUE . "index.php");
+        break;
+}
+
+
+include(MOD_ROOT_VUE . "page_footer_mod.php");
 require_once("views/page_tail.php");

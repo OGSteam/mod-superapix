@@ -22,6 +22,7 @@ $fields = array();
 $value = f_chargement_fichier_xml(MOD_ROOT_XML . $type . ".xml");
 //var_dump($value);
 
+echo " test"; 
 if ($type == "CST_PLAYERS") {
     traitement_player($value);
 }
