@@ -59,8 +59,7 @@ if ($adminview == 1) {
 <?php if ($adminview == 1) : ?>
 
     <table class="og-table og-little-table">
-        <form method="post" action="index.php?action=superapix&admin=1">
-            <thead>
+        <form method="post" action="index.php?action=superapix&amp;subaction=admin&amp;admin=1">
                 <tr>
                     <th colspan="2">Configuration</th>
                 </tr>
@@ -211,7 +210,7 @@ if ($adminview == 1) {
         <tbody>
             <tr>
                 <td colspan="2">
-                    <p><a class="btn og-button  og-button-danger" href="index.php?action=superapix&reinit">Réinitalisation</a></p>
+                    <p><a class="btn og-button  og-button-danger" href="index.php?action=superapix&amp;reinit">Réinitalisation</a></p>
                     En cas de blocage ponctuel, permet de : Vider le cache XML et de supprimer la date de derniere insertion
                 </td>
             </tr>

@@ -97,12 +97,6 @@ include(MOD_ROOT_VUE . "page_header_mod.php");
 include(MOD_ROOT_VUE . "page_menu_mod.php");
 echo '<script src="' . MOD_ROOT_JS . 'step.js" type="text/javascript"> </script>';
 
-if (!IsXtenseInstalled()) {
-    $errormsg = array();
-    $errormsg[] = "Le mod xtense doit etre installé !!!";
-    include(MOD_ROOT_VUE . "error.php");
-}
-
 
 switch ($pub_subaction) {
     case "link":
