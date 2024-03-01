@@ -10,6 +10,9 @@
 if (!defined('IN_SPYOGAME') || !defined('IN_SUPERAPIX')) die("Hacking attempt");
 global $db, $user_data,  $server_config;
 
+
+/// ATTENTION : cette page ne sert a rien !!!!! tout est dans function/traitement
+
 global $db, $user_data,  $server_config, $pub_timestamp;
 $timestamp = (int)$pub_timestamp;
 

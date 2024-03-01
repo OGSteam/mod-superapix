@@ -13,6 +13,9 @@ function mass_replace_into($table, $field, $query)
 {
     global $db;
     $max_requete = (int)find_config("requete_max");
+    // Échapper $table et $field une seule fois avant la boucle
+    $table = $db->sql_escape_string($table);
+    $field = $db->sql_escape_string($field);
 
     $new_query = array();
     if ($max_requete != 0) {
@@ -23,14 +26,30 @@ function mass_replace_into($table, $field, $query)
         $new_query[] = $query;
     }
 
+    $db->sql_query("START TRANSACTION;");
     // maintenant on lance les requetes de replace
+    try {
+        foreach ($new_query as $q) {
 
-    foreach ($new_query as $q) {
-        $db->sql_query('REPLACE INTO ' . $table . ' (' . $field . ') VALUES ' . implode(',', $q));
-        // avant de finir boucle on va faire patienter une demi seconde
-        //   usleep(500000) ;
-
-
-
+            $query = 'REPLACE INTO ' . $table . ' (' . $field . ') VALUES ' . implode(',', $q);
+            $db->sql_query($query);
+        }
+    } catch (Exception $e) {
+        $db->sql_query("ROLLBACK;");
+        throw new Exception($e);
     }
+
+    $db->sql_query("COMMIT;");
+}
+
+
+function escape($value)
+{
+    global $db;
+    // Si la valeur est une chaîne de caractères, échapper et mettre des guillemets simples
+    if (is_string($value)) {
+        return "'" . $db->sql_escape_string($value) . "'";
+    }
+    // Pour les autres types de données, retourner la valeur telle quelle
+    return $value;
 }
