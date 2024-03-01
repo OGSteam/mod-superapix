@@ -31,21 +31,21 @@ function stepProgressBar(data) {
   if (currentstep <= step) { // si bug et reponse inconnu
     if (data == null || data["ok"] == null) {
       alert("Une erreur est survenue");
-      $('#content').text("Une erreur est survenue"); // information  utilisateur
-      $('#avancement').attr('value', step);// change l'attribut'
+      $('#spacontent').text("Une erreur est survenue"); // information  utilisateur
+      $('#spaavancement').attr('value', step);// change l'attribut'
 
     }
     else
       if (data["ok"] == "Aucune Action") {
         alert("aucune mise à jour disponible");
-        $('#content').text("aucune mise à jour disponible"); // information  utilisateur
-        $('#avancement').attr('value', step);// change l'attribut'
+        $('#spacontent').text("aucune mise à jour disponible"); // information  utilisateur
+        $('#spaavancement').attr('value', step);// change l'attribut'
 
       }
       else {
         currentstep = currentstep + 1;
-        $('#avancement').attr('value', currentstep);// change l'attribut'
-        $('#content').text("<< " + data["ok"] + "(" + data["temps"] + " s) >>"); // information  utilisateur
+        $('#spaavancement').attr('value', currentstep);// change l'attribut'
+        $('#spacontent').text("<< " + data["ok"] + "(" + data["temps"] + " s) >>"); // information  utilisateur
         startstep(currentstep); // next step
       }
   }

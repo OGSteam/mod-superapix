@@ -93,13 +93,3 @@ if (!file_exists(MOD_ROOT_XML . $pub_url . '.xml')) {
     stream_copy($url, MOD_ROOT_XML . $pub_url . '.xml'); // xcopy buggant ...
 }
 
-  //var_dump($url);
-//https://beubeulblog.fr/anges/ogspy/index.php?action=superapix($pub_url);
-
-
- //  $url = uni_replace(find_config('uni'),$url);
-
-  // header("Content-type: text/xml");
-//  readfile($url);
-  //var_dump($url);
-//var_dump($pub_url);

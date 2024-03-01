@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  //alert($(location).attr('href'));
-
   next_step(step)
 
 });
